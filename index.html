@@ -2471,6 +2471,50 @@
       }
 
       renderPeers();
+
+      // Realtime: notify this user instantly when someone sends them a peer request
+      sb.channel('peer-requests-' + state.user.id)
+        .on('postgres_changes', {
+          event: 'INSERT',
+          schema: 'public',
+          table: 'peer_requests',
+          filter: `receiver_id=eq.${state.user.id}`
+        }, async (payload) => {
+          // Fetch sender name
+          const { data: sender } = await sb.from('profiles')
+            .select('full_name').eq('id', payload.new.sender_id).single();
+          const senderName = sender?.full_name || 'Someone';
+          toast(`🤝 ${senderName} sent you a Study Partner request! Check Notifications.`);
+          // Refresh notifications if that view is open
+          if (document.getElementById('view-notifications')?.classList.contains('active')) {
+            renderNotifs();
+          }
+          // Update bell badge
+          const bell = document.querySelector('.icon-btn[title="Notifications"]');
+          if (bell && !bell.querySelector('.badge')) {
+            const b = document.createElement('span');
+            b.className = 'badge';
+            b.style.cssText = 'position:absolute;top:2px;right:2px;width:8px;height:8px;background:var(--danger);border-radius:50%;';
+            bell.style.position = 'relative';
+            bell.appendChild(b);
+          }
+        })
+        .on('postgres_changes', {
+          event: 'UPDATE',
+          schema: 'public',
+          table: 'peer_requests',
+          filter: `sender_id=eq.${state.user.id}`
+        }, async (payload) => {
+          if (payload.new.status === 'accepted') {
+            const { data: receiver } = await sb.from('profiles')
+              .select('full_name').eq('id', payload.new.receiver_id).single();
+            const receiverName = receiver?.full_name || 'Someone';
+            toast(`🎉 ${receiverName} accepted your Study Partner request!`);
+            if (document.getElementById('view-peers')?.classList.contains('active')) renderPeers();
+            if (document.getElementById('view-notifications')?.classList.contains('active')) renderNotifs();
+          }
+        })
+        .subscribe();
     }
 
     function showLoadingState(on) {
@@ -2848,8 +2892,10 @@
     // ═══════════════════════════════════════════
     // NOTIFICATIONS
     // ═══════════════════════════════════════════
-    function renderNotifs() {
+    async function renderNotifs() {
       const c = document.getElementById('notif-list'); c.innerHTML = '';
+
+      // Static welcome notifications
       const STATIC = [
         { icon: '🎉', type: 'mention', title: `Welcome, ${state.profile?.full_name || 'Student'}! You're now on CampusConnect.`, time: 'Just now' },
         { icon: '⚡', type: 'mention', title: 'AI Study Assistant is now powered by Groq LLaMA 3.3 70B — ask it anything!', time: 'Now' },
@@ -2861,25 +2907,201 @@
         d.innerHTML = `<div class="ni-icon ${n.type}">${n.icon}</div><div class="ni-body"><div class="ni-title">${n.title}</div><div class="ni-time">${n.time}</div></div>`;
         c.appendChild(d);
       });
+
+      // Load incoming peer requests for THIS user
+      const { data: incoming } = await sb
+        .from('peer_requests')
+        .select('id, sender_id, status, created_at, profiles:sender_id(full_name, department)')
+        .eq('receiver_id', state.user.id)
+        .eq('status', 'pending');
+
+      if (incoming && incoming.length > 0) {
+        const header = document.createElement('div');
+        header.style.cssText = 'font-family:var(--font-display);font-weight:700;font-size:13px;color:var(--text);margin:18px 0 8px;';
+        header.textContent = `🤝 Study Partner Requests (${incoming.length})`;
+        c.appendChild(header);
+
+        incoming.forEach(req => {
+          const senderName = req.profiles?.full_name || 'Someone';
+          const senderDept = req.profiles?.department || '';
+          const timeAgo = timeAgoStr(req.created_at);
+          const card = document.createElement('div');
+          card.className = 'notif-item';
+          card.id = `req-card-${req.id}`;
+          card.style.cssText = 'border-left:3px solid var(--primary);';
+          card.innerHTML = `
+            <div class="ni-icon mention">🤝</div>
+            <div class="ni-body" style="flex:1;">
+              <div class="ni-title"><strong>${escHtml(senderName)}</strong> sent you a Study Partner request${senderDept ? ' · ' + escHtml(senderDept) : ''}</div>
+              <div class="ni-time">${timeAgo}</div>
+              <div style="display:flex;gap:8px;margin-top:10px;">
+                <button class="btn-sm" style="background:var(--primary);color:#fff;border:none;"
+                  onclick="acceptPeerRequest('${req.id}','${req.sender_id}','${escHtml(senderName)}')">✓ Accept</button>
+                <button class="btn-sm" style="background:transparent;border:1px solid var(--border);color:var(--text-muted);"
+                  onclick="declinePeerRequest('${req.id}')">✗ Decline</button>
+              </div>
+            </div>`;
+          c.appendChild(card);
+        });
+      }
+
+      // Load accepted notifications (partner accepted your request)
+      const { data: accepted } = await sb
+        .from('peer_requests')
+        .select('id, receiver_id, created_at, profiles:receiver_id(full_name)')
+        .eq('sender_id', state.user.id)
+        .eq('status', 'accepted');
+
+      if (accepted && accepted.length > 0) {
+        accepted.forEach(req => {
+          const name = req.profiles?.full_name || 'Someone';
+          const card = document.createElement('div');
+          card.className = 'notif-item';
+          card.innerHTML = `
+            <div class="ni-icon mention">🎉</div>
+            <div class="ni-body">
+              <div class="ni-title"><strong>${escHtml(name)}</strong> accepted your Study Partner request! You are now study partners.</div>
+              <div class="ni-time">${timeAgoStr(req.created_at)}</div>
+            </div>`;
+          c.appendChild(card);
+        });
+      }
+    }
+
+    function timeAgoStr(iso) {
+      if (!iso) return '';
+      const diff = Math.floor((Date.now() - new Date(iso)) / 1000);
+      if (diff < 60) return 'Just now';
+      if (diff < 3600) return Math.floor(diff / 60) + 'm ago';
+      if (diff < 86400) return Math.floor(diff / 3600) + 'h ago';
+      return Math.floor(diff / 86400) + 'd ago';
+    }
+
+    async function acceptPeerRequest(reqId, senderId, senderName) {
+      // Update request status to accepted
+      const { error } = await sb.from('peer_requests').update({ status: 'accepted' }).eq('id', reqId);
+      if (error) { toast('Failed to accept: ' + error.message, true); return; }
+
+      // Insert both directions into study_partners
+      await sb.from('study_partners').upsert([
+        { user_id: state.user.id, partner_id: senderId },
+        { user_id: senderId, partner_id: state.user.id }
+      ]);
+
+      // Remove the card from UI
+      const card = document.getElementById(`req-card-${reqId}`);
+      if (card) { card.style.opacity = '0'; card.style.transition = 'opacity 0.3s'; setTimeout(() => card.remove(), 300); }
+
+      toast(`🎉 You and ${senderName} are now Study Partners!`);
+    }
+
+    async function declinePeerRequest(reqId) {
+      await sb.from('peer_requests').update({ status: 'declined' }).eq('id', reqId);
+      const card = document.getElementById(`req-card-${reqId}`);
+      if (card) { card.style.opacity = '0'; card.style.transition = 'opacity 0.3s'; setTimeout(() => card.remove(), 300); }
+      toast('Request declined.');
     }
 
     // ═══════════════════════════════════════════
     // PEERS
     // ═══════════════════════════════════════════
     async function renderPeers() {
-      const { data } = await sb.from('profiles').select('full_name, department, reputation')
-        .neq('id', state.user.id).limit(8);
-      const c = document.getElementById('peer-container'); c.innerHTML = '';
+      const c = document.getElementById('peer-container'); c.innerHTML = '<div style="grid-column:1/-1;text-align:center;color:var(--text-muted);padding:20px;">Loading peers…</div>';
       const COLORS = ['#6366F1,#8B5CF6', '#10B981,#0891B2', '#F59E0B,#EF4444', '#EC4899,#F43F5E'];
-      (data || []).forEach((p, i) => {
+
+      // Fetch all other profiles
+      const { data: profiles } = await sb.from('profiles')
+        .select('id, full_name, department, reputation')
+        .neq('id', state.user.id).limit(12);
+
+      // Fetch requests I already sent
+      const { data: sentReqs } = await sb.from('peer_requests')
+        .select('receiver_id, status').eq('sender_id', state.user.id);
+      const sentMap = {};
+      (sentReqs || []).forEach(r => { sentMap[r.receiver_id] = r.status; });
+
+      // Fetch current study partners
+      const { data: partnerRows } = await sb.from('study_partners')
+        .select('partner_id').eq('user_id', state.user.id);
+      const partnerIds = new Set((partnerRows || []).map(r => r.partner_id));
+
+      c.innerHTML = '';
+
+      // Show existing study partners section first
+      if (partnerIds.size > 0) {
+        const partnerProfiles = (profiles || []).filter(p => partnerIds.has(p.id));
+        if (partnerProfiles.length > 0) {
+          const hdr = document.createElement('div');
+          hdr.style.cssText = 'grid-column:1/-1;font-family:var(--font-display);font-weight:700;font-size:14px;color:var(--primary);margin-bottom:4px;';
+          hdr.textContent = '✅ Your Study Partners';
+          c.appendChild(hdr);
+          partnerProfiles.forEach((p, i) => {
+            const init = (p.full_name || '?').split(' ').map(w => w[0]).join('').slice(0, 2).toUpperCase();
+            const d = document.createElement('div'); d.className = 'peer-card';
+            d.style.border = '2px solid var(--primary)';
+            d.innerHTML = `
+              <div class="peer-avatar" style="background:linear-gradient(135deg,${COLORS[i % 4]});">${init}</div>
+              <div class="peer-name">${escHtml(p.full_name)}</div>
+              <div class="peer-dept">${escHtml(p.department)}</div>
+              <div class="peer-match" style="color:var(--primary);">✅ Study Partner</div>
+              <div style="font-size:11px;color:var(--text-muted);margin-bottom:10px;">${p.reputation || 0} pts</div>
+              <button class="btn-sm" style="width:100%;background:var(--primary-glow);color:var(--primary);border:1px solid var(--primary);cursor:default;">Connected ✓</button>`;
+            c.appendChild(d);
+          });
+
+          const divider = document.createElement('div');
+          divider.style.cssText = 'grid-column:1/-1;font-family:var(--font-display);font-weight:700;font-size:14px;color:var(--text);margin:12px 0 4px;';
+          divider.textContent = '🤝 Suggested Peers';
+          c.appendChild(divider);
+        }
+      }
+
+      // Show non-partner peers
+      const nonPartners = (profiles || []).filter(p => !partnerIds.has(p.id));
+      nonPartners.forEach((p, i) => {
         const init = (p.full_name || '?').split(' ').map(w => w[0]).join('').slice(0, 2).toUpperCase();
         const score = Math.floor(75 + Math.random() * 20);
+        const reqStatus = sentMap[p.id]; // 'pending', 'accepted', 'declined', or undefined
+        let btnHtml = '';
+        if (reqStatus === 'pending') {
+          btnHtml = `<button class="btn-sm" style="width:100%;opacity:0.6;cursor:default;" disabled>⏳ Request Sent</button>`;
+        } else if (reqStatus === 'accepted') {
+          btnHtml = `<button class="btn-sm" style="width:100%;background:var(--primary-glow);color:var(--primary);border:1px solid var(--primary);cursor:default;" disabled>Connected ✓</button>`;
+        } else {
+          btnHtml = `<button class="btn-sm" style="width:100%;" onclick="sendPeerRequest('${p.id}','${escHtml(p.full_name)}',this)">🤝 Send Request</button>`;
+        }
         const d = document.createElement('div'); d.className = 'peer-card';
-        d.innerHTML = `<div class="peer-avatar" style="background:linear-gradient(135deg,${COLORS[i % 4]});">${init}</div><div class="peer-name">${escHtml(p.full_name)}</div><div class="peer-dept">${escHtml(p.department)}</div><div class="peer-match">🤝 ${score}% match</div><div style="font-size:11px;color:var(--text-muted);margin-bottom:10px;">${p.reputation || 0} pts</div><button class="btn-sm" style="width:100%" onclick="toast('Request sent to ${escHtml(p.full_name)}!')">Connect</button>`;
+        d.innerHTML = `
+          <div class="peer-avatar" style="background:linear-gradient(135deg,${COLORS[i % 4]});">${init}</div>
+          <div class="peer-name">${escHtml(p.full_name)}</div>
+          <div class="peer-dept">${escHtml(p.department)}</div>
+          <div class="peer-match">🤝 ${score}% match</div>
+          <div style="font-size:11px;color:var(--text-muted);margin-bottom:10px;">${p.reputation || 0} pts</div>
+          ${btnHtml}`;
         c.appendChild(d);
       });
-      if (!data || data.length === 0) {
+
+      if (!profiles || profiles.length === 0) {
         c.innerHTML = '<div style="grid-column:1/-1;text-align:center;color:var(--text-muted);padding:40px;">No other students yet. Invite your classmates!</div>';
+      }
+    }
+
+    async function sendPeerRequest(receiverId, receiverName, btn) {
+      btn.disabled = true;
+      btn.textContent = '⏳ Sending…';
+      const { error } = await sb.from('peer_requests').insert({
+        sender_id: state.user.id,
+        receiver_id: receiverId,
+        status: 'pending'
+      });
+      if (error) {
+        // If duplicate, treat as already sent
+        btn.textContent = '⏳ Request Sent';
+        btn.style.opacity = '0.6';
+      } else {
+        btn.textContent = '⏳ Request Sent';
+        btn.style.opacity = '0.6';
+        toast(`✅ Request sent to ${receiverName}! They will see it in Notifications.`);
       }
     }
 
