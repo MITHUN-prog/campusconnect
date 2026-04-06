@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -278,7 +279,6 @@
       margin-bottom: 7px;
     }
 
-    /* helper hint shown below the input */
     .field-hint {
       font-size: 11.5px;
       color: #9B8DB0;
@@ -760,17 +760,9 @@
       width: 20px;
     }
 
-    .lr-rank.gold {
-      color: #F59E0B;
-    }
-
-    .lr-rank.silver {
-      color: #94A3B8;
-    }
-
-    .lr-rank.bronze {
-      color: #A16207;
-    }
+    .lr-rank.gold { color: #F59E0B; }
+    .lr-rank.silver { color: #94A3B8; }
+    .lr-rank.bronze { color: #A16207; }
 
     .lr-name {
       flex: 1;
@@ -848,9 +840,7 @@
       flex: 1;
     }
 
-    .search-bar input::placeholder {
-      color: var(--text-muted);
-    }
+    .search-bar input::placeholder { color: var(--text-muted); }
 
     .btn-outline {
       padding: 8px 16px;
@@ -865,9 +855,7 @@
       transition: all var(--transition);
     }
 
-    .btn-outline:hover {
-      background: var(--primary-glow);
-    }
+    .btn-outline:hover { background: var(--primary-glow); }
 
     .btn-sm {
       padding: 8px 16px;
@@ -882,9 +870,7 @@
       transition: all var(--transition);
     }
 
-    .btn-sm:hover {
-      background: var(--primary-dark);
-    }
+    .btn-sm:hover { background: var(--primary-dark); }
 
     .groups-grid {
       display: grid;
@@ -907,9 +893,7 @@
     .group-card::before {
       content: '';
       position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
+      top: 0; left: 0; right: 0;
       height: 3px;
       background: linear-gradient(90deg, var(--primary), var(--accent2));
     }
@@ -928,19 +912,15 @@
     }
 
     .gc-icon {
-      width: 40px;
-      height: 40px;
+      width: 40px; height: 40px;
       border-radius: 10px;
       background: var(--primary-glow);
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      display: flex; align-items: center; justify-content: center;
       font-size: 18px;
     }
 
     .gc-code {
-      font-size: 10px;
-      font-weight: 700;
+      font-size: 10px; font-weight: 700;
       letter-spacing: 0.1em;
       background: var(--input-bg);
       color: var(--text-muted);
@@ -952,8 +932,7 @@
 
     .gc-name {
       font-family: var(--font-display);
-      font-size: 15px;
-      font-weight: 700;
+      font-size: 15px; font-weight: 700;
       color: var(--text);
       margin-bottom: 3px;
     }
@@ -964,27 +943,16 @@
       margin-bottom: 10px;
     }
 
-    .gc-meta {
-      display: flex;
-      gap: 8px;
-    }
+    .gc-meta { display: flex; gap: 8px; }
 
     .gc-tag {
-      font-size: 10px;
-      font-weight: 600;
+      font-size: 10px; font-weight: 600;
       padding: 3px 8px;
       border-radius: 20px;
     }
 
-    .gc-tag.dept {
-      background: rgba(99, 102, 241, 0.1);
-      color: var(--accent2);
-    }
-
-    .gc-tag.members {
-      background: var(--input-bg);
-      color: var(--text-muted);
-    }
+    .gc-tag.dept { background: rgba(99, 102, 241, 0.1); color: var(--accent2); }
+    .gc-tag.members { background: var(--input-bg); color: var(--text-muted); }
 
     .chat-layout {
       display: grid;
@@ -1001,8 +969,7 @@
     }
 
     .chat-list-title {
-      font-size: 10px;
-      font-weight: 700;
+      font-size: 10px; font-weight: 700;
       text-transform: uppercase;
       letter-spacing: 0.1em;
       color: var(--text-muted);
@@ -1019,142 +986,83 @@
       transition: all var(--transition);
     }
 
-    .chat-group-item:hover {
-      background: var(--input-bg);
-    }
-
-    .chat-group-item.active {
-      background: var(--primary-glow);
-    }
+    .chat-group-item:hover { background: var(--input-bg); }
+    .chat-group-item.active { background: var(--primary-glow); }
 
     .cgi-icon {
-      width: 34px;
-      height: 34px;
+      width: 34px; height: 34px;
       border-radius: 9px;
       background: var(--primary-glow);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 14px;
-      flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 14px; flex-shrink: 0;
     }
 
-    .cgi-info {
-      overflow: hidden;
-    }
+    .cgi-info { overflow: hidden; }
 
     .cgi-name {
-      font-size: 12.5px;
-      font-weight: 600;
+      font-size: 12.5px; font-weight: 600;
       color: var(--text);
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
+      white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
     }
 
     .cgi-last {
-      font-size: 10.5px;
-      color: var(--text-muted);
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
+      font-size: 10.5px; color: var(--text-muted);
+      white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
     }
 
-    .chat-main {
-      display: flex;
-      flex-direction: column;
-      overflow: hidden;
-    }
+    .chat-main { display: flex; flex-direction: column; overflow: hidden; }
 
     .chat-topbar {
       height: 52px;
       background: var(--card);
       border-bottom: 1px solid var(--border);
-      display: flex;
-      align-items: center;
-      padding: 0 16px;
-      gap: 10px;
-      flex-shrink: 0;
+      display: flex; align-items: center;
+      padding: 0 16px; gap: 10px; flex-shrink: 0;
     }
 
     .chat-topbar-name {
       font-family: var(--font-display);
-      font-size: 14px;
-      font-weight: 700;
+      font-size: 14px; font-weight: 700;
       color: var(--text);
     }
 
-    .chat-topbar-meta {
-      font-size: 11px;
-      color: var(--text-muted);
-    }
+    .chat-topbar-meta { font-size: 11px; color: var(--text-muted); }
 
     .messages {
-      flex: 1;
-      overflow-y: auto;
+      flex: 1; overflow-y: auto;
       padding: 16px;
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
+      display: flex; flex-direction: column; gap: 12px;
     }
 
-    .msg-row {
-      display: flex;
-      gap: 10px;
-    }
-
-    .msg-row.me {
-      flex-direction: row-reverse;
-    }
+    .msg-row { display: flex; gap: 10px; }
+    .msg-row.me { flex-direction: row-reverse; }
 
     .msg-avatar {
-      width: 28px;
-      height: 28px;
+      width: 28px; height: 28px;
       border-radius: 50%;
       background: linear-gradient(135deg, #6366F1, #8B5CF6);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 10px;
-      font-weight: 700;
-      color: #fff;
-      flex-shrink: 0;
-      margin-top: 2px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 10px; font-weight: 700; color: #fff;
+      flex-shrink: 0; margin-top: 2px;
     }
 
-    .msg-body {
-      max-width: 65%;
-    }
+    .msg-body { max-width: 65%; }
 
     .msg-meta {
-      font-size: 10px;
-      color: var(--text-muted);
+      font-size: 10px; color: var(--text-muted);
       margin-bottom: 4px;
-      display: flex;
-      align-items: center;
-      gap: 6px;
+      display: flex; align-items: center; gap: 6px;
     }
 
-    .msg-row.me .msg-meta {
-      justify-content: flex-end;
-    }
+    .msg-row.me .msg-meta { justify-content: flex-end; }
 
     .msg-tag {
-      font-size: 9px;
-      font-weight: 700;
-      padding: 1px 6px;
-      border-radius: 4px;
+      font-size: 9px; font-weight: 700;
+      padding: 1px 6px; border-radius: 4px;
     }
 
-    .msg-tag.doubt {
-      background: rgba(245, 158, 11, 0.15);
-      color: #D97706;
-    }
-
-    .msg-tag.important {
-      background: rgba(99, 102, 241, 0.15);
-      color: #4F46E5;
-    }
+    .msg-tag.doubt { background: rgba(245, 158, 11, 0.15); color: #D97706; }
+    .msg-tag.important { background: rgba(99, 102, 241, 0.15); color: #4F46E5; }
 
     .msg-bubble {
       padding: 10px 14px;
@@ -1162,8 +1070,7 @@
       border-top-left-radius: 4px;
       background: var(--card);
       border: 1px solid var(--border);
-      font-size: 13px;
-      line-height: 1.55;
+      font-size: 13px; line-height: 1.55;
       color: var(--text);
     }
 
@@ -1176,25 +1083,18 @@
     }
 
     .msg-bubble code {
-      background: rgba(0, 0, 0, 0.12);
-      padding: 1px 5px;
-      border-radius: 4px;
-      font-family: monospace;
-      font-size: 12px;
+      background: rgba(0,0,0,0.12);
+      padding: 1px 5px; border-radius: 4px;
+      font-family: monospace; font-size: 12px;
     }
 
     .msg-bubble pre {
-      background: rgba(0, 0, 0, 0.15);
-      padding: 10px;
-      border-radius: 8px;
-      margin-top: 8px;
-      overflow-x: auto;
+      background: rgba(0,0,0,0.15);
+      padding: 10px; border-radius: 8px;
+      margin-top: 8px; overflow-x: auto;
     }
 
-    .msg-bubble pre code {
-      background: none;
-      padding: 0;
-    }
+    .msg-bubble pre code { background: none; padding: 0; }
 
     .chat-input-wrap {
       padding: 12px 16px;
@@ -1203,11 +1103,7 @@
       flex-shrink: 0;
     }
 
-    .chat-input-row {
-      display: flex;
-      gap: 8px;
-      align-items: flex-end;
-    }
+    .chat-input-row { display: flex; gap: 8px; align-items: flex-end; }
 
     .chat-input-box {
       flex: 1;
@@ -1216,63 +1112,41 @@
       border-radius: 12px;
       padding: 10px 14px;
       font-family: var(--font-body);
-      font-size: 13px;
-      color: var(--text);
-      outline: none;
-      resize: none;
+      font-size: 13px; color: var(--text);
+      outline: none; resize: none;
       max-height: 120px;
       transition: border-color var(--transition);
     }
 
-    .chat-input-box:focus {
-      border-color: var(--primary);
-    }
+    .chat-input-box:focus { border-color: var(--primary); }
 
     .chat-send {
-      width: 38px;
-      height: 38px;
+      width: 38px; height: 38px;
       border-radius: 10px;
       background: var(--primary);
-      border: none;
-      color: #fff;
-      font-size: 16px;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: all var(--transition);
-      flex-shrink: 0;
+      border: none; color: #fff;
+      font-size: 16px; cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      transition: all var(--transition); flex-shrink: 0;
     }
 
-    .chat-send:hover {
-      background: var(--primary-dark);
-    }
+    .chat-send:hover { background: var(--primary-dark); }
 
-    .chat-actions {
-      display: flex;
-      gap: 4px;
-      margin-bottom: 8px;
-    }
+    .chat-actions { display: flex; gap: 4px; margin-bottom: 8px; }
 
     .chat-action-btn {
       padding: 4px 10px;
       border: 1px solid var(--border);
       border-radius: 6px;
       background: transparent;
-      font-size: 10.5px;
-      font-weight: 600;
+      font-size: 10.5px; font-weight: 600;
       color: var(--text-muted);
       cursor: pointer;
       transition: all var(--transition);
-      display: flex;
-      align-items: center;
-      gap: 4px;
+      display: flex; align-items: center; gap: 4px;
     }
 
-    .chat-action-btn:hover {
-      border-color: var(--primary);
-      color: var(--primary);
-    }
+    .chat-action-btn:hover { border-color: var(--primary); color: var(--primary); }
 
     .chat-sidebar {
       background: var(--card);
@@ -1281,13 +1155,10 @@
       overflow-y: auto;
     }
 
-    .cs-section {
-      margin-bottom: 20px;
-    }
+    .cs-section { margin-bottom: 20px; }
 
     .cs-title {
-      font-size: 10px;
-      font-weight: 700;
+      font-size: 10px; font-weight: 700;
       text-transform: uppercase;
       letter-spacing: 0.1em;
       color: var(--text-muted);
@@ -1295,84 +1166,45 @@
     }
 
     .resource-item {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      padding: 7px 8px;
-      border-radius: 8px;
+      display: flex; align-items: center; gap: 8px;
+      padding: 7px 8px; border-radius: 8px;
       cursor: pointer;
       transition: background var(--transition);
     }
 
-    .resource-item:hover {
-      background: var(--input-bg);
-    }
+    .resource-item:hover { background: var(--input-bg); }
 
     .ri-icon {
-      width: 28px;
-      height: 28px;
+      width: 28px; height: 28px;
       border-radius: 7px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 12px;
-      flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 12px; flex-shrink: 0;
     }
 
-    .ri-icon.pdf {
-      background: rgba(239, 68, 68, 0.1);
-    }
-
-    .ri-icon.img {
-      background: rgba(16, 185, 129, 0.1);
-    }
+    .ri-icon.pdf { background: rgba(239, 68, 68, 0.1); }
+    .ri-icon.img { background: rgba(16, 185, 129, 0.1); }
 
     .ri-name {
-      font-size: 11px;
-      font-weight: 600;
+      font-size: 11px; font-weight: 600;
       color: var(--text);
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
+      white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
     }
 
-    .ri-size {
-      font-size: 9.5px;
-      color: var(--text-muted);
-    }
+    .ri-size { font-size: 9.5px; color: var(--text-muted); }
 
-    .member-item {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      padding: 5px 0;
-    }
+    .member-item { display: flex; align-items: center; gap: 8px; padding: 5px 0; }
 
-    .mi-name {
-      font-size: 11.5px;
-      font-weight: 500;
-      color: var(--text);
-    }
-
-    .mi-dept {
-      font-size: 9.5px;
-      color: var(--text-muted);
-    }
+    .mi-name { font-size: 11.5px; font-weight: 500; color: var(--text); }
+    .mi-dept { font-size: 9.5px; color: var(--text-muted); }
 
     .mi-online {
-      width: 7px;
-      height: 7px;
+      width: 7px; height: 7px;
       border-radius: 50%;
       background: var(--primary);
-      margin-left: auto;
-      flex-shrink: 0;
+      margin-left: auto; flex-shrink: 0;
     }
 
-    .ai-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 16px;
-    }
+    .ai-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
 
     .ai-card {
       background: var(--card);
@@ -1384,20 +1216,26 @@
 
     .ai-card-title {
       font-family: var(--font-display);
-      font-size: 16px;
-      font-weight: 700;
+      font-size: 16px; font-weight: 700;
       color: var(--text);
       margin-bottom: 6px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
+      display: flex; align-items: center; gap: 8px;
     }
 
-    .ai-card-sub {
-      font-size: 12px;
-      color: var(--text-muted);
-      margin-bottom: 20px;
+    /* Groq badge for the AI assistant header */
+    .groq-badge {
+      font-size: 9px;
+      font-weight: 700;
+      background: linear-gradient(135deg, #10B981, #6366F1);
+      color: #fff;
+      padding: 2px 7px;
+      border-radius: 20px;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      margin-left: auto;
     }
+
+    .ai-card-sub { font-size: 12px; color: var(--text-muted); margin-bottom: 20px; }
 
     .upload-zone {
       border: 2px dashed var(--border);
@@ -1409,24 +1247,10 @@
       margin-bottom: 14px;
     }
 
-    .upload-zone:hover {
-      border-color: var(--primary);
-      background: var(--primary-glow);
-    }
-
-    .upload-zone .uz-icon {
-      font-size: 28px;
-      margin-bottom: 8px;
-    }
-
-    .upload-zone .uz-text {
-      font-size: 13px;
-      color: var(--text-muted);
-    }
-
-    .upload-zone .uz-text strong {
-      color: var(--primary);
-    }
+    .upload-zone:hover { border-color: var(--primary); background: var(--primary-glow); }
+    .upload-zone .uz-icon { font-size: 28px; margin-bottom: 8px; }
+    .upload-zone .uz-text { font-size: 13px; color: var(--text-muted); }
+    .upload-zone .uz-text strong { color: var(--primary); }
 
     .quiz-question {
       background: var(--input-bg);
@@ -1436,62 +1260,30 @@
       margin-bottom: 10px;
     }
 
-    .qq-text {
-      font-size: 13px;
-      font-weight: 600;
-      color: var(--text);
-      margin-bottom: 10px;
-    }
-
-    .qq-options {
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-    }
+    .qq-text { font-size: 13px; font-weight: 600; color: var(--text); margin-bottom: 10px; }
+    .qq-options { display: flex; flex-direction: column; gap: 6px; }
 
     .qq-opt {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      padding: 7px 10px;
-      border-radius: 7px;
+      display: flex; align-items: center; gap: 8px;
+      padding: 7px 10px; border-radius: 7px;
       cursor: pointer;
       border: 1px solid var(--border);
       background: var(--card);
-      font-size: 12px;
-      color: var(--text);
+      font-size: 12px; color: var(--text);
       transition: all var(--transition);
     }
 
-    .qq-opt:hover {
-      border-color: var(--primary);
-      background: var(--primary-glow);
-    }
-
-    .qq-opt.selected {
-      border-color: var(--primary);
-      background: var(--primary);
-      color: #fff;
-    }
-
-    .qq-opt.correct {
-      border-color: var(--success);
-      background: rgba(16, 185, 129, 0.1);
-      color: var(--success);
-    }
-
-    .qq-opt.wrong {
-      border-color: var(--danger);
-      background: rgba(239, 68, 68, 0.1);
-      color: var(--danger);
-    }
+    .qq-opt:hover { border-color: var(--primary); background: var(--primary-glow); }
+    .qq-opt.selected { border-color: var(--primary); background: var(--primary); color: #fff; }
+    .qq-opt.correct { border-color: var(--success); background: rgba(16, 185, 129, 0.1); color: var(--success); }
+    .qq-opt.wrong { border-color: var(--danger); background: rgba(239, 68, 68, 0.1); color: var(--danger); }
 
     .rag-chat {
       background: var(--input-bg);
       border: 1px solid var(--border);
       border-radius: 12px;
       padding: 14px;
-      height: 200px;
+      height: 240px;
       overflow-y: auto;
       margin-bottom: 12px;
       display: flex;
@@ -1499,18 +1291,9 @@
       gap: 10px;
     }
 
-    .rag-msg {
-      display: flex;
-      gap: 8px;
-    }
-
-    .rag-msg.ai {
-      flex-direction: row;
-    }
-
-    .rag-msg.user {
-      flex-direction: row-reverse;
-    }
+    .rag-msg { display: flex; gap: 8px; }
+    .rag-msg.ai { flex-direction: row; }
+    .rag-msg.user { flex-direction: row-reverse; }
 
     .rag-bubble {
       padding: 8px 12px;
@@ -1518,6 +1301,7 @@
       font-size: 12.5px;
       max-width: 85%;
       line-height: 1.5;
+      white-space: pre-wrap;
     }
 
     .rag-msg.ai .rag-bubble {
@@ -1531,10 +1315,7 @@
       color: #fff;
     }
 
-    .rag-input-row {
-      display: flex;
-      gap: 8px;
-    }
+    .rag-input-row { display: flex; gap: 8px; }
 
     .rag-input {
       flex: 1;
@@ -1543,14 +1324,13 @@
       border: 1px solid var(--border);
       border-radius: 9px;
       font-family: var(--font-body);
-      font-size: 13px;
-      color: var(--text);
+      font-size: 13px; color: var(--text);
       outline: none;
+      transition: border-color var(--transition);
     }
 
-    .rag-input:focus {
-      border-color: var(--primary);
-    }
+    .rag-input:focus { border-color: var(--primary); }
+    .rag-input:disabled { opacity: 0.6; cursor: not-allowed; }
 
     .rag-send {
       padding: 9px 16px;
@@ -1562,13 +1342,29 @@
       cursor: pointer;
       font-family: var(--font-display);
       font-weight: 700;
+      transition: background var(--transition);
     }
 
-    .analytics-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 16px;
+    .rag-send:hover { background: var(--primary-dark); }
+    .rag-send:disabled { opacity: 0.6; cursor: not-allowed; }
+
+    /* Clear chat button */
+    .rag-clear {
+      padding: 5px 10px;
+      background: transparent;
+      border: 1px solid var(--border);
+      border-radius: 7px;
+      color: var(--text-muted);
+      font-size: 11px;
+      cursor: pointer;
+      font-family: var(--font-body);
+      transition: all var(--transition);
+      margin-bottom: 8px;
     }
+
+    .rag-clear:hover { border-color: var(--danger); color: var(--danger); }
+
+    .analytics-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
 
     .chart-wrap {
       background: var(--card);
@@ -1580,26 +1376,14 @@
 
     .chart-title {
       font-family: var(--font-display);
-      font-size: 14px;
-      font-weight: 700;
+      font-size: 14px; font-weight: 700;
       color: var(--text);
       margin-bottom: 16px;
     }
 
-    .bar-chart {
-      display: flex;
-      align-items: flex-end;
-      gap: 6px;
-      height: 100px;
-    }
+    .bar-chart { display: flex; align-items: flex-end; gap: 6px; height: 100px; }
 
-    .bar-col {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 4px;
-    }
+    .bar-col { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 4px; }
 
     .bar {
       width: 100%;
@@ -1609,237 +1393,110 @@
       min-height: 4px;
     }
 
-    .bar-label {
-      font-size: 9px;
-      color: var(--text-muted);
-    }
+    .bar-label { font-size: 9px; color: var(--text-muted); }
 
     .score-ring {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-direction: column;
-      padding: 20px;
+      display: flex; align-items: center; justify-content: center;
+      flex-direction: column; padding: 20px;
     }
 
-    .ring-svg {
-      width: 100px;
-      height: 100px;
-      transform: rotate(-90deg);
-    }
+    .ring-svg { width: 100px; height: 100px; transform: rotate(-90deg); }
+    .ring-bg { fill: none; stroke: var(--border); stroke-width: 8; }
+    .ring-fill { fill: none; stroke: var(--primary); stroke-width: 8; stroke-linecap: round; transition: stroke-dashoffset 1s ease; }
+    .ring-label { font-family: var(--font-display); font-size: 22px; font-weight: 800; color: var(--text); }
+    .ring-sub { font-size: 11px; color: var(--text-muted); }
 
-    .ring-bg {
-      fill: none;
-      stroke: var(--border);
-      stroke-width: 8;
-    }
-
-    .ring-fill {
-      fill: none;
-      stroke: var(--primary);
-      stroke-width: 8;
-      stroke-linecap: round;
-      transition: stroke-dashoffset 1s ease;
-    }
-
-    .ring-label {
-      font-family: var(--font-display);
-      font-size: 22px;
-      font-weight: 800;
-      color: var(--text);
-    }
-
-    .ring-sub {
-      font-size: 11px;
-      color: var(--text-muted);
-    }
-
-    .progress-row {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      margin-bottom: 12px;
-    }
-
-    .pr-label {
-      font-size: 12px;
-      color: var(--text);
-      width: 90px;
-      flex-shrink: 0;
-    }
-
-    .pr-bar {
-      flex: 1;
-      height: 6px;
-      background: var(--border);
-      border-radius: 3px;
-      overflow: hidden;
-    }
-
-    .pr-fill {
-      height: 100%;
-      border-radius: 3px;
-      background: var(--primary);
-      transition: width 0.8s ease;
-    }
-
-    .pr-val {
-      font-size: 11px;
-      font-weight: 600;
-      color: var(--text-muted);
-      width: 30px;
-      text-align: right;
-      flex-shrink: 0;
-    }
+    .progress-row { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; }
+    .pr-label { font-size: 12px; color: var(--text); width: 90px; flex-shrink: 0; }
+    .pr-bar { flex: 1; height: 6px; background: var(--border); border-radius: 3px; overflow: hidden; }
+    .pr-fill { height: 100%; border-radius: 3px; background: var(--primary); transition: width 0.8s ease; }
+    .pr-val { font-size: 11px; font-weight: 600; color: var(--text-muted); width: 30px; text-align: right; flex-shrink: 0; }
 
     #pomodoro-overlay {
       display: none;
-      position: fixed;
-      inset: 0;
+      position: fixed; inset: 0;
       background: rgba(2, 6, 23, 0.97);
       z-index: 1000;
       flex-direction: column;
-      align-items: center;
-      justify-content: center;
+      align-items: center; justify-content: center;
     }
 
-    #pomodoro-overlay.active {
-      display: flex;
-    }
+    #pomodoro-overlay.active { display: flex; }
 
     .pomo-label {
       font-family: var(--font-display);
-      font-size: 12px;
-      font-weight: 700;
+      font-size: 12px; font-weight: 700;
       text-transform: uppercase;
       letter-spacing: 0.2em;
-      color: rgba(255, 255, 255, 0.3);
+      color: rgba(255,255,255,0.3);
       margin-bottom: 24px;
     }
 
     .pomo-timer {
       font-family: var(--font-display);
-      font-size: 88px;
-      font-weight: 800;
-      color: #fff;
-      letter-spacing: -4px;
-      margin-bottom: 32px;
-      line-height: 1;
+      font-size: 88px; font-weight: 800;
+      color: #fff; letter-spacing: -4px;
+      margin-bottom: 32px; line-height: 1;
     }
 
-    .pomo-timer .pomo-sec {
-      color: var(--primary);
-    }
+    .pomo-timer .pomo-sec { color: var(--primary); }
 
-    .pomo-btns {
-      display: flex;
-      gap: 12px;
-    }
+    .pomo-btns { display: flex; gap: 12px; }
 
     .pomo-btn {
-      padding: 12px 28px;
-      border-radius: 12px;
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      background: rgba(255, 255, 255, 0.05);
+      padding: 12px 28px; border-radius: 12px;
+      border: 1px solid rgba(255,255,255,0.1);
+      background: rgba(255,255,255,0.05);
       color: #fff;
       font-family: var(--font-display);
-      font-size: 13px;
-      font-weight: 700;
+      font-size: 13px; font-weight: 700;
       cursor: pointer;
       transition: all var(--transition);
     }
 
-    .pomo-btn.primary {
-      background: var(--primary);
-      border-color: var(--primary);
-    }
-
-    .pomo-btn:hover {
-      opacity: 0.8;
-    }
+    .pomo-btn.primary { background: var(--primary); border-color: var(--primary); }
+    .pomo-btn:hover { opacity: 0.8; }
 
     .pomo-close {
-      position: absolute;
-      top: 24px;
-      right: 24px;
-      width: 40px;
-      height: 40px;
+      position: absolute; top: 24px; right: 24px;
+      width: 40px; height: 40px;
       border-radius: 50%;
-      background: rgba(255, 255, 255, 0.08);
-      border: none;
-      color: #fff;
-      font-size: 18px;
+      background: rgba(255,255,255,0.08);
+      border: none; color: #fff; font-size: 18px;
       cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      display: flex; align-items: center; justify-content: center;
     }
 
-    .notif-list {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
+    .notif-list { display: flex; flex-direction: column; gap: 10px; }
 
     .notif-item {
       background: var(--card);
       border: 1px solid var(--border);
       border-radius: 12px;
       padding: 14px;
-      display: flex;
-      gap: 12px;
+      display: flex; gap: 12px;
       box-shadow: var(--shadow);
       transition: all var(--transition);
     }
 
-    .notif-item:hover {
-      border-color: var(--primary);
-    }
+    .notif-item:hover { border-color: var(--primary); }
 
     .ni-icon {
-      width: 36px;
-      height: 36px;
+      width: 36px; height: 36px;
       border-radius: 10px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 16px;
-      flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 16px; flex-shrink: 0;
     }
 
-    .ni-icon.mention {
-      background: rgba(99, 102, 241, 0.1);
-    }
+    .ni-icon.mention { background: rgba(99, 102, 241, 0.1); }
+    .ni-icon.doubt { background: rgba(245, 158, 11, 0.1); }
+    .ni-icon.deadline { background: rgba(239, 68, 68, 0.1); }
 
-    .ni-icon.doubt {
-      background: rgba(245, 158, 11, 0.1);
-    }
+    .ni-body { flex: 1; }
+    .ni-title { font-size: 13px; font-weight: 600; color: var(--text); margin-bottom: 3px; }
+    .ni-time { font-size: 11px; color: var(--text-muted); }
 
-    .ni-icon.deadline {
-      background: rgba(239, 68, 68, 0.1);
-    }
-
-    .ni-body {
-      flex: 1;
-    }
-
-    .ni-title {
-      font-size: 13px;
-      font-weight: 600;
-      color: var(--text);
-      margin-bottom: 3px;
-    }
-
-    .ni-time {
-      font-size: 11px;
-      color: var(--text-muted);
-    }
-
-    .peer-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-      gap: 14px;
-    }
+    .peer-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 14px; }
 
     .peer-card {
       background: var(--card);
@@ -1851,113 +1508,65 @@
     }
 
     .peer-avatar {
-      width: 52px;
-      height: 52px;
+      width: 52px; height: 52px;
       border-radius: 50%;
       background: linear-gradient(135deg, var(--primary), var(--accent2));
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      display: flex; align-items: center; justify-content: center;
       font-family: var(--font-display);
-      font-size: 18px;
-      font-weight: 800;
+      font-size: 18px; font-weight: 800;
       color: #fff;
       margin: 0 auto 10px;
     }
 
-    .peer-name {
-      font-family: var(--font-display);
-      font-size: 14px;
-      font-weight: 700;
-      color: var(--text);
-      margin-bottom: 3px;
-    }
-
-    .peer-dept {
-      font-size: 11px;
-      color: var(--text-muted);
-      margin-bottom: 10px;
-    }
+    .peer-name { font-family: var(--font-display); font-size: 14px; font-weight: 700; color: var(--text); margin-bottom: 3px; }
+    .peer-dept { font-size: 11px; color: var(--text-muted); margin-bottom: 10px; }
 
     .peer-match {
-      font-size: 11px;
-      font-weight: 700;
+      font-size: 11px; font-weight: 700;
       color: var(--primary);
       background: var(--primary-glow);
-      padding: 4px 12px;
-      border-radius: 20px;
-      display: inline-block;
-      margin-bottom: 12px;
+      padding: 4px 12px; border-radius: 20px;
+      display: inline-block; margin-bottom: 12px;
     }
 
-    .peer-tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 4px;
-      justify-content: center;
-      margin-bottom: 12px;
-    }
+    .peer-tags { display: flex; flex-wrap: wrap; gap: 4px; justify-content: center; margin-bottom: 12px; }
 
     .peer-tag {
       font-size: 10px;
       background: var(--input-bg);
       color: var(--text-muted);
-      padding: 3px 8px;
-      border-radius: 20px;
+      padding: 3px 8px; border-radius: 20px;
       border: 1px solid var(--border);
     }
 
     .modal-overlay {
       display: none;
-      position: fixed;
-      inset: 0;
-      background: rgba(0, 0, 0, 0.5);
+      position: fixed; inset: 0;
+      background: rgba(0,0,0,0.5);
       z-index: 500;
-      align-items: center;
-      justify-content: center;
+      align-items: center; justify-content: center;
       backdrop-filter: blur(4px);
     }
 
-    .modal-overlay.active {
-      display: flex;
-    }
+    .modal-overlay.active { display: flex; }
 
     .modal {
       background: var(--card);
       border: 1px solid var(--border);
       border-radius: 20px;
       padding: 28px;
-      width: 100%;
-      max-width: 420px;
-      box-shadow: 0 40px 80px rgba(0, 0, 0, 0.3);
+      width: 100%; max-width: 420px;
+      box-shadow: 0 40px 80px rgba(0,0,0,0.3);
     }
 
-    .modal-title {
-      font-family: var(--font-display);
-      font-size: 18px;
-      font-weight: 700;
-      color: var(--text);
-      margin-bottom: 6px;
-    }
-
-    .modal-sub {
-      font-size: 12px;
-      color: var(--text-muted);
-      margin-bottom: 22px;
-    }
-
-    .modal-field {
-      margin-bottom: 14px;
-    }
+    .modal-title { font-family: var(--font-display); font-size: 18px; font-weight: 700; color: var(--text); margin-bottom: 6px; }
+    .modal-sub { font-size: 12px; color: var(--text-muted); margin-bottom: 22px; }
+    .modal-field { margin-bottom: 14px; }
 
     .modal-field label {
-      display: block;
-      font-size: 11px;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
-      color: var(--text-muted);
-      margin-bottom: 6px;
+      display: block; font-size: 11px; font-weight: 600;
+      text-transform: uppercase; letter-spacing: 0.06em;
+      color: var(--text-muted); margin-bottom: 6px;
     }
 
     .modal-field input,
@@ -1968,114 +1577,68 @@
       border: 1px solid var(--border);
       border-radius: 9px;
       font-family: var(--font-body);
-      font-size: 13px;
-      color: var(--text);
+      font-size: 13px; color: var(--text);
       outline: none;
       transition: border-color var(--transition);
       appearance: none;
     }
 
     .modal-field input:focus,
-    .modal-field select:focus {
-      border-color: var(--primary);
-    }
+    .modal-field select:focus { border-color: var(--primary); }
+    .modal-field input::placeholder { color: var(--text-muted); }
 
-    .modal-field input::placeholder {
-      color: var(--text-muted);
-    }
-
-    .modal-btns {
-      display: flex;
-      gap: 8px;
-      justify-content: flex-end;
-      margin-top: 6px;
-    }
+    .modal-btns { display: flex; gap: 8px; justify-content: flex-end; margin-top: 6px; }
 
     .modal-cancel {
-      padding: 9px 18px;
-      border: 1px solid var(--border);
-      border-radius: 9px;
-      background: transparent;
+      padding: 9px 18px; border: 1px solid var(--border);
+      border-radius: 9px; background: transparent;
       color: var(--text-muted);
-      font-family: var(--font-display);
-      font-size: 12px;
-      font-weight: 700;
+      font-family: var(--font-display); font-size: 12px; font-weight: 700;
       cursor: pointer;
     }
 
     .modal-confirm {
-      padding: 9px 18px;
-      border: none;
-      border-radius: 9px;
-      background: var(--primary);
+      padding: 9px 18px; border: none;
+      border-radius: 9px; background: var(--primary);
       color: #fff;
-      font-family: var(--font-display);
-      font-size: 12px;
-      font-weight: 700;
+      font-family: var(--font-display); font-size: 12px; font-weight: 700;
       cursor: pointer;
     }
 
     #toast {
-      position: fixed;
-      bottom: 24px;
-      right: 24px;
-      background: var(--text);
-      color: var(--card);
-      padding: 12px 18px;
-      border-radius: 12px;
-      font-size: 13px;
-      font-weight: 500;
+      position: fixed; bottom: 24px; right: 24px;
+      background: var(--text); color: var(--card);
+      padding: 12px 18px; border-radius: 12px;
+      font-size: 13px; font-weight: 500;
       z-index: 9999;
-      transform: translateY(80px);
-      opacity: 0;
+      transform: translateY(80px); opacity: 0;
       transition: all 0.3s ease;
-      pointer-events: none;
-      max-width: 320px;
+      pointer-events: none; max-width: 320px;
     }
 
-    #toast.show {
-      transform: translateY(0);
-      opacity: 1;
-    }
+    #toast.show { transform: translateY(0); opacity: 1; }
 
-    .settings-grid {
-      display: grid;
-      grid-template-columns: 220px 1fr;
-      gap: 16px;
-    }
+    .settings-grid { display: grid; grid-template-columns: 220px 1fr; gap: 16px; }
 
     .settings-nav {
       background: var(--card);
       border: 1px solid var(--border);
       border-radius: var(--radius);
-      padding: 12px;
-      height: fit-content;
+      padding: 12px; height: fit-content;
       box-shadow: var(--shadow);
     }
 
     .settings-nav-item {
-      padding: 9px 12px;
-      border-radius: 8px;
-      font-size: 13px;
-      font-weight: 500;
+      padding: 9px 12px; border-radius: 8px;
+      font-size: 13px; font-weight: 500;
       color: var(--text-muted);
       cursor: pointer;
       transition: all var(--transition);
-      display: flex;
-      align-items: center;
-      gap: 9px;
+      display: flex; align-items: center; gap: 9px;
     }
 
-    .settings-nav-item:hover {
-      background: var(--input-bg);
-      color: var(--text);
-    }
-
-    .settings-nav-item.active {
-      background: var(--primary-glow);
-      color: var(--primary);
-      font-weight: 600;
-    }
+    .settings-nav-item:hover { background: var(--input-bg); color: var(--text); }
+    .settings-nav-item.active { background: var(--primary-glow); color: var(--primary); font-weight: 600; }
 
     .settings-content {
       background: var(--card);
@@ -2085,170 +1648,85 @@
       box-shadow: var(--shadow);
     }
 
-    .settings-section {
-      margin-bottom: 28px;
-    }
+    .settings-section { margin-bottom: 28px; }
 
     .settings-section-title {
       font-family: var(--font-display);
-      font-size: 14px;
-      font-weight: 700;
-      color: var(--text);
-      margin-bottom: 16px;
+      font-size: 14px; font-weight: 700;
+      color: var(--text); margin-bottom: 16px;
       padding-bottom: 10px;
       border-bottom: 1px solid var(--border);
     }
 
     .settings-row {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 12px 0;
-      border-bottom: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 12px 0; border-bottom: 1px solid var(--border);
     }
 
-    .settings-row:last-child {
-      border-bottom: none;
-    }
-
-    .settings-row-label {
-      font-size: 13px;
-      font-weight: 500;
-      color: var(--text);
-    }
-
-    .settings-row-sub {
-      font-size: 11px;
-      color: var(--text-muted);
-      margin-top: 2px;
-    }
+    .settings-row:last-child { border-bottom: none; }
+    .settings-row-label { font-size: 13px; font-weight: 500; color: var(--text); }
+    .settings-row-sub { font-size: 11px; color: var(--text-muted); margin-top: 2px; }
 
     .profile-avatar-big {
-      width: 72px;
-      height: 72px;
+      width: 72px; height: 72px;
       border-radius: 50%;
       background: linear-gradient(135deg, var(--primary), var(--accent2));
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      display: flex; align-items: center; justify-content: center;
       font-family: var(--font-display);
-      font-size: 24px;
-      font-weight: 800;
-      color: #fff;
-      margin-bottom: 16px;
+      font-size: 24px; font-weight: 800;
+      color: #fff; margin-bottom: 16px;
     }
 
     @media (max-width: 900px) {
-      .auth-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .auth-brand {
-        display: none;
-      }
-
-      .dash-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-
-      .dash-row {
-        grid-template-columns: 1fr;
-      }
-
-      .chat-layout {
-        grid-template-columns: 1fr;
-      }
-
-      .chat-list,
-      .chat-sidebar {
-        display: none;
-      }
-
-      .ai-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .analytics-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .settings-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .settings-nav {
-        display: none;
-      }
+      .auth-grid { grid-template-columns: 1fr; }
+      .auth-brand { display: none; }
+      .dash-grid { grid-template-columns: repeat(2, 1fr); }
+      .dash-row { grid-template-columns: 1fr; }
+      .chat-layout { grid-template-columns: 1fr; }
+      .chat-list, .chat-sidebar { display: none; }
+      .ai-grid { grid-template-columns: 1fr; }
+      .analytics-grid { grid-template-columns: 1fr; }
+      .settings-grid { grid-template-columns: 1fr; }
+      .settings-nav { display: none; }
     }
 
     @keyframes fadeUp {
-      from {
-        opacity: 0;
-        transform: translateY(12px);
-      }
-
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
+      from { opacity: 0; transform: translateY(12px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
-    .view.active {
-      animation: fadeUp 0.25s ease;
-    }
+    .view.active { animation: fadeUp 0.25s ease; }
 
     @keyframes pulse {
-
-      0%,
-      100% {
-        opacity: 1;
-      }
-
-      50% {
-        opacity: 0.5;
-      }
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.5; }
     }
 
     .typing-dot {
       display: inline-block;
-      width: 5px;
-      height: 5px;
+      width: 5px; height: 5px;
       border-radius: 50%;
       background: var(--text-muted);
       animation: pulse 1.2s ease infinite;
       margin-right: 3px;
     }
 
-    .typing-dot:nth-child(2) {
-      animation-delay: 0.2s;
-    }
+    .typing-dot:nth-child(2) { animation-delay: 0.2s; }
+    .typing-dot:nth-child(3) { animation-delay: 0.4s; }
 
-    .typing-dot:nth-child(3) {
-      animation-delay: 0.4s;
-    }
-
-    /* Error banner */
     #init-error {
       display: none;
-      position: fixed;
-      bottom: 24px;
-      left: 50%;
+      position: fixed; bottom: 24px; left: 50%;
       transform: translateX(-50%);
-      background: #EF4444;
-      color: #fff;
-      padding: 14px 22px;
-      border-radius: 12px;
-      font-size: 13px;
-      font-weight: 600;
-      z-index: 9999;
-      max-width: 480px;
+      background: #EF4444; color: #fff;
+      padding: 14px 22px; border-radius: 12px;
+      font-size: 13px; font-weight: 600;
+      z-index: 9999; max-width: 480px;
       text-align: center;
       box-shadow: 0 8px 32px rgba(239, 68, 68, 0.4);
     }
 
-    #init-error.show {
-      display: block;
-    }
+    #init-error.show { display: block; }
   </style>
 </head>
 
@@ -2266,12 +1744,11 @@
         </div>
         <div class="feature">
           <div class="icon">🧠</div>
-          <div class="text"><strong>AI Study Assistant</strong><span>PDF quiz generator &amp; RAG chatbot</span></div>
+          <div class="text"><strong>AI Study Assistant</strong><span>Powered by Groq LLaMA 3.3 70B</span></div>
         </div>
         <div class="feature">
           <div class="icon">📊</div>
-          <div class="text"><strong>Analytics &amp; Gamification</strong><span>Streaks, badges, leaderboards</span>
-          </div>
+          <div class="text"><strong>Analytics &amp; Gamification</strong><span>Streaks, badges, leaderboards</span></div>
         </div>
         <div class="feature">
           <div class="icon">🧘</div>
@@ -2374,8 +1851,7 @@
           <div class="nav-label">Main</div>
           <div class="nav-item active" onclick="showView('dashboard')"><span class="icon">📊</span> Dashboard</div>
           <div class="nav-item" onclick="showView('groups')"><span class="icon">👥</span> My Groups</div>
-          <div class="nav-item" onclick="showView('chat')"><span class="icon">💬</span> Chat <span class="badge"
-              id="unread-badge" style="display:none">!</span></div>
+          <div class="nav-item" onclick="showView('chat')"><span class="icon">💬</span> Chat <span class="badge" id="unread-badge" style="display:none">!</span></div>
           <div class="nav-item" onclick="showView('resources')"><span class="icon">📁</span> Resources</div>
         </div>
         <div class="nav-section">
@@ -2485,9 +1961,7 @@
               </div>
               <div class="leaderboard-row">
                 <div class="lr-rank silver">2</div>
-                <div class="avatar"
-                  style="width:24px;height:24px;font-size:9px;background:linear-gradient(135deg,#6366F1,#8B5CF6);">RV
-                </div>
+                <div class="avatar" style="width:24px;height:24px;font-size:9px;background:linear-gradient(135deg,#6366F1,#8B5CF6);">RV</div>
                 <div style="flex:1">
                   <div class="lr-name">Rahul V.</div>
                   <div style="font-size:10px;color:var(--text-muted)">AIDS</div>
@@ -2516,8 +1990,7 @@
         <!-- GROUPS -->
         <div class="view" id="view-groups">
           <div class="groups-header">
-            <div class="search-bar"><span>🔍</span><input type="text" placeholder="Search groups..."
-                oninput="filterGroups(this.value)"></div>
+            <div class="search-bar"><span>🔍</span><input type="text" placeholder="Search groups..." oninput="filterGroups(this.value)"></div>
             <button class="btn-outline" onclick="openModal('join')">🔗 Join with Code</button>
             <button class="btn-sm" onclick="openModal('create')">+ Create Group</button>
           </div>
@@ -2544,8 +2017,7 @@
                 </div>
               </div>
               <div class="messages" id="messages-list">
-                <div style="text-align:center;color:var(--text-muted);padding:40px;font-size:13px;">Select a group to
-                  start chatting</div>
+                <div style="text-align:center;color:var(--text-muted);padding:40px;font-size:13px;">Select a group to start chatting</div>
               </div>
               <div class="chat-input-wrap">
                 <div class="chat-actions">
@@ -2553,12 +2025,10 @@
                   <button class="chat-action-btn" onclick="setMsgTag('important')">📌 Important</button>
                   <button class="chat-action-btn" onclick="setMsgTag('')">🏷️ None</button>
                   <button class="chat-action-btn" onclick="insertCode()">💻 Code</button>
-                  <label class="chat-action-btn" style="cursor:pointer;">📎 File<input type="file" style="display:none"
-                      accept=".pdf,image/*" onchange="handleFileUpload(this)"></label>
+                  <label class="chat-action-btn" style="cursor:pointer;">📎 File<input type="file" style="display:none" accept=".pdf,image/*" onchange="handleFileUpload(this)"></label>
                 </div>
                 <div class="chat-input-row">
-                  <textarea class="chat-input-box" id="chat-input" placeholder="Type a message… (Enter to send)"
-                    rows="1" onkeydown="handleChatKey(event)"></textarea>
+                  <textarea class="chat-input-box" id="chat-input" placeholder="Type a message… (Enter to send)" rows="1" onkeydown="handleChatKey(event)"></textarea>
                   <button class="chat-send" onclick="sendMessage()">➤</button>
                 </div>
               </div>
@@ -2581,19 +2051,15 @@
         <!-- RESOURCES -->
         <div class="view" id="view-resources">
           <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;">
-            <div style="font-family:var(--font-display);font-size:18px;font-weight:700;color:var(--text)">Resource
-              Library</div>
-            <label class="btn-sm" style="cursor:pointer;">+ Upload File<input type="file" style="display:none"
-                accept=".pdf,image/*" onchange="handleResourceUpload(this)"></label>
+            <div style="font-family:var(--font-display);font-size:18px;font-weight:700;color:var(--text)">Resource Library</div>
+            <label class="btn-sm" style="cursor:pointer;">+ Upload File<input type="file" style="display:none" accept=".pdf,image/*" onchange="handleResourceUpload(this)"></label>
           </div>
           <div class="groups-grid" id="resources-container"></div>
         </div>
 
         <!-- AI TOOLS -->
         <div class="view" id="view-ai">
-          <div
-            style="font-family:var(--font-display);font-size:18px;font-weight:700;color:var(--text);margin-bottom:20px;">
-            🧠 AI Tools</div>
+          <div style="font-family:var(--font-display);font-size:18px;font-weight:700;color:var(--text);margin-bottom:20px;">🧠 AI Tools</div>
           <div class="ai-grid">
             <div class="ai-card">
               <div class="ai-card-title">📄 PDF → Quiz Generator</div>
@@ -2606,21 +2072,21 @@
               <div id="quiz-container"></div>
             </div>
             <div class="ai-card">
-              <div class="ai-card-title">🤖 AI Study Assistant</div>
-              <div class="ai-card-sub">Ask questions about your subjects (ML, DS, OS, DBMS, CN).</div>
+              <div class="ai-card-title">
+                🤖 AI Study Assistant
+                <span class="groq-badge">⚡ Groq LLaMA 3.3</span>
+              </div>
+              <div class="ai-card-sub">Ask anything — ML, DS, OS, DBMS, CN, Python, Java &amp; more. Powered by real AI.</div>
+              <button class="rag-clear" onclick="clearRagChat()">🗑 Clear conversation</button>
               <div class="rag-chat" id="rag-chat">
                 <div class="rag-msg ai">
-                  <div class="avatar"
-                    style="width:24px;height:24px;font-size:10px;background:linear-gradient(135deg,#10B981,#6366F1);flex-shrink:0;">
-                    AI</div>
-                  <div class="rag-bubble">Hi! I'm your AI Study Assistant. Ask me anything about ML, Data Structures,
-                    OS, DBMS, Computer Networks, and more!</div>
+                  <div class="avatar" style="width:24px;height:24px;font-size:10px;background:linear-gradient(135deg,#10B981,#6366F1);flex-shrink:0;">AI</div>
+                  <div class="rag-bubble">Hi! I'm your AI Study Assistant, powered by Groq LLaMA 3.3 70B. Ask me anything about Machine Learning, Data Structures, OS, DBMS, Computer Networks, Python, Java, and more! 🚀</div>
                 </div>
               </div>
               <div class="rag-input-row">
-                <input class="rag-input" id="rag-input" placeholder="Ask a question..."
-                  onkeydown="if(event.key==='Enter')sendRAG()">
-                <button class="rag-send" onclick="sendRAG()">Send</button>
+                <input class="rag-input" id="rag-input" placeholder="e.g. Explain backpropagation with an example..." onkeydown="if(event.key==='Enter' && !event.shiftKey){event.preventDefault();sendRAG();}">
+                <button class="rag-send" id="rag-send-btn" onclick="sendRAG()">Send</button>
               </div>
             </div>
           </div>
@@ -2628,9 +2094,7 @@
 
         <!-- ANALYTICS -->
         <div class="view" id="view-analytics">
-          <div
-            style="font-family:var(--font-display);font-size:18px;font-weight:700;color:var(--text);margin-bottom:20px;">
-            📈 Analytics</div>
+          <div style="font-family:var(--font-display);font-size:18px;font-weight:700;color:var(--text);margin-bottom:20px;">📈 Analytics</div>
           <div class="analytics-grid">
             <div class="chart-wrap">
               <div class="chart-title">Study Hours This Week</div>
@@ -2640,107 +2104,45 @@
               <div class="chart-title" style="align-self:flex-start">Overall Score</div>
               <svg class="ring-svg" viewBox="0 0 100 100">
                 <circle class="ring-bg" cx="50" cy="50" r="40" />
-                <circle class="ring-fill" cx="50" cy="50" r="40" stroke-dasharray="251.2" stroke-dashoffset="32.66"
-                  id="ring-fill" />
+                <circle class="ring-fill" cx="50" cy="50" r="40" stroke-dasharray="251.2" stroke-dashoffset="32.66" id="ring-fill" />
               </svg>
               <div class="ring-label">87%</div>
               <div class="ring-sub">Weighted Performance Score</div>
             </div>
             <div class="chart-wrap">
               <div class="chart-title">Subject Mastery</div>
-              <div class="progress-row">
-                <div class="pr-label">Machine Learning</div>
-                <div class="pr-bar">
-                  <div class="pr-fill" style="width:88%"></div>
-                </div>
-                <div class="pr-val">88%</div>
-              </div>
-              <div class="progress-row">
-                <div class="pr-label">Data Structures</div>
-                <div class="pr-bar">
-                  <div class="pr-fill" style="width:72%"></div>
-                </div>
-                <div class="pr-val">72%</div>
-              </div>
-              <div class="progress-row">
-                <div class="pr-label">OS Concepts</div>
-                <div class="pr-bar">
-                  <div class="pr-fill" style="width:65%"></div>
-                </div>
-                <div class="pr-val">65%</div>
-              </div>
-              <div class="progress-row">
-                <div class="pr-label">DBMS</div>
-                <div class="pr-bar">
-                  <div class="pr-fill" style="width:80%"></div>
-                </div>
-                <div class="pr-val">80%</div>
-              </div>
-              <div class="progress-row">
-                <div class="pr-label">Computer Networks</div>
-                <div class="pr-bar">
-                  <div class="pr-fill" style="width:58%"></div>
-                </div>
-                <div class="pr-val">58%</div>
-              </div>
+              <div class="progress-row"><div class="pr-label">Machine Learning</div><div class="pr-bar"><div class="pr-fill" style="width:88%"></div></div><div class="pr-val">88%</div></div>
+              <div class="progress-row"><div class="pr-label">Data Structures</div><div class="pr-bar"><div class="pr-fill" style="width:72%"></div></div><div class="pr-val">72%</div></div>
+              <div class="progress-row"><div class="pr-label">OS Concepts</div><div class="pr-bar"><div class="pr-fill" style="width:65%"></div></div><div class="pr-val">65%</div></div>
+              <div class="progress-row"><div class="pr-label">DBMS</div><div class="pr-bar"><div class="pr-fill" style="width:80%"></div></div><div class="pr-val">80%</div></div>
+              <div class="progress-row"><div class="pr-label">Computer Networks</div><div class="pr-bar"><div class="pr-fill" style="width:58%"></div></div><div class="pr-val">58%</div></div>
             </div>
             <div class="chart-wrap">
               <div class="chart-title">Participation Breakdown</div>
-              <div class="progress-row">
-                <div class="pr-label">Messages Sent</div>
-                <div class="pr-bar">
-                  <div class="pr-fill" style="width:75%;background:var(--accent2)"></div>
-                </div>
-                <div class="pr-val">142</div>
-              </div>
-              <div class="progress-row">
-                <div class="pr-label">Doubts Resolved</div>
-                <div class="pr-bar">
-                  <div class="pr-fill" style="width:60%;background:var(--accent)"></div>
-                </div>
-                <div class="pr-val">28</div>
-              </div>
-              <div class="progress-row">
-                <div class="pr-label">Files Shared</div>
-                <div class="pr-bar">
-                  <div class="pr-fill" style="width:40%;background:#EC4899"></div>
-                </div>
-                <div class="pr-val">15</div>
-              </div>
-              <div class="progress-row">
-                <div class="pr-label">Quiz Attempts</div>
-                <div class="pr-bar">
-                  <div class="pr-fill" style="width:90%"></div>
-                </div>
-                <div class="pr-val">34</div>
-              </div>
+              <div class="progress-row"><div class="pr-label">Messages Sent</div><div class="pr-bar"><div class="pr-fill" style="width:75%;background:var(--accent2)"></div></div><div class="pr-val">142</div></div>
+              <div class="progress-row"><div class="pr-label">Doubts Resolved</div><div class="pr-bar"><div class="pr-fill" style="width:60%;background:var(--accent)"></div></div><div class="pr-val">28</div></div>
+              <div class="progress-row"><div class="pr-label">Files Shared</div><div class="pr-bar"><div class="pr-fill" style="width:40%;background:#EC4899"></div></div><div class="pr-val">15</div></div>
+              <div class="progress-row"><div class="pr-label">Quiz Attempts</div><div class="pr-bar"><div class="pr-fill" style="width:90%"></div></div><div class="pr-val">34</div></div>
             </div>
           </div>
         </div>
 
         <!-- PEER MATCHING -->
         <div class="view" id="view-peers">
-          <div
-            style="font-family:var(--font-display);font-size:18px;font-weight:700;color:var(--text);margin-bottom:6px;">
-            🤝 Peer Matching</div>
-          <div style="font-size:12px;color:var(--text-muted);margin-bottom:20px;">AI-matched based on your doubts,
-            subjects, and complementary skills.</div>
+          <div style="font-family:var(--font-display);font-size:18px;font-weight:700;color:var(--text);margin-bottom:6px;">🤝 Peer Matching</div>
+          <div style="font-size:12px;color:var(--text-muted);margin-bottom:20px;">AI-matched based on your doubts, subjects, and complementary skills.</div>
           <div class="peer-grid" id="peer-container"></div>
         </div>
 
         <!-- NOTIFICATIONS -->
         <div class="view" id="view-notifications">
-          <div
-            style="font-family:var(--font-display);font-size:18px;font-weight:700;color:var(--text);margin-bottom:20px;">
-            🔔 Notifications</div>
+          <div style="font-family:var(--font-display);font-size:18px;font-weight:700;color:var(--text);margin-bottom:20px;">🔔 Notifications</div>
           <div class="notif-list" id="notif-list"></div>
         </div>
 
         <!-- SETTINGS -->
         <div class="view" id="view-settings">
-          <div
-            style="font-family:var(--font-display);font-size:18px;font-weight:700;color:var(--text);margin-bottom:20px;">
-            ⚙️ Settings</div>
+          <div style="font-family:var(--font-display);font-size:18px;font-weight:700;color:var(--text);margin-bottom:20px;">⚙️ Settings</div>
           <div class="settings-grid">
             <div class="settings-nav">
               <div class="settings-nav-item active" onclick="settingsTab(this,'profile')">👤 Profile</div>
@@ -2753,89 +2155,32 @@
                 <div class="profile-avatar-big" id="settings-avatar">CC</div>
                 <div class="settings-section">
                   <div class="settings-section-title">Profile Information</div>
-                  <div class="settings-row">
-                    <div>
-                      <div class="settings-row-label">Full Name</div>
-                      <div class="settings-row-sub" id="s-name">—</div>
-                    </div>
-                  </div>
-                  <div class="settings-row">
-                    <div>
-                      <div class="settings-row-label">Email</div>
-                      <div class="settings-row-sub" id="s-email">—</div>
-                    </div>
-                  </div>
-                  <div class="settings-row">
-                    <div>
-                      <div class="settings-row-label">Department</div>
-                      <div class="settings-row-sub" id="s-dept">—</div>
-                    </div>
-                  </div>
-                  <div class="settings-row">
-                    <div>
-                      <div class="settings-row-label">Reputation Score</div>
-                      <div class="settings-row-sub" style="color:var(--primary);font-weight:700;" id="s-rep">0 pts</div>
-                    </div>
-                  </div>
+                  <div class="settings-row"><div><div class="settings-row-label">Full Name</div><div class="settings-row-sub" id="s-name">—</div></div></div>
+                  <div class="settings-row"><div><div class="settings-row-label">Email</div><div class="settings-row-sub" id="s-email">—</div></div></div>
+                  <div class="settings-row"><div><div class="settings-row-label">Department</div><div class="settings-row-sub" id="s-dept">—</div></div></div>
+                  <div class="settings-row"><div><div class="settings-row-label">Reputation Score</div><div class="settings-row-sub" style="color:var(--primary);font-weight:700;" id="s-rep">0 pts</div></div></div>
                 </div>
               </div>
               <div id="stab-appearance" style="display:none;">
                 <div class="settings-section">
                   <div class="settings-section-title">Appearance</div>
-                  <div class="settings-row">
-                    <div>
-                      <div class="settings-row-label">Dark Mode</div>
-                      <div class="settings-row-sub">Easier on the eyes at night</div>
-                    </div>
-                    <div class="toggle-pill" id="s-dark-pill" onclick="toggleDark()" style="cursor:pointer;"></div>
-                  </div>
-                  <div class="settings-row">
-                    <div>
-                      <div class="settings-row-label">Zen Mode</div>
-                      <div class="settings-row-sub">Hide sidebar for deep focus</div>
-                    </div>
-                    <div class="toggle-pill" id="s-zen-pill" onclick="toggleZen()" style="cursor:pointer;"></div>
-                  </div>
+                  <div class="settings-row"><div><div class="settings-row-label">Dark Mode</div><div class="settings-row-sub">Easier on the eyes at night</div></div><div class="toggle-pill" id="s-dark-pill" onclick="toggleDark()" style="cursor:pointer;"></div></div>
+                  <div class="settings-row"><div><div class="settings-row-label">Zen Mode</div><div class="settings-row-sub">Hide sidebar for deep focus</div></div><div class="toggle-pill" id="s-zen-pill" onclick="toggleZen()" style="cursor:pointer;"></div></div>
                 </div>
               </div>
               <div id="stab-notifs" style="display:none;">
                 <div class="settings-section">
                   <div class="settings-section-title">Notification Preferences</div>
-                  <div class="settings-row">
-                    <div>
-                      <div class="settings-row-label">Mention Alerts</div>
-                    </div>
-                    <div class="toggle-pill on" style="cursor:pointer;"></div>
-                  </div>
-                  <div class="settings-row">
-                    <div>
-                      <div class="settings-row-label">Doubt Alerts</div>
-                    </div>
-                    <div class="toggle-pill on" style="cursor:pointer;"></div>
-                  </div>
-                  <div class="settings-row">
-                    <div>
-                      <div class="settings-row-label">Deadline Reminders</div>
-                    </div>
-                    <div class="toggle-pill on" style="cursor:pointer;"></div>
-                  </div>
+                  <div class="settings-row"><div><div class="settings-row-label">Mention Alerts</div></div><div class="toggle-pill on" style="cursor:pointer;"></div></div>
+                  <div class="settings-row"><div><div class="settings-row-label">Doubt Alerts</div></div><div class="toggle-pill on" style="cursor:pointer;"></div></div>
+                  <div class="settings-row"><div><div class="settings-row-label">Deadline Reminders</div></div><div class="toggle-pill on" style="cursor:pointer;"></div></div>
                 </div>
               </div>
               <div id="stab-security" style="display:none;">
                 <div class="settings-section">
                   <div class="settings-section-title">Security</div>
-                  <div class="settings-row">
-                    <div>
-                      <div class="settings-row-label">Change Password</div>
-                    </div><button class="btn-outline" style="padding:5px 12px;font-size:11px;">Update</button>
-                  </div>
-                  <div class="settings-row">
-                    <div>
-                      <div class="settings-row-label">JWT Session</div>
-                      <div class="settings-row-sub">Active</div>
-                    </div><button class="btn-outline" onclick="doLogout()"
-                      style="padding:5px 12px;font-size:11px;border-color:var(--danger);color:var(--danger);">Logout</button>
-                  </div>
+                  <div class="settings-row"><div><div class="settings-row-label">Change Password</div></div><button class="btn-outline" style="padding:5px 12px;font-size:11px;">Update</button></div>
+                  <div class="settings-row"><div><div class="settings-row-label">JWT Session</div><div class="settings-row-sub">Active</div></div><button class="btn-outline" onclick="doLogout()" style="padding:5px 12px;font-size:11px;border-color:var(--danger);color:var(--danger);">Logout</button></div>
                 </div>
               </div>
             </div>
@@ -2851,32 +2196,28 @@
     <div class="modal" id="modal-create" style="display:none;">
       <div class="modal-title">Create Group</div>
       <div class="modal-sub">Start a new cross-department study group.</div>
-      <div class="modal-field"><label>Group Name</label><input id="m-gname" placeholder="e.g. ML & Deep Learning Squad">
-      </div>
+      <div class="modal-field"><label>Group Name</label><input id="m-gname" placeholder="e.g. ML & Deep Learning Squad"></div>
       <div class="modal-field"><label>Subject Code</label><input id="m-code" placeholder="e.g. CS6001"></div>
       <div class="modal-field"><label>Subject Name</label><input id="m-sname" placeholder="e.g. Machine Learning"></div>
       <div class="modal-field"><label>Department Focus</label>
         <select id="m-dept">
-          <option>AIDS</option>
-          <option>CSE</option>
-          <option>IT</option>
-          <option>ECE</option>
-          <option>EEE</option>
-          <option>ME</option>
-          <option>Mixed</option>
+          <option>AIDS</option><option>CSE</option><option>IT</option>
+          <option>ECE</option><option>EEE</option><option>ME</option><option>Mixed</option>
         </select>
       </div>
-      <div class="modal-btns"><button class="modal-cancel" onclick="closeModal()">Cancel</button><button
-          class="modal-confirm" onclick="createGroup()">Create Group</button></div>
+      <div class="modal-btns">
+        <button class="modal-cancel" onclick="closeModal()">Cancel</button>
+        <button class="modal-confirm" onclick="createGroup()">Create Group</button>
+      </div>
     </div>
     <div class="modal" id="modal-join" style="display:none;">
       <div class="modal-title">Join a Group</div>
       <div class="modal-sub">Enter the 6-character group code shared by your peer.</div>
-      <div class="modal-field"><label>Group Code</label><input id="m-join-code" placeholder="e.g. CSE4XR"
-          style="font-family:monospace;font-size:18px;letter-spacing:0.2em;text-transform:uppercase;" maxlength="6">
+      <div class="modal-field"><label>Group Code</label><input id="m-join-code" placeholder="e.g. CSE4XR" style="font-family:monospace;font-size:18px;letter-spacing:0.2em;text-transform:uppercase;" maxlength="6"></div>
+      <div class="modal-btns">
+        <button class="modal-cancel" onclick="closeModal()">Cancel</button>
+        <button class="modal-confirm" onclick="joinGroup()">Join Group</button>
       </div>
-      <div class="modal-btns"><button class="modal-cancel" onclick="closeModal()">Cancel</button><button
-          class="modal-confirm" onclick="joinGroup()">Join Group</button></div>
     </div>
   </div>
 
@@ -2899,12 +2240,15 @@
 
   <script>
     // ═══════════════════════════════════════════
-    // SUPABASE CONFIG — YOUR PROJECT CREDENTIALS
+    // CONFIG
     // ═══════════════════════════════════════════
     const SUPABASE_URL = 'https://qsxqasyfbnjfkkfsexgp.supabase.co';
     const SUPABASE_ANON = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InFzeHFhc3lmYm5qZmtrZnNleGdwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzUzNTMwMTcsImV4cCI6MjA5MDkyOTAxN30.24wjjD1iFbnCGdVsGoPFRgaAHOzKpBoYoxAzNFVsMng';
 
-    // Guard: make sure the SDK loaded
+    // ⚡ GROQ API KEY — Replace this if you regenerate the key
+    const GROQ_API_KEY = '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';
+    const GROQ_MODEL = 'llama-3.3-70b-versatile';
+
     if (typeof supabase === 'undefined') {
       document.getElementById('init-error').textContent = '❌ Failed to load Supabase SDK. Check your internet connection.';
       document.getElementById('init-error').classList.add('show');
@@ -2953,6 +2297,13 @@
           showAuthPage();
         }
       });
+
+      const joinInput = document.getElementById('m-join-code');
+      if (joinInput) {
+        joinInput.addEventListener('input', function () {
+          this.value = this.value.toUpperCase().replace(/[^A-Z0-9]/g, '');
+        });
+      }
     });
 
     function showInitError(msg) {
@@ -2986,7 +2337,6 @@
 
       let ok = true;
       showErr('r-name-err', name.length < 2); if (name.length < 2) ok = false;
-      // Allow any email format (not just REC) so you can test easily
       const validEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
       showErr('r-email-err', !validEmail); if (!validEmail) ok = false;
       showErr('r-dept-err', !dept); if (!dept) ok = false;
@@ -3003,10 +2353,7 @@
 
       btn.textContent = 'Create Account →'; btn.disabled = false;
 
-      if (error) {
-        toast('❌ ' + error.message, true);
-        return;
-      }
+      if (error) { toast('❌ ' + error.message, true); return; }
 
       if (data.user && !data.session) {
         toast('✉️ Check your email to confirm your account, then log in!');
@@ -3034,11 +2381,7 @@
       const { data, error } = await sb.auth.signInWithPassword({ email, password: pw });
       btn.textContent = 'Sign In →'; btn.disabled = false;
 
-      if (error) {
-        showErr('l-pw-err', true);
-        toast('❌ ' + error.message, true);
-        return;
-      }
+      if (error) { showErr('l-pw-err', true); toast('❌ ' + error.message, true); return; }
 
       state.user = data.user;
       await loadProfile();
@@ -3127,7 +2470,6 @@
         await switchChatGroup(state.groups[0].id);
       }
 
-      // Load peers async (non-blocking)
       renderPeers();
     }
 
@@ -3150,12 +2492,7 @@
     async function loadGroups() {
       const { data, error } = await sb
         .from('group_members')
-        .select(`
-      group_id,
-      groups (
-        id, name, subject_code, subject_name, department, join_code, emoji, created_by
-      )
-    `)
+        .select(`group_id, groups (id, name, subject_code, subject_name, department, join_code, emoji, created_by)`)
         .eq('user_id', state.user.id);
 
       if (error) {
@@ -3166,7 +2503,7 @@
       }
 
       state.groups = (data || [])
-        .filter(r => r.groups) // guard null joins
+        .filter(r => r.groups)
         .map(r => ({
           id: r.groups.id,
           name: r.groups.name,
@@ -3248,16 +2585,16 @@
       const d = document.createElement('div');
       d.className = 'group-card';
       d.innerHTML = `
-    <div class="gc-header">
-      <div class="gc-icon">${g.emoji || '📚'}</div>
-      <div class="gc-code">${g.code}</div>
-    </div>
-    <div class="gc-name">${escHtml(g.name)}</div>
-    <div class="gc-subject">${escHtml(g.subject)} · ${escHtml(g.subjectName)}</div>
-    <div class="gc-meta">
-      <span class="gc-tag dept">${escHtml(g.dept)}</span>
-      <span class="gc-tag members">👥 ${g.memberCount}</span>
-    </div>`;
+        <div class="gc-header">
+          <div class="gc-icon">${g.emoji || '📚'}</div>
+          <div class="gc-code">${escHtml(g.code)}</div>
+        </div>
+        <div class="gc-name">${escHtml(g.name)}</div>
+        <div class="gc-subject">${escHtml(g.subject)} · ${escHtml(g.subjectName)}</div>
+        <div class="gc-meta">
+          <span class="gc-tag dept">${escHtml(g.dept)}</span>
+          <span class="gc-tag members">👥 ${g.memberCount}</span>
+        </div>`;
       d.onclick = () => switchChatGroup(g.id).then(() => showView('chat'));
       container.appendChild(d);
     }
@@ -3332,13 +2669,11 @@
       state.realtimeSub = sb
         .channel('messages-' + groupId)
         .on('postgres_changes', {
-          event: 'INSERT',
-          schema: 'public',
-          table: 'messages',
+          event: 'INSERT', schema: 'public', table: 'messages',
           filter: `group_id=eq.${groupId}`,
         }, async (payload) => {
           const m = payload.new;
-          if (m.user_id === state.user.id) return; // already added optimistically
+          if (m.user_id === state.user.id) return;
           const { data: prof } = await sb.from('profiles').select('full_name, department').eq('id', m.user_id).single();
           const msg = {
             id: m.id,
@@ -3368,7 +2703,6 @@
       const tag = state.msgTag;
       state.msgTag = '';
 
-      // Optimistic UI
       const tempMsg = {
         id: 'temp-' + Date.now(),
         user: state.profile.full_name,
@@ -3380,18 +2714,11 @@
       appendMessage(tempMsg);
       renderChatList();
 
-      // Persist
       const { data: saved, error } = await sb.from('messages').insert({
-        group_id: groupId,
-        user_id: state.user.id,
-        content: txt,
-        tag: tag || null,
+        group_id: groupId, user_id: state.user.id, content: txt, tag: tag || null,
       }).select('id').single();
 
-      if (error) {
-        toast('❌ Message failed: ' + error.message, true);
-        return;
-      }
+      if (error) { toast('❌ Message failed: ' + error.message, true); return; }
 
       const idx = state.messages[groupId].findIndex(m => m.id === tempMsg.id);
       if (idx !== -1) state.messages[groupId][idx].id = saved.id;
@@ -3413,7 +2740,6 @@
         file_type: file.type.includes('pdf') ? 'pdf' : 'img',
         file_size: (file.size / 1024).toFixed(0) + ' KB',
       });
-      // Also post as message
       await sb.from('messages').insert({
         group_id: groupId, user_id: state.user.id,
         content: `📎 [${file.name}](${pub.publicUrl})`, tag: null
@@ -3449,7 +2775,6 @@
 
     function appendMessage(m, scroll = true) {
       const c = document.getElementById('messages-list');
-      // Remove placeholder
       const ph = c.querySelector('[style*="No messages"]');
       if (ph) ph.remove();
 
@@ -3489,7 +2814,10 @@
     async function renderResources() {
       const groupIds = state.groups.map(g => g.id);
       const c = document.getElementById('resources-container');
-      if (!groupIds.length) { c.innerHTML = '<div style="grid-column:1/-1;text-align:center;color:var(--text-muted);padding:40px;">Join a group to see resources.</div>'; return; }
+      if (!groupIds.length) {
+        c.innerHTML = '<div style="grid-column:1/-1;text-align:center;color:var(--text-muted);padding:40px;">Join a group to see resources.</div>';
+        return;
+      }
 
       const { data, error } = await sb.from('resources')
         .select('file_name, file_url, file_type, file_size, group_id, groups(name)')
@@ -3524,9 +2852,9 @@
       const c = document.getElementById('notif-list'); c.innerHTML = '';
       const STATIC = [
         { icon: '🎉', type: 'mention', title: `Welcome, ${state.profile?.full_name || 'Student'}! You're now on CampusConnect.`, time: 'Just now' },
-        { icon: '❓', type: 'doubt', title: 'Tag messages with ❓ Doubt to flag questions for your group.', time: 'Now' },
+        { icon: '⚡', type: 'mention', title: 'AI Study Assistant is now powered by Groq LLaMA 3.3 70B — ask it anything!', time: 'Now' },
         { icon: '🔗', type: 'mention', title: 'Share your group code with classmates so they can join!', time: 'Now' },
-        { icon: '🧠', type: 'mention', title: 'Try the AI Tools — upload a PDF to generate a quiz.', time: 'Now' },
+        { icon: '🧠', type: 'mention', title: 'Try AI Tools — upload a PDF to generate a quiz, or chat with the AI assistant.', time: 'Now' },
       ];
       STATIC.forEach(n => {
         const d = document.createElement('div'); d.className = 'notif-item';
@@ -3577,7 +2905,7 @@
     }
 
     // ═══════════════════════════════════════════
-    // AI TOOLS
+    // AI TOOLS — QUIZ GENERATOR
     // ═══════════════════════════════════════════
     let quizAnswers = {};
     const QUIZ_QUESTIONS = [
@@ -3587,16 +2915,6 @@
       { q: 'Which technique helps prevent overfitting?', opts: ['Increasing model complexity', 'Removing all regularization', 'Dropout and L2 regularization', 'Adding more hidden layers'], ans: 2 },
       { q: 'What is the vanishing gradient problem?', opts: ['Gradients become too large', 'Gradients become near-zero, slowing deep network training', 'Learning rate is too high', 'Loss function is non-convex'], ans: 1 },
     ];
-    const RAG_RESPONSES = {
-      'machine learning': 'Machine Learning is a subset of AI where systems learn from data. Key algorithms: Linear Regression, Decision Trees, Neural Networks. Focus on supervised vs unsupervised learning and the bias-variance tradeoff.',
-      'backpropagation': 'Backpropagation computes gradients using the chain rule. δ_output = (ŷ−y)×σ\'(z). Weights update: W −= η·Xᵀ·δ. This is how neural networks learn!',
-      'operating system': 'OS key topics: Process Management (PCB, scheduling), Memory Management (paging, segmentation), File Systems. Master the Banker\'s Algorithm for deadlock avoidance.',
-      'neural network': 'Neural networks: Input → Hidden → Output layers. Each neuron applies an activation (ReLU, Sigmoid). Training uses gradient descent + backpropagation to minimize loss.',
-      'data structure': 'Key data structures: Arrays, Linked Lists, Stacks, Queues, Trees (BST, AVL), Heaps, Hash Tables, Graphs. Know time/space complexity for all operations.',
-      'dbms': 'DBMS topics: ER diagrams, Normalization (1NF–BCNF), SQL, Transactions (ACID), Indexing (B+ trees), Concurrency Control. Practice SQL queries!',
-      'computer network': 'CN topics: OSI model (7 layers), TCP/IP, DNS, HTTP/HTTPS, subnetting, routing algorithms (Dijkstra, Bellman-Ford), and socket programming.',
-      'default': 'Great question! Based on common REC exam patterns — focus on fundamentals, practice past papers, and use the group chat to discuss doubts. Want me to generate a quiz on this topic?'
-    };
 
     function generateQuiz(input) {
       if (!input.files[0]) return;
@@ -3633,26 +2951,138 @@
         if (quizAnswers[i] === q.ans) score++;
       });
       if (state.user) {
-        sb.from('quiz_scores').insert({ user_id: state.user.id, score, total: 5 }).then(() => { });
+        sb.from('quiz_scores').insert({ user_id: state.user.id, score, total: 5 }).then(() => {});
       }
       toast(`Score: ${score}/5 (${score * 20}%)`);
     }
 
-    function sendRAG() {
-      const inp = document.getElementById('rag-input');
-      const q = inp.value.trim(); if (!q) return;
+    // ═══════════════════════════════════════════
+    // AI STUDY ASSISTANT — GROQ POWERED ⚡
+    // ═══════════════════════════════════════════
+
+    // Multi-turn conversation history
+    let ragHistory = [];
+
+    function clearRagChat() {
+      ragHistory = [];
       const c = document.getElementById('rag-chat');
-      const ud = document.createElement('div'); ud.className = 'rag-msg user';
+      c.innerHTML = `
+        <div class="rag-msg ai">
+          <div class="avatar" style="width:24px;height:24px;font-size:10px;background:linear-gradient(135deg,#10B981,#6366F1);flex-shrink:0;">AI</div>
+          <div class="rag-bubble">Chat cleared! I'm ready for new questions. Ask me anything about your subjects. 🚀</div>
+        </div>`;
+    }
+
+    async function sendRAG() {
+      const inp = document.getElementById('rag-input');
+      const sendBtn = document.getElementById('rag-send-btn');
+      const q = inp.value.trim();
+      if (!q) return;
+
+      const c = document.getElementById('rag-chat');
+
+      // Add user message to UI
+      const ud = document.createElement('div');
+      ud.className = 'rag-msg user';
       ud.innerHTML = `<div class="rag-bubble">${escHtml(q)}</div>`;
-      c.appendChild(ud); inp.value = ''; c.scrollTop = c.scrollHeight;
-      const td = document.createElement('div'); td.className = 'rag-msg ai';
-      td.innerHTML = `<div class="avatar" style="width:24px;height:24px;font-size:10px;background:linear-gradient(135deg,#10B981,#6366F1);flex-shrink:0;">AI</div><div class="rag-bubble"><span class="typing-dot"></span><span class="typing-dot"></span><span class="typing-dot"></span></div>`;
-      c.appendChild(td); c.scrollTop = c.scrollHeight;
-      setTimeout(() => {
-        const key = Object.keys(RAG_RESPONSES).find(k => q.toLowerCase().includes(k)) || 'default';
-        td.querySelector('.rag-bubble').textContent = RAG_RESPONSES[key];
+      c.appendChild(ud);
+
+      // Clear input & disable while waiting
+      inp.value = '';
+      inp.disabled = true;
+      sendBtn.disabled = true;
+      c.scrollTop = c.scrollHeight;
+
+      // Add to history
+      ragHistory.push({ role: 'user', content: q });
+
+      // Add AI typing indicator
+      const td = document.createElement('div');
+      td.className = 'rag-msg ai';
+      td.innerHTML = `
+        <div class="avatar" style="width:24px;height:24px;font-size:10px;background:linear-gradient(135deg,#10B981,#6366F1);flex-shrink:0;">AI</div>
+        <div class="rag-bubble" id="rag-typing-bubble">
+          <span class="typing-dot"></span><span class="typing-dot"></span><span class="typing-dot"></span>
+        </div>`;
+      c.appendChild(td);
+      c.scrollTop = c.scrollHeight;
+
+      try {
+        const response = await fetch('https://api.groq.com/openai/v1/chat/completions', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${GROQ_API_KEY}`
+          },
+          body: JSON.stringify({
+            model: GROQ_MODEL,
+            messages: [
+              {
+                role: 'system',
+                content: `You are an expert AI Study Assistant for students at Rajalakshmi Engineering College (REC), Chennai, India. You specialise in helping engineering students with their technical subjects.
+
+Your expertise covers:
+- Machine Learning & Deep Learning (algorithms, neural networks, backpropagation, CNNs, RNNs, transformers)
+- Data Structures & Algorithms (complexity, sorting, trees, graphs, dynamic programming)
+- Operating Systems (processes, threads, scheduling, memory management, deadlocks, file systems)
+- Database Management Systems (ER diagrams, SQL, normalization, transactions, ACID, indexing)
+- Computer Networks (OSI/TCP-IP model, protocols, routing, subnetting, socket programming)
+- Python & Java programming
+- Web Development (HTML, CSS, JavaScript, React)
+- Software Engineering concepts
+- Mathematics (Discrete Math, Linear Algebra, Probability for CS)
+
+Guidelines:
+- Be concise but thorough — students need clear, exam-focused answers
+- Use bullet points, numbered steps, or code blocks when they aid clarity
+- Include relevant formulas, pseudocode, or working code snippets
+- Mention common exam questions and important topics when relevant
+- Use encouraging, student-friendly language
+- When asked for code, provide clean, commented examples
+- For complex topics, break them down step by step`
+              },
+              ...ragHistory
+            ],
+            max_tokens: 600,
+            temperature: 0.65,
+          })
+        });
+
+        if (!response.ok) {
+          const errData = await response.json().catch(() => ({}));
+          throw new Error(errData.error?.message || `API error ${response.status}`);
+        }
+
+        const data = await response.json();
+        const aiText = data.choices?.[0]?.message?.content?.trim() || 'Sorry, I could not generate a response. Please try again.';
+
+        // Update the typing bubble with the real response
+        const bubble = document.getElementById('rag-typing-bubble');
+        if (bubble) {
+          bubble.id = '';
+          bubble.textContent = aiText;
+        }
         c.scrollTop = c.scrollHeight;
-      }, 900 + Math.random() * 600);
+
+        // Save to history (keep last 20 messages = 10 turns to avoid token overflow)
+        ragHistory.push({ role: 'assistant', content: aiText });
+        if (ragHistory.length > 20) ragHistory = ragHistory.slice(-20);
+
+      } catch (err) {
+        console.error('Groq API error:', err);
+        const bubble = document.getElementById('rag-typing-bubble');
+        if (bubble) {
+          bubble.id = '';
+          bubble.style.color = 'var(--danger)';
+          bubble.textContent = '⚠️ Could not reach AI: ' + err.message;
+        }
+        // Remove the failed user message from history
+        ragHistory.pop();
+      } finally {
+        inp.disabled = false;
+        sendBtn.disabled = false;
+        inp.focus();
+      }
     }
 
     // ═══════════════════════════════════════════
@@ -3668,8 +3098,10 @@
     // POMODORO
     // ═══════════════════════════════════════════
     let pomoInterval = null, pomoSec = 25 * 60, pomoRunning = false;
+
     function openPomodoro() { document.getElementById('pomodoro-overlay').classList.add('active'); }
     function closePomodoro() { document.getElementById('pomodoro-overlay').classList.remove('active'); resetPomodoro(); }
+
     function togglePomodoro() {
       if (pomoRunning) {
         clearInterval(pomoInterval); pomoRunning = false;
@@ -3680,10 +3112,15 @@
           pomoSec--;
           document.getElementById('pomo-min').textContent = String(Math.floor(pomoSec / 60)).padStart(2, '0');
           document.getElementById('pomo-sec').textContent = String(pomoSec % 60).padStart(2, '0');
-          if (pomoSec <= 0) { clearInterval(pomoInterval); pomoRunning = false; document.getElementById('pomo-start').textContent = '✓ Done!'; toast('🍅 Pomodoro done! Take a 5-min break.'); }
+          if (pomoSec <= 0) {
+            clearInterval(pomoInterval); pomoRunning = false;
+            document.getElementById('pomo-start').textContent = '✓ Done!';
+            toast('🍅 Pomodoro done! Take a 5-min break.');
+          }
         }, 1000);
       }
     }
+
     function resetPomodoro() {
       clearInterval(pomoInterval); pomoRunning = false; pomoSec = 25 * 60;
       document.getElementById('pomo-min').textContent = '25';
@@ -3698,7 +3135,7 @@
       dashboard: { title: 'Dashboard', sub: 'Your overview' },
       groups: { title: 'My Groups', sub: 'Study & project teams' },
       chat: { title: 'Group Chat', sub: 'Real-time collaboration' },
-      ai: { title: 'AI Tools', sub: 'PDF Quiz & Study Assistant' },
+      ai: { title: 'AI Tools', sub: 'PDF Quiz & Study Assistant (Groq)' },
       analytics: { title: 'Analytics', sub: 'Your performance data' },
       peers: { title: 'Peer Matching', sub: 'AI-suggested collaborators' },
       notifications: { title: 'Notifications', sub: 'Mentions & alerts' },
@@ -3711,7 +3148,6 @@
       const viewEl = document.getElementById('view-' + v);
       if (viewEl) viewEl.classList.add('active');
       document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
-      // Match nav item by view name
       document.querySelectorAll('.nav-item').forEach(el => {
         if (el.getAttribute('onclick') && el.getAttribute('onclick').includes("'" + v + "'")) {
           el.classList.add('active');
@@ -3753,7 +3189,10 @@
       if (!s) return '';
       return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
     }
-    function nowTime() { return new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }); }
+
+    function nowTime() {
+      return new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+    }
 
     let toastTO;
     function toast(msg, err = false) {
@@ -3768,15 +3207,6 @@
     // Keyboard shortcuts
     document.addEventListener('keydown', e => {
       if (e.key === 'Escape') { closeModal(); closePomodoro(); }
-    });
-
-    document.addEventListener('DOMContentLoaded', () => {
-      const joinInput = document.getElementById('m-join-code');
-      if (joinInput) {
-        joinInput.addEventListener('input', function () {
-          this.value = this.value.toUpperCase().replace(/[^A-Z0-9]/g, '');
-        });
-      }
     });
   </script>
 </body>
