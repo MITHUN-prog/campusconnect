@@ -1974,6 +1974,202 @@
       .ais-flashcards-grid { grid-template-columns: 1fr; }
     }
 
+    /* Mobile polish: keep the existing design, but make every section stack cleanly. */
+    @media (max-width: 900px) {
+      html,
+      body {
+        width: 100%;
+        overflow-x: hidden;
+      }
+
+      .page.active {
+        width: 100%;
+      }
+
+      #page-app {
+        flex-direction: column;
+      }
+
+      [data-zen="true"] #page-app .sidebar {
+        display: none;
+      }
+
+      .sidebar {
+        width: 100%;
+        height: auto;
+        max-height: none;
+        position: relative;
+        top: auto;
+      }
+
+      .sidebar-header {
+        padding: 16px;
+      }
+
+      .sidebar-nav {
+        flex: none;
+        overflow: visible;
+        padding: 12px;
+      }
+
+      .nav-section {
+        margin-bottom: 14px;
+      }
+
+      .nav-section:last-child {
+        margin-bottom: 0;
+      }
+
+      .nav-item {
+        white-space: normal;
+      }
+
+      .sidebar-footer {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 8px;
+        padding: 12px;
+      }
+
+      .main {
+        width: 100%;
+        height: auto;
+        min-height: 100vh;
+        overflow: visible;
+      }
+
+      .topbar {
+        height: auto;
+        min-height: 56px;
+        padding: 12px 16px;
+        flex-wrap: wrap;
+      }
+
+      .topbar-actions {
+        width: 100%;
+        margin-left: 0;
+        justify-content: flex-start;
+        flex-wrap: wrap;
+      }
+
+      .content-scroll {
+        overflow-x: hidden;
+      }
+
+      .view {
+        padding: 16px;
+      }
+
+      .dash-grid,
+      .groups-grid,
+      .peer-grid,
+      #achievements-container {
+        grid-template-columns: 1fr !important;
+      }
+
+      .panel-card,
+      .stat-card,
+      .ai-card,
+      .chart-wrap,
+      .group-card,
+      .peer-card,
+      .achievement-card,
+      .settings-content {
+        width: 100%;
+        min-width: 0;
+      }
+
+      .groups-header {
+        align-items: stretch;
+        flex-direction: column;
+      }
+
+      .search-bar {
+        max-width: none;
+        width: 100%;
+      }
+
+      .chat-layout {
+        height: calc(100vh - 80px);
+        min-height: 520px;
+      }
+
+      .chat-main,
+      .messages {
+        min-width: 0;
+      }
+
+      .msg-body {
+        max-width: 82%;
+      }
+
+      .chat-input-wrap {
+        padding: 10px 12px;
+      }
+
+      .chat-actions {
+        flex-wrap: wrap;
+      }
+
+      .analytics-grid,
+      .ai-grid,
+      .settings-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .ais-score-bar,
+      .settings-row,
+      .leaderboard-row,
+      .notif-item {
+        align-items: flex-start;
+        flex-wrap: wrap;
+      }
+
+      .ais-tabs {
+        flex-wrap: wrap;
+      }
+
+      .ais-tab {
+        flex: 1 1 100%;
+      }
+
+      #peer-dm-panel {
+        width: 100%;
+        max-width: 100vw;
+      }
+    }
+
+    @media (max-width: 520px) {
+      .auth-form-wrap {
+        padding: 32px 22px;
+      }
+
+      .field .field-row {
+        grid-template-columns: 1fr;
+      }
+
+      .sidebar-footer {
+        grid-template-columns: 1fr;
+      }
+
+      .pomo-timer {
+        font-size: 58px;
+        letter-spacing: -2px;
+      }
+
+      .modal {
+        max-width: calc(100vw - 28px);
+        padding: 22px;
+      }
+
+      #toast {
+        left: 16px;
+        right: 16px;
+        bottom: 16px;
+        max-width: none;
+      }
+    }
+
   </style>
 </head>
 
@@ -2108,6 +2304,7 @@
           <div class="nav-item" onclick="showView('peers')"><span class="icon">🤝</span> Peer Match</div>
           <div class="nav-item" onclick="showView('ai-study')"><span class="icon">📖</span> AI Study</div>
           <div class="nav-item" onclick="showView('studymate')"><span class="icon">🎯</span> Finding Studymate</div>
+          <div class="nav-item" onclick="openVoiceDoubtSolver()"><span class="icon">🎤</span> Voice Doubt Solver</div>
         </div>
         <div class="nav-section">
           <div class="nav-label">You</div>
@@ -2226,6 +2423,22 @@
             <div class="pc-title">👥 Your Active Groups</div>
             <div class="groups-grid" id="dash-groups">
               <div style="color:var(--text-muted);font-size:13px;">Loading groups…</div>
+            </div>
+          </div>
+          <div class="panel-card" id="voice-doubt-card" style="margin-top:20px;">
+            <div class="pc-title">🎤 Voice-Based Doubt Solver</div>
+            <div style="font-size:12px;color:var(--text-muted);margin-bottom:14px;">Ask a doubt hands-free and get a simple AI explanation.</div>
+            <div style="display:flex;gap:10px;align-items:center;margin-bottom:12px;">
+              <button class="btn-sm" id="voice-doubt-btn" onclick="startVoiceDoubtSolver()">🎤 Ask Doubt</button>
+              <div id="voice-doubt-status" style="font-size:12px;color:var(--text-muted);">Ready</div>
+            </div>
+            <div class="quiz-question" style="margin-bottom:12px;">
+              <div class="qq-text">Recognized Question</div>
+              <div id="voice-doubt-text" style="font-size:13px;color:var(--text-muted);line-height:1.6;">Your spoken doubt will appear here.</div>
+            </div>
+            <div class="quiz-question" style="margin-bottom:0;">
+              <div class="qq-text">AI Answer</div>
+              <div id="voice-doubt-answer" style="font-size:13px;color:var(--text);line-height:1.7;white-space:pre-wrap;">Ask a question to see the answer here.</div>
             </div>
           </div>
         </div>
@@ -3833,6 +4046,166 @@
       toast(`Score: ${score}/5 (${score * 20}%)`);
       updateSmartMatchScore(score * 20);
       maybeOpenStudymateForLowScore(score * 20);
+    }
+
+    // ═══════════════════════════════════════════
+    // VOICE-BASED DOUBT SOLVER
+    // ═══════════════════════════════════════════
+    let voiceDoubtRecognition = null;
+
+    function setVoiceDoubtUI({ status, question, answer, loading }) {
+      const statusEl = document.getElementById('voice-doubt-status');
+      const questionEl = document.getElementById('voice-doubt-text');
+      const answerEl = document.getElementById('voice-doubt-answer');
+      const btn = document.getElementById('voice-doubt-btn');
+
+      if (statusEl && status !== undefined) statusEl.textContent = status;
+      if (questionEl && question !== undefined) questionEl.textContent = question;
+      if (answerEl && answer !== undefined) answerEl.textContent = answer;
+      if (btn) {
+        btn.disabled = !!loading;
+        btn.textContent = loading ? 'Listening...' : '🎤 Ask Doubt';
+      }
+    }
+
+    function startVoiceDoubtSolver() {
+      const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+
+      if (!SpeechRecognition) {
+        setVoiceDoubtUI({
+          status: 'Voice recognition is not supported in this browser.',
+          answer: 'Please use Google Chrome or another browser that supports Web Speech API.',
+          loading: false,
+        });
+        return;
+      }
+
+      if (voiceDoubtRecognition) {
+        voiceDoubtRecognition.stop();
+        voiceDoubtRecognition = null;
+      }
+
+      voiceDoubtRecognition = new SpeechRecognition();
+      voiceDoubtRecognition.lang = 'en-IN';
+      voiceDoubtRecognition.interimResults = false;
+      voiceDoubtRecognition.maxAlternatives = 1;
+
+      setVoiceDoubtUI({
+        status: 'Listening...',
+        question: 'Listening for your doubt...',
+        answer: 'Ask your question clearly.',
+        loading: true,
+      });
+
+      voiceDoubtRecognition.onresult = async (event) => {
+        const spokenText = event.results?.[0]?.[0]?.transcript?.trim();
+        if (!spokenText) {
+          setVoiceDoubtUI({ status: 'Could not hear you', answer: 'Please try again.', loading: false });
+          return;
+        }
+
+        setVoiceDoubtUI({
+          status: 'Thinking...',
+          question: spokenText,
+          answer: 'Generating a simple answer...',
+          loading: true,
+        });
+
+        await answerVoiceDoubt(spokenText);
+      };
+
+      voiceDoubtRecognition.onerror = (event) => {
+        const message = event.error === 'not-allowed'
+          ? 'Please allow microphone access'
+          : event.error === 'no-speech'
+            ? 'Could not hear you'
+            : 'Voice recognition error. Please try again.';
+
+        setVoiceDoubtUI({ status: message, answer: message, loading: false });
+      };
+
+      voiceDoubtRecognition.onend = () => {
+        const statusEl = document.getElementById('voice-doubt-status');
+        if (statusEl && statusEl.textContent === 'Listening...') {
+          setVoiceDoubtUI({ status: 'Could not hear you', answer: 'Please try again.', loading: false });
+        }
+      };
+
+      try {
+        voiceDoubtRecognition.start();
+      } catch (err) {
+        setVoiceDoubtUI({ status: 'Could not start microphone', answer: err.message, loading: false });
+      }
+    }
+
+    function openVoiceDoubtSolver() {
+      showView('dashboard');
+
+      setTimeout(() => {
+        const card = document.getElementById('voice-doubt-card');
+        if (!card) return;
+
+        card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        card.style.borderColor = 'var(--primary)';
+        card.style.boxShadow = 'var(--shadow-lg)';
+
+        setTimeout(() => {
+          card.style.borderColor = '';
+          card.style.boxShadow = '';
+        }, 1600);
+      }, 80);
+    }
+
+    async function answerVoiceDoubt(question) {
+      try {
+        const response = await fetch('https://api.groq.com/openai/v1/chat/completions', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${GROQ_API_KEY}`
+          },
+          body: JSON.stringify({
+            model: GROQ_MODEL,
+            messages: [
+              {
+                role: 'user',
+                content: `Answer this student question in a simple and clear way suitable for learning:\n\n${question}`
+              }
+            ],
+            max_tokens: 450,
+            temperature: 0.5,
+          })
+        });
+
+        if (!response.ok) {
+          const errData = await response.json().catch(() => ({}));
+          throw new Error(errData.error?.message || `AI error ${response.status}`);
+        }
+
+        const data = await response.json();
+        const answer = data.choices?.[0]?.message?.content?.trim() || 'Sorry, I could not generate an answer.';
+
+        setVoiceDoubtUI({ status: 'Answer ready', answer, loading: false });
+        speakVoiceDoubtAnswer(answer);
+      } catch (err) {
+        console.error('Voice doubt AI error:', err);
+        setVoiceDoubtUI({
+          status: 'AI answer failed',
+          answer: 'Could not get AI answer: ' + err.message,
+          loading: false,
+        });
+      }
+    }
+
+    function speakVoiceDoubtAnswer(answer) {
+      if (!('speechSynthesis' in window) || !answer) return;
+
+      window.speechSynthesis.cancel();
+      const utterance = new SpeechSynthesisUtterance(answer);
+      utterance.lang = 'en-IN';
+      utterance.rate = 0.95;
+      utterance.pitch = 1;
+      window.speechSynthesis.speak(utterance);
     }
 
     // ═══════════════════════════════════════════
