@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -1727,6 +1726,50 @@
     }
 
     #init-error.show { display: block; }
+
+    /* ── PEER DM PANEL slide-in ── */
+    #peer-dm-overlay {
+      display: none;
+      position: fixed; inset: 0;
+      z-index: 600;
+      background: rgba(0,0,0,0.45);
+      backdrop-filter: blur(4px);
+    }
+
+    #peer-dm-panel {
+      position: absolute; right: 0; top: 0; bottom: 0;
+      width: 360px; max-width: 95vw;
+      background: var(--card);
+      border-left: 1px solid var(--border);
+      display: flex; flex-direction: column;
+      box-shadow: -8px 0 40px rgba(0,0,0,0.18);
+      animation: slideInRight 0.25s cubic-bezier(0.4,0,0.2,1);
+    }
+
+    @keyframes slideInRight {
+      from { transform: translateX(100%); }
+      to   { transform: translateX(0); }
+    }
+
+    /* ── ACHIEVEMENT CARD ── */
+    .achievement-card {
+      background: var(--card);
+      border: 1.5px solid var(--border);
+      border-radius: 14px;
+      padding: 20px;
+      box-shadow: var(--shadow);
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      transition: all 0.2s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .achievement-card.unlocked {
+      border-color: var(--primary);
+      background: linear-gradient(135deg, var(--card) 70%, rgba(16,185,129,0.07));
+    }
   </style>
 </head>
 
@@ -1863,6 +1906,7 @@
         <div class="nav-section">
           <div class="nav-label">You</div>
           <div class="nav-item" onclick="showView('notifications')"><span class="icon">🔔</span> Notifications</div>
+          <div class="nav-item" onclick="showView('achievements')"><span class="icon">🏅</span> Achievements</div>
           <div class="nav-item" onclick="showView('settings')"><span class="icon">⚙️</span> Settings</div>
         </div>
       </div>
@@ -1927,22 +1971,15 @@
           <div class="dash-row">
             <div class="panel-card">
               <div class="pc-title">📅 Weekly Streak</div>
-              <div class="streak-bar">
-                <div class="streak-day done">M</div>
-                <div class="streak-day done">T</div>
-                <div class="streak-day done">W</div>
-                <div class="streak-day done">T</div>
-                <div class="streak-day today">F</div>
-                <div class="streak-day">S</div>
-                <div class="streak-day">S</div>
-              </div>
-              <div style="font-size:12px;color:var(--text-muted);margin-top:8px;">🔥 4-day streak! Keep it up.</div>
+              <!-- Streak bar rendered dynamically by renderStreak() -->
+              <div class="streak-bar" id="streak-bar-days"></div>
+              <div style="font-size:12px;color:var(--text-muted);margin-top:8px;" id="streak-label">🔥 Keep it up!</div>
               <div style="margin-top:20px;">
                 <div class="pc-title" style="font-size:13px;">🏅 Badges Earned</div>
-                <div class="badge-row">
-                  <div class="badge earned">🧠 AI Explorer</div>
-                  <div class="badge earned">🔥 Streak Master</div>
-                  <div class="badge earned">💬 Active Collaborator</div>
+                <div class="badge-row" id="dash-badge-row">
+                  <div class="badge">🧠 AI Explorer</div>
+                  <div class="badge">🔥 Streak Master</div>
+                  <div class="badge">💬 Active Collaborator</div>
                   <div class="badge">🏆 Top Contributor</div>
                   <div class="badge">📚 Resource Guru</div>
                 </div>
@@ -2130,7 +2167,7 @@
         <!-- PEER MATCHING -->
         <div class="view" id="view-peers">
           <div style="font-family:var(--font-display);font-size:18px;font-weight:700;color:var(--text);margin-bottom:6px;">🤝 Peer Matching</div>
-          <div style="font-size:12px;color:var(--text-muted);margin-bottom:20px;">AI-matched based on your doubts, subjects, and complementary skills.</div>
+          <div style="font-size:12px;color:var(--text-muted);margin-bottom:20px;">AI-matched based on your doubts, subjects, and complementary skills. Click <strong>💬 Message</strong> to chat privately with any peer.</div>
           <div class="peer-grid" id="peer-container"></div>
         </div>
 
@@ -2138,6 +2175,13 @@
         <div class="view" id="view-notifications">
           <div style="font-family:var(--font-display);font-size:18px;font-weight:700;color:var(--text);margin-bottom:20px;">🔔 Notifications</div>
           <div class="notif-list" id="notif-list"></div>
+        </div>
+
+        <!-- ACHIEVEMENTS -->
+        <div class="view" id="view-achievements">
+          <div style="font-family:var(--font-display);font-size:18px;font-weight:700;color:var(--text);margin-bottom:6px;">🏅 Achievements</div>
+          <div style="font-size:12px;color:var(--text-muted);margin-bottom:24px;">Complete tasks to unlock badges and earn reputation points.</div>
+          <div id="achievements-container" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px;"></div>
         </div>
 
         <!-- SETTINGS -->
@@ -2187,6 +2231,29 @@
           </div>
         </div>
 
+      </div>
+    </div>
+  </div>
+
+  <!-- PEER DM PANEL -->
+  <div id="peer-dm-overlay" onclick="if(event.target===this)closePeerDM()">
+    <div id="peer-dm-panel">
+      <div style="padding:16px 16px 12px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:10px;flex-shrink:0;background:var(--card);">
+        <div class="avatar" id="dm-peer-avatar" style="width:36px;height:36px;font-size:14px;flex-shrink:0;">?</div>
+        <div style="flex:1;min-width:0;">
+          <div style="font-family:var(--font-display);font-size:14px;font-weight:700;color:var(--text);" id="dm-peer-name">Direct Message</div>
+          <div style="font-size:11px;color:var(--text-muted);" id="dm-peer-dept">—</div>
+        </div>
+        <button onclick="closePeerDM()" style="width:30px;height:30px;border-radius:50%;border:1px solid var(--border);background:var(--input-bg);cursor:pointer;font-size:14px;color:var(--text-muted);display:flex;align-items:center;justify-content:center;">✕</button>
+      </div>
+      <div id="dm-messages" style="flex:1;overflow-y:auto;padding:14px;display:flex;flex-direction:column;gap:10px;background:var(--bg);">
+        <div style="text-align:center;font-size:12px;color:var(--text-muted);padding:20px 0;">Start your private conversation! 👋</div>
+      </div>
+      <div style="padding:12px;border-top:1px solid var(--border);flex-shrink:0;background:var(--card);">
+        <div style="display:flex;gap:8px;align-items:flex-end;">
+          <textarea id="dm-input" rows="1" placeholder="Type a message…" style="flex:1;background:var(--input-bg);border:1px solid var(--border);border-radius:10px;padding:9px 12px;font-family:var(--font-body);font-size:13px;color:var(--text);outline:none;resize:none;max-height:100px;transition:border-color 0.2s;" onkeydown="if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();sendDM();}" onfocus="this.style.borderColor='var(--primary)'" onblur="this.style.borderColor='var(--border)'"></textarea>
+          <button onclick="sendDM()" style="width:36px;height:36px;border-radius:9px;background:var(--primary);border:none;color:#fff;font-size:15px;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;">➤</button>
+        </div>
       </div>
     </div>
   </div>
@@ -2304,6 +2371,9 @@
           this.value = this.value.toUpperCase().replace(/[^A-Z0-9]/g, '');
         });
       }
+
+      // Render streak immediately on load
+      renderStreak();
     });
 
     function showInitError(msg) {
@@ -2462,6 +2532,8 @@
       renderChatList();
       renderNotifs();
       renderBarChart();
+      renderStreak();
+      renderDashBadges();
 
       showLoadingState(false);
       showView('dashboard');
@@ -2480,16 +2552,13 @@
           table: 'peer_requests',
           filter: `receiver_id=eq.${state.user.id}`
         }, async (payload) => {
-          // Fetch sender name
           const { data: sender } = await sb.from('profiles')
             .select('full_name').eq('id', payload.new.sender_id).single();
           const senderName = sender?.full_name || 'Someone';
           toast(`🤝 ${senderName} sent you a Study Partner request! Check Notifications.`);
-          // Refresh notifications if that view is open
           if (document.getElementById('view-notifications')?.classList.contains('active')) {
             renderNotifs();
           }
-          // Update bell badge
           const bell = document.querySelector('.icon-btn[title="Notifications"]');
           if (bell && !bell.querySelector('.badge')) {
             const b = document.createElement('span');
@@ -2528,6 +2597,160 @@
       } else if (!on && el) {
         el.remove();
       }
+    }
+
+    // ═══════════════════════════════════════════
+    // STREAK — Dynamic, keyed to real current day
+    // ═══════════════════════════════════════════
+    function renderStreak() {
+      const bar = document.getElementById('streak-bar-days');
+      if (!bar) return;
+
+      // JS getDay(): 0=Sun, 1=Mon, ..., 6=Sat
+      // We display Mon–Sun
+      const ordered = ['M', 'T', 'W', 'T', 'F', 'S', 'S'];
+      const today = new Date().getDay(); // 0=Sun..6=Sat
+      // Convert to Mon-first index: Mon=0, Tue=1, ..., Sun=6
+      const todayMondayIdx = (today + 6) % 7;
+
+      bar.innerHTML = '';
+      ordered.forEach((d, i) => {
+        const el = document.createElement('div');
+        if (i < todayMondayIdx) {
+          el.className = 'streak-day done';
+        } else if (i === todayMondayIdx) {
+          el.className = 'streak-day today';
+        } else {
+          el.className = 'streak-day';
+        }
+        el.textContent = d;
+        bar.appendChild(el);
+      });
+
+      const label = document.getElementById('streak-label');
+      if (label) {
+        const count = todayMondayIdx; // days before today (Mon=0 means 0 done, Tue=1 means 1 done, etc.)
+        label.textContent = count > 0
+          ? `🔥 ${count}-day streak! Keep it up.`
+          : '🌟 Start your streak today!';
+      }
+    }
+
+    // ═══════════════════════════════════════════
+    // ACHIEVEMENTS
+    // ═══════════════════════════════════════════
+    const ACHIEVEMENT_TASKS = [
+      {
+        id: 'send_first_msg',
+        icon: '💬',
+        title: 'First Message',
+        desc: 'Send your first message in any group chat.',
+        badge: '💬 Active Collaborator',
+        pts: 50
+      },
+      {
+        id: 'join_group',
+        icon: '👥',
+        title: 'Team Player',
+        desc: 'Join or create your first study group.',
+        badge: '🔗 Team Player',
+        pts: 40
+      },
+      {
+        id: 'use_ai',
+        icon: '🧠',
+        title: 'AI Explorer',
+        desc: 'Ask your first question to the AI Study Assistant.',
+        badge: '🧠 AI Explorer',
+        pts: 60
+      },
+      {
+        id: 'upload_file',
+        icon: '📎',
+        title: 'Resource Contributor',
+        desc: 'Upload a file or resource to a group.',
+        badge: '📚 Resource Guru',
+        pts: 70
+      },
+      {
+        id: 'peer_request',
+        icon: '🤝',
+        title: 'Connector',
+        desc: 'Send a Study Partner request to another student.',
+        badge: '🤝 Connector',
+        pts: 30
+      },
+    ];
+
+    function getAchievements() {
+      try { return JSON.parse(localStorage.getItem('cc_achievements') || '{}'); } catch { return {}; }
+    }
+
+    function saveAchievements(obj) {
+      try { localStorage.setItem('cc_achievements', JSON.stringify(obj)); } catch {}
+    }
+
+    function unlockAchievement(taskId) {
+      const achieved = getAchievements();
+      if (achieved[taskId]) return;
+      achieved[taskId] = Date.now();
+      saveAchievements(achieved);
+      const task = ACHIEVEMENT_TASKS.find(t => t.id === taskId);
+      if (task) {
+        toast(`🏅 Achievement unlocked: ${task.title} — ${task.badge}! +${task.pts} pts`);
+        if (state.user && state.profile) {
+          const newRep = (state.profile.reputation || 0) + task.pts;
+          sb.from('profiles').update({ reputation: newRep }).eq('id', state.user.id).then(() => {
+            state.profile.reputation = newRep;
+            document.getElementById('rep-val').textContent = newRep;
+            document.getElementById('lb-score').textContent = newRep;
+            document.getElementById('s-rep').textContent = newRep + ' pts';
+          });
+        }
+      }
+      renderDashBadges();
+      if (document.getElementById('view-achievements')?.classList.contains('active')) renderAchievements();
+    }
+
+    function renderDashBadges() {
+      const row = document.getElementById('dash-badge-row');
+      if (!row) return;
+      const achieved = getAchievements();
+      row.innerHTML = '';
+      ACHIEVEMENT_TASKS.forEach(task => {
+        const done = !!achieved[task.id];
+        const d = document.createElement('div');
+        d.className = 'badge' + (done ? ' earned' : '');
+        d.textContent = task.badge;
+        row.appendChild(d);
+      });
+    }
+
+    function renderAchievements() {
+      const c = document.getElementById('achievements-container');
+      if (!c) return;
+      const achieved = getAchievements();
+      c.innerHTML = '';
+      ACHIEVEMENT_TASKS.forEach(task => {
+        const done = !!achieved[task.id];
+        const d = document.createElement('div');
+        d.className = 'achievement-card' + (done ? ' unlocked' : '');
+        d.innerHTML = `
+          <div style="display:flex;align-items:center;gap:12px;">
+            <div style="width:48px;height:48px;border-radius:12px;background:${done ? 'var(--primary-glow)' : 'var(--input-bg)'};border:1.5px solid ${done ? 'var(--primary)' : 'var(--border)'};display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0;">${task.icon}</div>
+            <div style="flex:1;min-width:0;">
+              <div style="font-family:var(--font-display);font-size:14px;font-weight:700;color:${done ? 'var(--primary)' : 'var(--text)'};">${task.title} ${done ? '✅' : '🔒'}</div>
+              <div style="font-size:11px;color:var(--text-muted);margin-top:2px;">${task.desc}</div>
+            </div>
+          </div>
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-top:6px;">
+            <span style="font-size:11px;font-weight:700;padding:3px 10px;border-radius:20px;background:${done ? 'var(--primary-glow)' : 'var(--input-bg)'};color:${done ? 'var(--primary)' : 'var(--text-muted)'};">${task.badge}</span>
+            <span style="font-size:11px;font-weight:700;color:${done ? 'var(--primary)' : 'var(--text-muted)'};">+${task.pts} pts</span>
+          </div>
+          ${done ? `<div style="font-size:10px;color:var(--text-light);margin-top:4px;">Unlocked ${new Date(achieved[task.id]).toLocaleDateString('en-IN', {day:'numeric',month:'short',year:'numeric'})}</div>` : ''}
+        `;
+        c.appendChild(d);
+      });
     }
 
     // ═══════════════════════════════════════════
@@ -2599,6 +2822,7 @@
       await loadGroups();
       renderGroups(); renderDashGroups(); renderChatList();
       closeModal();
+      unlockAchievement('join_group');
     }
 
     async function joinGroup() {
@@ -2620,6 +2844,7 @@
       await loadGroups();
       renderGroups(); renderDashGroups(); renderChatList();
       closeModal();
+      unlockAchievement('join_group');
     }
 
     // ═══════════════════════════════════════════
@@ -2766,6 +2991,8 @@
 
       const idx = state.messages[groupId].findIndex(m => m.id === tempMsg.id);
       if (idx !== -1) state.messages[groupId][idx].id = saved.id;
+
+      unlockAchievement('send_first_msg');
     }
 
     function handleFileUpload(input) {
@@ -2790,6 +3017,7 @@
       });
       toast(`✅ Uploaded: ${file.name}`);
       await renderResources();
+      unlockAchievement('upload_file');
       return pub.publicUrl;
     }
 
@@ -2895,12 +3123,11 @@
     async function renderNotifs() {
       const c = document.getElementById('notif-list'); c.innerHTML = '';
 
-      // Static welcome notifications
       const STATIC = [
         { icon: '🎉', type: 'mention', title: `Welcome, ${state.profile?.full_name || 'Student'}! You're now on CampusConnect.`, time: 'Just now' },
         { icon: '⚡', type: 'mention', title: 'AI Study Assistant is now powered by Groq LLaMA 3.3 70B — ask it anything!', time: 'Now' },
         { icon: '🔗', type: 'mention', title: 'Share your group code with classmates so they can join!', time: 'Now' },
-        { icon: '🧠', type: 'mention', title: 'Try AI Tools — upload a PDF to generate a quiz, or chat with the AI assistant.', time: 'Now' },
+        { icon: '🏅', type: 'mention', title: 'New! Check out Achievements — complete tasks to earn badges and reputation.', time: 'Now' },
       ];
       STATIC.forEach(n => {
         const d = document.createElement('div'); d.className = 'notif-item';
@@ -2908,7 +3135,6 @@
         c.appendChild(d);
       });
 
-      // Load incoming peer requests for THIS user
       const { data: incoming } = await sb
         .from('peer_requests')
         .select('id, sender_id, status, created_at, profiles:sender_id(full_name, department)')
@@ -2945,7 +3171,6 @@
         });
       }
 
-      // Load accepted notifications (partner accepted your request)
       const { data: accepted } = await sb
         .from('peer_requests')
         .select('id, receiver_id, created_at, profiles:receiver_id(full_name)')
@@ -2978,17 +3203,14 @@
     }
 
     async function acceptPeerRequest(reqId, senderId, senderName) {
-      // Update request status to accepted
       const { error } = await sb.from('peer_requests').update({ status: 'accepted' }).eq('id', reqId);
       if (error) { toast('Failed to accept: ' + error.message, true); return; }
 
-      // Insert both directions into study_partners
       await sb.from('study_partners').upsert([
         { user_id: state.user.id, partner_id: senderId },
         { user_id: senderId, partner_id: state.user.id }
       ]);
 
-      // Remove the card from UI
       const card = document.getElementById(`req-card-${reqId}`);
       if (card) { card.style.opacity = '0'; card.style.transition = 'opacity 0.3s'; setTimeout(() => card.remove(), 300); }
 
@@ -3009,25 +3231,21 @@
       const c = document.getElementById('peer-container'); c.innerHTML = '<div style="grid-column:1/-1;text-align:center;color:var(--text-muted);padding:20px;">Loading peers…</div>';
       const COLORS = ['#6366F1,#8B5CF6', '#10B981,#0891B2', '#F59E0B,#EF4444', '#EC4899,#F43F5E'];
 
-      // Fetch all other profiles
       const { data: profiles } = await sb.from('profiles')
         .select('id, full_name, department, reputation')
         .neq('id', state.user.id).limit(12);
 
-      // Fetch requests I already sent
       const { data: sentReqs } = await sb.from('peer_requests')
         .select('receiver_id, status').eq('sender_id', state.user.id);
       const sentMap = {};
       (sentReqs || []).forEach(r => { sentMap[r.receiver_id] = r.status; });
 
-      // Fetch current study partners
       const { data: partnerRows } = await sb.from('study_partners')
         .select('partner_id').eq('user_id', state.user.id);
       const partnerIds = new Set((partnerRows || []).map(r => r.partner_id));
 
       c.innerHTML = '';
 
-      // Show existing study partners section first
       if (partnerIds.size > 0) {
         const partnerProfiles = (profiles || []).filter(p => partnerIds.has(p.id));
         if (partnerProfiles.length > 0) {
@@ -3039,13 +3257,17 @@
             const init = (p.full_name || '?').split(' ').map(w => w[0]).join('').slice(0, 2).toUpperCase();
             const d = document.createElement('div'); d.className = 'peer-card';
             d.style.border = '2px solid var(--primary)';
+            d.dataset.peerId = p.id;
+            d.dataset.peerName = p.full_name;
+            d.dataset.peerDept = p.department;
             d.innerHTML = `
               <div class="peer-avatar" style="background:linear-gradient(135deg,${COLORS[i % 4]});">${init}</div>
               <div class="peer-name">${escHtml(p.full_name)}</div>
               <div class="peer-dept">${escHtml(p.department)}</div>
               <div class="peer-match" style="color:var(--primary);">✅ Study Partner</div>
               <div style="font-size:11px;color:var(--text-muted);margin-bottom:10px;">${p.reputation || 0} pts</div>
-              <button class="btn-sm" style="width:100%;background:var(--primary-glow);color:var(--primary);border:1px solid var(--primary);cursor:default;">Connected ✓</button>`;
+              <button class="btn-sm" style="width:100%;background:var(--primary-glow);color:var(--primary);border:1px solid var(--primary);cursor:default;margin-bottom:6px;">Connected ✓</button>
+              <button class="btn-sm dm-btn" style="width:100%;background:var(--input-bg);color:var(--text-muted);border:1px solid var(--border);" onclick="openPeerDM('${p.id}','${escHtml(p.full_name)}','${escHtml(p.department)}')">💬 Message</button>`;
             c.appendChild(d);
           });
 
@@ -3056,19 +3278,18 @@
         }
       }
 
-      // Show non-partner peers
       const nonPartners = (profiles || []).filter(p => !partnerIds.has(p.id));
       nonPartners.forEach((p, i) => {
         const init = (p.full_name || '?').split(' ').map(w => w[0]).join('').slice(0, 2).toUpperCase();
         const score = Math.floor(75 + Math.random() * 20);
-        const reqStatus = sentMap[p.id]; // 'pending', 'accepted', 'declined', or undefined
-        let btnHtml = '';
+        const reqStatus = sentMap[p.id];
+        let reqBtnHtml = '';
         if (reqStatus === 'pending') {
-          btnHtml = `<button class="btn-sm" style="width:100%;opacity:0.6;cursor:default;" disabled>⏳ Request Sent</button>`;
+          reqBtnHtml = `<button class="btn-sm" style="width:100%;opacity:0.6;cursor:default;margin-bottom:6px;" disabled>⏳ Request Sent</button>`;
         } else if (reqStatus === 'accepted') {
-          btnHtml = `<button class="btn-sm" style="width:100%;background:var(--primary-glow);color:var(--primary);border:1px solid var(--primary);cursor:default;" disabled>Connected ✓</button>`;
+          reqBtnHtml = `<button class="btn-sm" style="width:100%;background:var(--primary-glow);color:var(--primary);border:1px solid var(--primary);cursor:default;margin-bottom:6px;" disabled>Connected ✓</button>`;
         } else {
-          btnHtml = `<button class="btn-sm" style="width:100%;" onclick="sendPeerRequest('${p.id}','${escHtml(p.full_name)}',this)">🤝 Send Request</button>`;
+          reqBtnHtml = `<button class="btn-sm" style="width:100%;margin-bottom:6px;" onclick="sendPeerRequest('${p.id}','${escHtml(p.full_name)}',this)">🤝 Send Request</button>`;
         }
         const d = document.createElement('div'); d.className = 'peer-card';
         d.innerHTML = `
@@ -3077,7 +3298,8 @@
           <div class="peer-dept">${escHtml(p.department)}</div>
           <div class="peer-match">🤝 ${score}% match</div>
           <div style="font-size:11px;color:var(--text-muted);margin-bottom:10px;">${p.reputation || 0} pts</div>
-          ${btnHtml}`;
+          ${reqBtnHtml}
+          <button class="btn-sm dm-btn" style="width:100%;background:var(--input-bg);color:var(--text-muted);border:1px solid var(--border);" onclick="openPeerDM('${p.id}','${escHtml(p.full_name)}','${escHtml(p.department)}')">💬 Message</button>`;
         c.appendChild(d);
       });
 
@@ -3095,13 +3317,131 @@
         status: 'pending'
       });
       if (error) {
-        // If duplicate, treat as already sent
         btn.textContent = '⏳ Request Sent';
         btn.style.opacity = '0.6';
       } else {
         btn.textContent = '⏳ Request Sent';
         btn.style.opacity = '0.6';
         toast(`✅ Request sent to ${receiverName}! They will see it in Notifications.`);
+        unlockAchievement('peer_request');
+      }
+    }
+
+    // ═══════════════════════════════════════════
+    // PEER DIRECT MESSAGES
+    // ═══════════════════════════════════════════
+    let dmState = { peerId: null, peerName: null, peerDept: null };
+    let dmMessages = {}; // keyed by peerId
+    let dmRealtime = null;
+
+    function openPeerDM(peerId, peerName, peerDept) {
+      dmState = { peerId, peerName, peerDept };
+      const init = (peerName || '?').split(' ').map(w => w[0]).join('').slice(0, 2).toUpperCase();
+      document.getElementById('dm-peer-avatar').textContent = init;
+      document.getElementById('dm-peer-name').textContent = peerName;
+      document.getElementById('dm-peer-dept').textContent = peerDept || 'Student';
+      document.getElementById('peer-dm-overlay').style.display = 'block';
+      renderDMMessages();
+      subscribeToDMs(peerId);
+      setTimeout(() => document.getElementById('dm-input')?.focus(), 150);
+    }
+
+    function closePeerDM() {
+      document.getElementById('peer-dm-overlay').style.display = 'none';
+      if (dmRealtime) { sb.removeChannel(dmRealtime); dmRealtime = null; }
+      dmState = { peerId: null, peerName: null, peerDept: null };
+    }
+
+    function dmKey(peerId) {
+      return [state.user.id, peerId].sort().join('_');
+    }
+
+    function subscribeToDMs(peerId) {
+      if (dmRealtime) { sb.removeChannel(dmRealtime); dmRealtime = null; }
+      const key = dmKey(peerId);
+      dmRealtime = sb.channel('dm-' + key)
+        .on('postgres_changes', {
+          event: 'INSERT', schema: 'public', table: 'direct_messages',
+          filter: `conversation_key=eq.${key}`,
+        }, (payload) => {
+          const m = payload.new;
+          if (m.sender_id === state.user.id) return;
+          if (!dmMessages[dmState.peerId]) dmMessages[dmState.peerId] = [];
+          const msg = {
+            text: m.content,
+            me: false,
+            time: new Date(m.created_at).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
+          };
+          dmMessages[dmState.peerId].push(msg);
+          if (dmState.peerId === peerId) appendDMMessage(msg);
+        })
+        .subscribe();
+
+      loadDMHistory(peerId);
+    }
+
+    async function loadDMHistory(peerId) {
+      const key = dmKey(peerId);
+      const { data } = await sb.from('direct_messages')
+        .select('content, sender_id, created_at')
+        .eq('conversation_key', key)
+        .order('created_at', { ascending: true })
+        .limit(80);
+
+      dmMessages[peerId] = (data || []).map(m => ({
+        text: m.content,
+        me: m.sender_id === state.user.id,
+        time: new Date(m.created_at).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
+      }));
+      if (dmState.peerId === peerId) renderDMMessages();
+    }
+
+    function renderDMMessages() {
+      const c = document.getElementById('dm-messages');
+      if (!c) return;
+      const msgs = dmMessages[dmState.peerId] || [];
+      c.innerHTML = '';
+      if (!msgs.length) {
+        c.innerHTML = '<div style="text-align:center;font-size:12px;color:var(--text-muted);padding:20px 0;">Start your private conversation! 👋</div>';
+        return;
+      }
+      msgs.forEach(m => appendDMMessage(m, false));
+      c.scrollTop = c.scrollHeight;
+    }
+
+    function appendDMMessage(m, scroll = true) {
+      const c = document.getElementById('dm-messages');
+      if (!c) return;
+      const ph = c.querySelector('[style*="Start your"]');
+      if (ph) ph.remove();
+      const d = document.createElement('div');
+      d.style.cssText = `display:flex;justify-content:${m.me ? 'flex-end' : 'flex-start'};margin-bottom:2px;`;
+      d.innerHTML = `<div style="max-width:78%;padding:9px 13px;border-radius:${m.me ? '14px 14px 4px 14px' : '14px 14px 14px 4px'};background:${m.me ? 'var(--primary)' : 'var(--card)'};color:${m.me ? '#fff' : 'var(--text)'};font-size:13px;line-height:1.5;border:1px solid ${m.me ? 'var(--primary)' : 'var(--border)'};">${escHtml(m.text)}<div style="font-size:9.5px;opacity:0.6;margin-top:4px;text-align:right;">${m.time}</div></div>`;
+      c.appendChild(d);
+      if (scroll) c.scrollTop = c.scrollHeight;
+    }
+
+    async function sendDM() {
+      const inp = document.getElementById('dm-input');
+      const txt = inp.value.trim();
+      if (!txt || !dmState.peerId || !state.user) return;
+      inp.value = '';
+
+      const key = dmKey(dmState.peerId);
+      const tempMsg = { text: txt, me: true, time: nowTime() };
+      if (!dmMessages[dmState.peerId]) dmMessages[dmState.peerId] = [];
+      dmMessages[dmState.peerId].push(tempMsg);
+      appendDMMessage(tempMsg);
+
+      const { error } = await sb.from('direct_messages').insert({
+        conversation_key: key,
+        sender_id: state.user.id,
+        receiver_id: dmState.peerId,
+        content: txt,
+      });
+      if (error) {
+        // If table doesn't exist yet, show helpful message
+        toast('⚠️ DM table not set up. Run the SQL migration in Supabase.', true);
       }
     }
 
@@ -3181,8 +3521,6 @@
     // ═══════════════════════════════════════════
     // AI STUDY ASSISTANT — GROQ POWERED ⚡
     // ═══════════════════════════════════════════
-
-    // Multi-turn conversation history
     let ragHistory = [];
 
     function clearRagChat() {
@@ -3203,22 +3541,18 @@
 
       const c = document.getElementById('rag-chat');
 
-      // Add user message to UI
       const ud = document.createElement('div');
       ud.className = 'rag-msg user';
       ud.innerHTML = `<div class="rag-bubble">${escHtml(q)}</div>`;
       c.appendChild(ud);
 
-      // Clear input & disable while waiting
       inp.value = '';
       inp.disabled = true;
       sendBtn.disabled = true;
       c.scrollTop = c.scrollHeight;
 
-      // Add to history
       ragHistory.push({ role: 'user', content: q });
 
-      // Add AI typing indicator
       const td = document.createElement('div');
       td.className = 'rag-msg ai';
       td.innerHTML = `
@@ -3278,7 +3612,6 @@ Guidelines:
         const data = await response.json();
         const aiText = data.choices?.[0]?.message?.content?.trim() || 'Sorry, I could not generate a response. Please try again.';
 
-        // Update the typing bubble with the real response
         const bubble = document.getElementById('rag-typing-bubble');
         if (bubble) {
           bubble.id = '';
@@ -3286,9 +3619,10 @@ Guidelines:
         }
         c.scrollTop = c.scrollHeight;
 
-        // Save to history (keep last 20 messages = 10 turns to avoid token overflow)
         ragHistory.push({ role: 'assistant', content: aiText });
         if (ragHistory.length > 20) ragHistory = ragHistory.slice(-20);
+
+        unlockAchievement('use_ai');
 
       } catch (err) {
         console.error('Groq API error:', err);
@@ -3298,7 +3632,6 @@ Guidelines:
           bubble.style.color = 'var(--danger)';
           bubble.textContent = '⚠️ Could not reach AI: ' + err.message;
         }
-        // Remove the failed user message from history
         ragHistory.pop();
       } finally {
         inp.disabled = false;
@@ -3359,8 +3692,9 @@ Guidelines:
       chat: { title: 'Group Chat', sub: 'Real-time collaboration' },
       ai: { title: 'AI Tools', sub: 'PDF Quiz & Study Assistant (Groq)' },
       analytics: { title: 'Analytics', sub: 'Your performance data' },
-      peers: { title: 'Peer Matching', sub: 'AI-suggested collaborators' },
+      peers: { title: 'Peer Matching', sub: 'AI-suggested collaborators · 💬 Message any peer privately' },
       notifications: { title: 'Notifications', sub: 'Mentions & alerts' },
+      achievements: { title: 'Achievements', sub: 'Tasks, badges & rewards' },
       settings: { title: 'Settings', sub: 'Profile & preferences' },
       resources: { title: 'Resource Library', sub: 'Uploaded files' },
     };
@@ -3381,6 +3715,8 @@ Guidelines:
       if (v === 'analytics') renderBarChart();
       if (v === 'resources') renderResources();
       if (v === 'peers') renderPeers();
+      if (v === 'achievements') renderAchievements();
+      if (v === 'dashboard') { renderStreak(); renderDashBadges(); }
     }
 
     function toggleDark() {
@@ -3428,9 +3764,8 @@ Guidelines:
 
     // Keyboard shortcuts
     document.addEventListener('keydown', e => {
-      if (e.key === 'Escape') { closeModal(); closePomodoro(); }
+      if (e.key === 'Escape') { closeModal(); closePomodoro(); closePeerDM(); }
     });
   </script>
 </body>
-
 </html>
