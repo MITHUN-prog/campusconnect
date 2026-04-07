@@ -2170,6 +2170,543 @@
       }
     }
 
+    /* Premium SaaS dashboard refresh - scoped to the app only, auth page untouched. */
+    #page-app {
+      --bg: #0B0F1A;
+      --sidebar: rgba(17, 24, 39, 0.9);
+      --sidebar-light: #1F2937;
+      --primary: #3B82F6;
+      --primary-dark: #2563EB;
+      --primary-glow: rgba(59, 130, 246, 0.14);
+      --accent: #3B82F6;
+      --accent2: #60A5FA;
+      --text: #F8FAFC;
+      --text-muted: #94A3B8;
+      --text-light: #64748B;
+      --card: rgba(17, 24, 39, 0.78);
+      --border: rgba(255, 255, 255, 0.08);
+      --input-bg: rgba(31, 41, 55, 0.78);
+      --danger: #EF4444;
+      --success: #3B82F6;
+      --radius: 16px;
+      --shadow: 0 12px 32px rgba(0, 0, 0, 0.22);
+      --shadow-lg: 0 18px 48px rgba(0, 0, 0, 0.34);
+      background:
+        radial-gradient(circle at top right, rgba(59, 130, 246, 0.12), transparent 32%),
+        linear-gradient(180deg, #0B0F1A 0%, #111827 100%);
+    }
+
+    #page-app .sidebar,
+    #page-app .topbar,
+    #page-app .panel-card,
+    #page-app .stat-card,
+    #page-app .group-card,
+    #page-app .ai-card,
+    #page-app .chart-wrap,
+    #page-app .peer-card,
+    #page-app .settings-nav,
+    #page-app .settings-content,
+    #page-app .modal,
+    #page-app .quiz-question,
+    #page-app .ais-summary-box,
+    #page-app .ais-quiz-item,
+    #page-app .ais-flashcard-front,
+    #page-app .achievement-card,
+    #page-app .notif-item {
+      background: var(--card);
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(16px);
+    }
+
+    #page-app .sidebar {
+      border-right: 1px solid var(--border);
+    }
+
+    #page-app .sidebar-logo span,
+    #page-app .topbar-logo span {
+      color: var(--primary);
+    }
+
+    #page-app .sidebar-logo {
+      display: none;
+    }
+
+    #page-app .topbar {
+      height: 64px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    #page-app .topbar-brand {
+      display: none;
+      align-items: center;
+      gap: 10px;
+      padding-right: 12px;
+      margin-right: 4px;
+      border-right: 1px solid var(--border);
+    }
+
+    #page-app .topbar-logo {
+      font-family: var(--font-display);
+      font-size: 16px;
+      font-weight: 800;
+      color: var(--text);
+      letter-spacing: -0.3px;
+      white-space: nowrap;
+    }
+
+    #page-app .topbar-profile {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      min-height: 34px;
+      padding: 4px 9px 4px 5px;
+      border-radius: 999px;
+      background: var(--input-bg);
+      border: 1px solid var(--border);
+      color: var(--text);
+    }
+
+    #page-app .topbar-profile-meta {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.15;
+    }
+
+    #page-app .topbar-profile-name {
+      font-size: 11px;
+      font-weight: 700;
+      max-width: 110px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    #page-app .topbar-profile-dept {
+      font-size: 9.5px;
+      color: var(--text-muted);
+      max-width: 110px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    #page-app .nav-item,
+    #page-app .sidebar-toggle,
+    #page-app .icon-btn,
+    #page-app .btn-sm,
+    #page-app .btn-outline,
+    #page-app .chat-action-btn,
+    #page-app .rag-send,
+    #page-app .ais-process-btn,
+    #page-app .ais-submit-quiz-btn,
+    #page-app .modal-confirm,
+    #page-app .group-card,
+    #page-app .peer-card,
+    #page-app .stat-card,
+    #page-app .panel-card,
+    #page-app .ai-card,
+    #page-app .chart-wrap {
+      transition: transform 240ms ease, border-color 240ms ease, background 240ms ease, filter 240ms ease, box-shadow 240ms ease;
+    }
+
+    #page-app .stat-card:hover,
+    #page-app .group-card:hover,
+    #page-app .peer-card:hover,
+    #page-app .panel-card:hover,
+    #page-app .ai-card:hover,
+    #page-app .chart-wrap:hover {
+      transform: translateY(-2px) scale(1.01);
+      border-color: rgba(59, 130, 246, 0.55);
+      box-shadow: var(--shadow-lg);
+    }
+
+    #page-app .btn-sm,
+    #page-app .chat-send,
+    #page-app .rag-send,
+    #page-app .ais-process-btn,
+    #page-app .ais-submit-quiz-btn,
+    #page-app .modal-confirm,
+    #page-app .pomo-btn.primary {
+      background: var(--primary);
+      color: #fff;
+      box-shadow: none;
+    }
+
+    #page-app .btn-sm:hover,
+    #page-app .chat-send:hover,
+    #page-app .rag-send:hover,
+    #page-app .ais-process-btn:hover:not(:disabled),
+    #page-app .ais-submit-quiz-btn:hover,
+    #page-app .modal-confirm:hover {
+      transform: translateY(-1px) scale(1.02);
+      filter: brightness(1.08);
+      background: var(--primary-dark);
+    }
+
+    #page-app .btn-outline,
+    #page-app .icon-btn,
+    #page-app .chat-action-btn,
+    #page-app .rag-clear {
+      background: var(--input-bg);
+      border-color: var(--border);
+      color: var(--text-muted);
+    }
+
+    #page-app .btn-outline:hover,
+    #page-app .icon-btn:hover,
+    #page-app .chat-action-btn:hover,
+    #page-app .rag-clear:hover {
+      border-color: rgba(59, 130, 246, 0.55);
+      color: var(--primary);
+      background: var(--primary-glow);
+      transform: translateY(-1px);
+    }
+
+    #page-app .nav-item.active,
+    #page-app .settings-nav-item.active,
+    #page-app .chat-group-item.active,
+    #page-app .ais-tab.active,
+    #page-app .qq-opt.selected,
+    #page-app .ais-option.selected {
+      background: var(--primary-glow);
+      border-color: rgba(59, 130, 246, 0.45);
+      color: var(--primary);
+    }
+
+    #page-app .ais-tab.active,
+    #page-app .qq-opt.selected,
+    #page-app .ais-option.selected {
+      background: var(--primary);
+      color: #fff;
+    }
+
+    #page-app .gc-tag.dept,
+    #page-app .lr-score,
+    #page-app .sc-delta,
+    #page-app .peer-match,
+    #page-app .ais-history-badge {
+      color: var(--primary);
+      background: var(--primary-glow);
+      border-color: rgba(59, 130, 246, 0.35);
+    }
+
+    #page-app .avatar,
+    #page-app .peer-avatar,
+    #page-app .msg-avatar,
+    #page-app .groq-badge {
+      background: var(--primary) !important;
+    }
+
+    #page-app .group-card::before {
+      background: var(--primary);
+    }
+
+    #page-app .bar,
+    #page-app .pr-fill,
+    #page-app .ring-fill,
+    #page-app .ais-score-ring-fill {
+      background: var(--primary);
+      stroke: var(--primary);
+    }
+
+    #page-app .upload-zone,
+    #page-app .ais-upload-zone,
+    #page-app .rag-chat,
+    #page-app .search-bar,
+    #page-app .chat-input-box,
+    #page-app .rag-input,
+    #page-app .modal-field input,
+    #page-app .modal-field select,
+    #page-app .field input,
+    #page-app .field select {
+      background: var(--input-bg);
+      border-color: var(--border);
+      color: var(--text);
+    }
+
+    #page-app .upload-zone:hover,
+    #page-app .ais-upload-zone:hover,
+    #page-app .ais-upload-zone.dragover {
+      border-color: rgba(59, 130, 246, 0.55);
+      background: var(--primary-glow);
+    }
+
+    #page-app .skeleton-line {
+      display: block;
+      height: 10px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, rgba(255,255,255,0.06), rgba(255,255,255,0.12), rgba(255,255,255,0.06));
+      background-size: 220% 100%;
+      animation: appSkeleton 1.4s ease infinite;
+    }
+
+    @keyframes appSkeleton {
+      from { background-position: 100% 0; }
+      to { background-position: -100% 0; }
+    }
+
+    @media (min-width: 901px) {
+      #page-app .topbar-brand {
+        display: flex;
+      }
+    }
+
+    @media (max-width: 900px) {
+      #page-app {
+        padding-bottom: 72px;
+      }
+
+      #page-app .sidebar {
+        position: fixed;
+        left: 12px;
+        right: 12px;
+        bottom: 12px;
+        width: auto;
+        height: 58px;
+        z-index: 700;
+        border-radius: 18px;
+        overflow-x: auto;
+        overflow-y: hidden;
+        padding: 0;
+      }
+
+      #page-app .sidebar-header,
+      #page-app .sidebar-footer,
+      #page-app .nav-label {
+        display: none;
+      }
+
+      #page-app .sidebar-nav {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        height: 100%;
+        padding: 8px;
+        overflow-x: auto;
+      }
+
+      #page-app .nav-section {
+        display: contents;
+      }
+
+      #page-app .nav-item {
+        flex: 0 0 auto;
+        min-width: 58px;
+        height: 42px;
+        justify-content: center;
+        gap: 6px;
+        padding: 8px 10px;
+        font-size: 11px;
+        border: 1px solid transparent;
+      }
+
+      #page-app .nav-item .icon {
+        font-size: 15px;
+      }
+
+      #page-app .topbar {
+        position: sticky;
+        top: 0;
+        z-index: 300;
+      }
+
+      #page-app .topbar-profile-meta {
+        display: none;
+      }
+
+      #page-app .content-scroll {
+        padding-bottom: 16px;
+      }
+    }
+
+    @media (max-width: 520px) {
+      #page-app .topbar {
+        gap: 10px;
+      }
+
+      #page-app .topbar-actions {
+        gap: 6px;
+      }
+
+      #page-app .icon-btn {
+        width: 38px;
+        height: 38px;
+      }
+
+      #page-app .view {
+        padding: 14px;
+      }
+
+      #page-app .panel-card,
+      #page-app .stat-card,
+      #page-app .ai-card,
+      #page-app .chart-wrap,
+      #page-app .group-card,
+      #page-app .peer-card {
+        padding: 16px;
+      }
+    }
+
+    #modal-overlay,
+    #peer-dm-overlay,
+    #pomodoro-overlay {
+      --bg: #0B0F1A;
+      --sidebar: rgba(17, 24, 39, 0.9);
+      --sidebar-light: #1F2937;
+      --primary: #3B82F6;
+      --primary-dark: #2563EB;
+      --primary-glow: rgba(59, 130, 246, 0.14);
+      --text: #F8FAFC;
+      --text-muted: #94A3B8;
+      --text-light: #64748B;
+      --card: rgba(17, 24, 39, 0.88);
+      --border: rgba(255, 255, 255, 0.08);
+      --input-bg: rgba(31, 41, 55, 0.78);
+      --shadow: 0 18px 48px rgba(0, 0, 0, 0.34);
+    }
+
+    #modal-overlay .modal,
+    #peer-dm-panel {
+      background: var(--card);
+      border: 1px solid var(--border);
+      color: var(--text);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(16px);
+    }
+
+    #modal-overlay .modal-field input,
+    #modal-overlay .modal-field select,
+    #peer-dm-panel textarea {
+      background: var(--input-bg) !important;
+      border-color: var(--border) !important;
+      color: var(--text) !important;
+    }
+
+    #modal-overlay .modal-confirm,
+    #pomodoro-overlay .pomo-btn.primary {
+      background: var(--primary);
+      color: #fff;
+      box-shadow: none;
+    }
+
+    #modal-overlay .modal-confirm:hover,
+    #pomodoro-overlay .pomo-btn.primary:hover {
+      background: var(--primary-dark);
+      transform: translateY(-1px) scale(1.02);
+    }
+
+    #page-admin {
+      --bg: #0B0F1A;
+      --primary: #3B82F6;
+      --primary-glow: rgba(59, 130, 246, 0.14);
+      --text: #F8FAFC;
+      --text-muted: #94A3B8;
+      --card: rgba(17, 24, 39, 0.78);
+      --border: rgba(255, 255, 255, 0.08);
+      --input-bg: rgba(31, 41, 55, 0.78);
+      --shadow: 0 18px 48px rgba(0, 0, 0, 0.34);
+      background:
+        radial-gradient(circle at top right, rgba(59, 130, 246, 0.12), transparent 32%),
+        linear-gradient(180deg, #0B0F1A 0%, #111827 100%);
+      color: var(--text);
+      padding: 24px;
+      overflow-y: auto;
+    }
+
+    #page-admin.active {
+      display: block;
+    }
+
+    .admin-shell {
+      max-width: 1180px;
+      margin: 0 auto;
+    }
+
+    .admin-topbar,
+    .admin-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(16px);
+    }
+
+    .admin-topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 16px 18px;
+      margin-bottom: 18px;
+    }
+
+    .admin-brand {
+      font-family: var(--font-display);
+      font-size: 18px;
+      font-weight: 800;
+    }
+
+    .admin-brand span {
+      color: var(--primary);
+    }
+
+    .admin-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+      margin-bottom: 18px;
+    }
+
+    .admin-card {
+      padding: 18px;
+    }
+
+    .admin-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 8px;
+    }
+
+    .admin-value {
+      font-family: var(--font-display);
+      font-size: 30px;
+      font-weight: 800;
+    }
+
+    .admin-sub {
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-top: 6px;
+    }
+
+    .admin-loading {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-muted);
+      font-weight: 700;
+    }
+
+    @media (max-width: 900px) {
+      #page-admin {
+        padding: 16px;
+      }
+
+      .admin-topbar {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .admin-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
   </style>
 </head>
 
@@ -2333,6 +2870,9 @@
 
     <div class="main">
       <div class="topbar">
+        <div class="topbar-brand">
+          <div class="topbar-logo">Campus<span>Connect</span></div>
+        </div>
         <div>
           <span class="topbar-title" id="topbar-title">Dashboard</span>
           <span class="topbar-sep">·</span>
@@ -2343,6 +2883,13 @@
           <div class="icon-btn" title="Join Group" onclick="openModal('join')">🔗</div>
           <div class="icon-btn" title="Notifications" onclick="showView('notifications')">🔔</div>
           <div class="icon-btn" title="Zen Mode" onclick="toggleZen()">🧘</div>
+          <div class="topbar-profile" title="Profile">
+            <div class="avatar" id="topbar-avatar" style="width:26px;height:26px;font-size:10px;">CC</div>
+            <div class="topbar-profile-meta">
+              <span class="topbar-profile-name" id="topbar-profile-name">Profile</span>
+              <span class="topbar-profile-dept" id="topbar-profile-dept">—</span>
+            </div>
+          </div>
         </div>
       </div>
       <div class="content-scroll">
@@ -2755,6 +3302,60 @@
     </div>
   </div>
 
+  <!-- HIDDEN ADMIN PANEL: no navbar/sidebar link, route protected by Supabase role check -->
+  <div class="page" id="page-admin">
+    <div class="admin-loading" id="admin-loading">Checking admin access...</div>
+    <div class="admin-shell" id="admin-shell" style="display:none;">
+      <div class="admin-topbar">
+        <div>
+          <div class="admin-brand">Campus<span>Connect</span> Admin</div>
+          <div class="admin-sub">Hidden admin dashboard · role protected</div>
+        </div>
+        <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;">
+          <div class="topbar-profile" title="Admin profile">
+            <div class="avatar" id="admin-avatar" style="width:28px;height:28px;font-size:11px;">A</div>
+            <div class="topbar-profile-meta">
+              <span class="topbar-profile-name" id="admin-name">Admin</span>
+              <span class="topbar-profile-dept" id="admin-role">admin</span>
+            </div>
+          </div>
+          <button class="btn-sm" onclick="window.location.href='/'">Back Home</button>
+          <button class="btn-outline" onclick="doLogout()">Logout</button>
+        </div>
+      </div>
+
+      <div class="admin-grid">
+        <div class="admin-card">
+          <div class="admin-label">Users</div>
+          <div class="admin-value" id="admin-users-count">--</div>
+          <div class="admin-sub">Registered profiles</div>
+        </div>
+        <div class="admin-card">
+          <div class="admin-label">Groups</div>
+          <div class="admin-value" id="admin-groups-count">--</div>
+          <div class="admin-sub">Active study groups</div>
+        </div>
+        <div class="admin-card">
+          <div class="admin-label">Messages</div>
+          <div class="admin-value" id="admin-messages-count">--</div>
+          <div class="admin-sub">Collaborative messages</div>
+        </div>
+        <div class="admin-card">
+          <div class="admin-label">Security</div>
+          <div class="admin-value">ON</div>
+          <div class="admin-sub">Supabase role verified</div>
+        </div>
+      </div>
+
+      <div class="admin-card">
+        <div class="pc-title">Admin Notes</div>
+        <div style="font-size:13px;color:var(--text-muted);line-height:1.7;">
+          This panel is intentionally hidden from the app UI. It renders only after Supabase confirms the logged-in profile has <strong style="color:var(--primary);">role = admin</strong>.
+        </div>
+      </div>
+    </div>
+  </div>
+
   <!-- PEER DM PANEL -->
   <div id="peer-dm-overlay" onclick="if(event.target===this)closePeerDM()">
     <div id="peer-dm-panel">
@@ -2838,6 +3439,7 @@
     // ═══════════════════════════════════════════
     const SUPABASE_URL = 'https://qsxqasyfbnjfkkfsexgp.supabase.co';
     const SUPABASE_ANON = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InFzeHFhc3lmYm5qZmtrZnNleGdwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzUzNTMwMTcsImV4cCI6MjA5MDkyOTAxN30.24wjjD1iFbnCGdVsGoPFRgaAHOzKpBoYoxAzNFVsMng';
+    const ADMIN_ROUTE = '/admin-dashboard-xyz';
 
     // ⚡ GROQ API KEY — Replace this if you regenerate the key
     const GROQ_API_KEY = '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';
@@ -2865,12 +3467,61 @@
       msgTag: '',
     };
 
+    function isAdminRoute() {
+      return window.location.pathname.replace(/\/$/, '') === ADMIN_ROUTE;
+    }
+
+    function redirectHomeFromAdmin() {
+      if (isAdminRoute()) window.history.replaceState({}, '', '/');
+      showAuthPage();
+    }
+
+    async function fetchCurrentUserRole(userId) {
+      const { data, error } = await sb
+        .from('profiles')
+        .select('role')
+        .eq('id', userId)
+        .single();
+
+      if (error) {
+        console.warn('Admin role check failed:', error.message);
+        return 'user';
+      }
+
+      return data?.role || 'user';
+    }
+
+    async function handleAdminRoute(session) {
+      if (!isAdminRoute()) return false;
+
+      showAdminLoading();
+
+      if (!session?.user) {
+        redirectHomeFromAdmin();
+        return true;
+      }
+
+      state.user = session.user;
+      await loadProfile();
+
+      const role = await fetchCurrentUserRole(session.user.id);
+      if (role !== 'admin') {
+        redirectHomeFromAdmin();
+        return true;
+      }
+
+      state.profile = { ...(state.profile || {}), role };
+      await showAdminPanel();
+      return true;
+    }
+
     // ═══════════════════════════════════════════
     // BOOT
     // ═══════════════════════════════════════════
     window.addEventListener('DOMContentLoaded', async () => {
       try {
         const { data: { session } } = await sb.auth.getSession();
+        if (await handleAdminRoute(session)) return;
         if (session) {
           state.user = session.user;
           await loadProfile();
@@ -2882,6 +3533,10 @@
       }
 
       sb.auth.onAuthStateChange((_event, session) => {
+        if (isAdminRoute()) {
+          handleAdminRoute(session);
+          return;
+        }
         if (session && !state.user) {
           state.user = session.user;
           loadProfile().then(initApp);
@@ -2996,6 +3651,7 @@
     function showAuthPage() {
       document.getElementById('page-auth').classList.add('active');
       document.getElementById('page-app').classList.remove('active');
+      document.getElementById('page-admin').classList.remove('active');
     }
 
     // ═══════════════════════════════════════════
@@ -3035,6 +3691,7 @@
     async function initApp() {
       document.getElementById('page-auth').classList.remove('active');
       document.getElementById('page-app').classList.add('active');
+      document.getElementById('page-admin').classList.remove('active');
 
       showLoadingState(true);
 
@@ -3044,6 +3701,9 @@
       document.getElementById('sb-avatar').textContent = initials;
       document.getElementById('sb-name').textContent = p.full_name;
       document.getElementById('sb-dept').textContent = `${p.department} • ${p.year} Year`;
+      document.getElementById('topbar-avatar').textContent = initials;
+      document.getElementById('topbar-profile-name').textContent = p.full_name;
+      document.getElementById('topbar-profile-dept').textContent = `${p.department} • ${p.year}`;
       document.getElementById('lb-avatar').textContent = initials;
       document.getElementById('settings-avatar').textContent = initials;
       document.getElementById('s-name').textContent = p.full_name;
@@ -3124,6 +3784,55 @@
         document.body.appendChild(el);
       } else if (!on && el) {
         el.remove();
+      }
+    }
+
+    function showAdminLoading() {
+      document.getElementById('page-auth').classList.remove('active');
+      document.getElementById('page-app').classList.remove('active');
+      document.getElementById('page-admin').classList.add('active');
+      document.getElementById('admin-loading').style.display = 'flex';
+      document.getElementById('admin-shell').style.display = 'none';
+    }
+
+    async function showAdminPanel() {
+      document.getElementById('page-auth').classList.remove('active');
+      document.getElementById('page-app').classList.remove('active');
+      document.getElementById('page-admin').classList.add('active');
+
+      const name = state.profile?.full_name || 'Admin';
+      const initials = name.split(' ').map(w => w[0]).join('').slice(0, 2).toUpperCase();
+      document.getElementById('admin-avatar').textContent = initials;
+      document.getElementById('admin-name').textContent = name;
+      document.getElementById('admin-role').textContent = 'admin';
+
+      document.getElementById('admin-loading').style.display = 'none';
+      document.getElementById('admin-shell').style.display = 'block';
+
+      await loadAdminMetrics();
+    }
+
+    async function loadAdminMetrics() {
+      const setCount = (id, value) => {
+        const el = document.getElementById(id);
+        if (el) el.textContent = typeof value === 'number' ? value : '--';
+      };
+
+      try {
+        const [{ count: usersCount }, { count: groupsCount }, { count: messagesCount }] = await Promise.all([
+          sb.from('profiles').select('id', { count: 'exact', head: true }),
+          sb.from('groups').select('id', { count: 'exact', head: true }),
+          sb.from('messages').select('id', { count: 'exact', head: true }),
+        ]);
+
+        setCount('admin-users-count', usersCount);
+        setCount('admin-groups-count', groupsCount);
+        setCount('admin-messages-count', messagesCount);
+      } catch (err) {
+        console.warn('Admin metrics unavailable:', err.message);
+        setCount('admin-users-count', null);
+        setCount('admin-groups-count', null);
+        setCount('admin-messages-count', null);
       }
     }
 
@@ -5011,6 +5720,10 @@ Guidelines:
     // Keyboard shortcuts
     document.addEventListener('keydown', e => {
       if (e.key === 'Escape') { closeModal(); closePomodoro(); closePeerDM(); }
+      if (e.ctrlKey && e.shiftKey && e.key.toLowerCase() === 'a') {
+        e.preventDefault();
+        window.location.href = ADMIN_ROUTE;
+      }
     });
   </script>
 </body>
