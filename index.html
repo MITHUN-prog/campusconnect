@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -1770,6 +1771,209 @@
       border-color: var(--primary);
       background: linear-gradient(135deg, var(--card) 70%, rgba(16,185,129,0.07));
     }
+
+    /* ── AI STUDY ASSISTANT ── */
+    .ais-upload-zone {
+      border: 2px dashed var(--border); border-radius: var(--radius);
+      padding: 32px 24px; text-align: center; cursor: pointer;
+      transition: all var(--transition); background: var(--input-bg);
+    }
+    .ais-upload-zone:hover, .ais-upload-zone.dragover {
+      border-color: var(--primary); background: var(--primary-glow);
+    }
+    .ais-upload-zone .ais-uz-icon { font-size: 36px; margin-bottom: 10px; }
+    .ais-upload-zone .ais-uz-title {
+      font-family: var(--font-display); font-size: 15px; font-weight: 700;
+      color: var(--text); margin-bottom: 4px;
+    }
+    .ais-upload-zone .ais-uz-sub { font-size: 12px; color: var(--text-muted); }
+    .ais-upload-zone .ais-uz-sub strong { color: var(--primary); }
+    .ais-file-name {
+      margin-top: 10px; font-size: 12px; font-weight: 600;
+      color: var(--primary); background: var(--primary-glow);
+      padding: 4px 12px; border-radius: 20px; display: inline-block;
+    }
+    .ais-process-btn {
+      width: 100%; padding: 13px;
+      background: linear-gradient(135deg, var(--primary), #0891B2);
+      border: none; border-radius: 11px;
+      font-family: var(--font-display); font-size: 14px; font-weight: 700;
+      color: #fff; cursor: pointer; transition: all var(--transition);
+      margin-top: 12px; box-shadow: 0 4px 18px rgba(16, 185, 129, 0.3);
+      display: flex; align-items: center; justify-content: center; gap: 8px;
+    }
+    .ais-process-btn:hover:not(:disabled) {
+      transform: translateY(-2px); box-shadow: 0 8px 28px rgba(16, 185, 129, 0.4);
+    }
+    .ais-process-btn:disabled { opacity: 0.65; cursor: not-allowed; transform: none; }
+    .ais-spinner {
+      display: none; width: 18px; height: 18px;
+      border: 2.5px solid rgba(255,255,255,0.3); border-top-color: #fff;
+      border-radius: 50%; animation: ais-spin 0.8s linear infinite; flex-shrink: 0;
+    }
+    @keyframes ais-spin { to { transform: rotate(360deg); } }
+    .ais-status {
+      background: var(--primary-glow); border: 1px solid var(--primary);
+      border-radius: 10px; padding: 12px 16px;
+      font-size: 13px; font-weight: 600; color: var(--primary);
+      margin-top: 12px; display: flex; align-items: center; gap: 10px;
+    }
+    .ais-status.hidden { display: none !important; }
+    .ais-status .ais-status-spinner {
+      width: 14px; height: 14px; border: 2px solid rgba(16,185,129,0.3);
+      border-top-color: var(--primary); border-radius: 50%;
+      animation: ais-spin 0.8s linear infinite; flex-shrink: 0;
+    }
+    .ais-error {
+      background: rgba(239,68,68,0.08); border: 1px solid #EF4444;
+      border-radius: 10px; padding: 12px 16px;
+      font-size: 12.5px; color: #EF4444; margin-top: 12px;
+    }
+    .ais-error.hidden { display: none !important; }
+    .ais-tabs {
+      display: flex; background: var(--input-bg);
+      border: 1px solid var(--border); border-radius: 11px;
+      padding: 4px; margin-bottom: 20px;
+    }
+    .ais-tab {
+      flex: 1; padding: 9px 12px; text-align: center;
+      font-family: var(--font-display); font-size: 13px; font-weight: 700;
+      color: var(--text-muted); cursor: pointer; border-radius: 8px;
+      transition: all var(--transition); border: none; background: transparent;
+    }
+    .ais-tab:hover { color: var(--text); background: rgba(255,255,255,0.4); }
+    .ais-tab.active { background: var(--primary); color: #fff; box-shadow: 0 4px 12px rgba(16,185,129,0.3); }
+    .ais-panel { display: none; animation: fadeUp 0.2s ease; }
+    .ais-panel.active { display: block; }
+    .ais-summary-box {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 22px; box-shadow: var(--shadow);
+    }
+    .ais-summary-header {
+      font-family: var(--font-display); font-size: 16px; font-weight: 700;
+      color: var(--text); margin-bottom: 14px;
+      display: flex; align-items: center; gap: 8px;
+      padding-bottom: 12px; border-bottom: 1px solid var(--border);
+    }
+    .ais-quiz-item {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 20px; margin-bottom: 14px;
+      box-shadow: var(--shadow); transition: border-color var(--transition);
+    }
+    .ais-quiz-item.answered { border-color: var(--primary); }
+    .ais-q-num {
+      font-size: 10px; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 0.1em; color: var(--primary); margin-bottom: 8px;
+    }
+    .ais-q-text {
+      font-family: var(--font-display); font-size: 15px; font-weight: 700;
+      color: var(--text); margin-bottom: 14px; line-height: 1.4;
+    }
+    .ais-options { display: flex; flex-direction: column; gap: 8px; }
+    .ais-option {
+      padding: 11px 14px; border: 1.5px solid var(--border);
+      border-radius: 10px; background: var(--input-bg);
+      font-size: 13px; color: var(--text); cursor: pointer;
+      transition: all var(--transition);
+      display: flex; align-items: center; gap: 10px;
+      text-align: left; font-family: var(--font-body); width: 100%;
+    }
+    .ais-option:hover:not([disabled]) { border-color: var(--primary); background: var(--primary-glow); }
+    .ais-option.selected { border-color: var(--primary); background: var(--primary); color: #fff; }
+    .ais-option.correct { border-color: #10B981; background: rgba(16,185,129,0.12); color: #059669; font-weight: 600; }
+    .ais-option.wrong   { border-color: #EF4444; background: rgba(239,68,68,0.08); color: #DC2626; }
+    .ais-opt-letter {
+      width: 22px; height: 22px; border-radius: 50%; background: rgba(0,0,0,0.08);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 11px; font-weight: 800; flex-shrink: 0;
+    }
+    .ais-option.selected .ais-opt-letter { background: rgba(255,255,255,0.25); }
+    .ais-score-bar {
+      background: var(--card); border: 1.5px solid var(--primary);
+      border-radius: var(--radius); padding: 20px 24px; margin-bottom: 20px;
+      box-shadow: var(--shadow); display: flex; align-items: center; gap: 16px;
+    }
+    .ais-score-bar.hidden { display: none !important; }
+    .ais-score-ring-wrap svg { width: 64px; height: 64px; transform: rotate(-90deg); display: block; }
+    .ais-score-ring-bg { fill: none; stroke: var(--border); stroke-width: 6; }
+    .ais-score-ring-fill {
+      fill: none; stroke: var(--primary); stroke-width: 6;
+      stroke-linecap: round; transition: stroke-dashoffset 1s ease;
+    }
+    .ais-score-val { font-family: var(--font-display); font-size: 28px; font-weight: 800; color: var(--primary); line-height: 1; }
+    .ais-score-label { font-size: 12px; color: var(--text-muted); margin-top: 4px; }
+    .ais-submit-quiz-btn {
+      padding: 12px 24px; background: var(--primary);
+      border: none; border-radius: 10px;
+      font-family: var(--font-display); font-size: 13px; font-weight: 700;
+      color: #fff; cursor: pointer; transition: all var(--transition);
+      margin-top: 4px; display: block; width: 100%;
+    }
+    .ais-submit-quiz-btn:hover { background: var(--primary-dark); }
+    .ais-flashcards-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 14px;
+    }
+    .ais-flashcard { perspective: 900px; cursor: pointer; height: 160px; }
+    .ais-flashcard-inner {
+      position: relative; width: 100%; height: 100%;
+      transition: transform 0.55s cubic-bezier(0.4, 0, 0.2, 1);
+      transform-style: preserve-3d;
+    }
+    .ais-flashcard.flipped .ais-flashcard-inner { transform: rotateY(180deg); }
+    .ais-flashcard-front, .ais-flashcard-back {
+      position: absolute; inset: 0; backface-visibility: hidden;
+      border-radius: var(--radius); padding: 18px;
+      display: flex; flex-direction: column; justify-content: center;
+      box-shadow: var(--shadow);
+    }
+    .ais-flashcard-front { background: var(--card); border: 1.5px solid var(--border); }
+    .ais-flashcard-back {
+      background: linear-gradient(135deg, var(--primary) 0%, #0891B2 100%);
+      border: none; transform: rotateY(180deg);
+    }
+    .ais-fc-label {
+      font-size: 9px; font-weight: 800; text-transform: uppercase;
+      letter-spacing: 0.12em; color: var(--text-muted); margin-bottom: 8px;
+    }
+    .ais-flashcard-back .ais-fc-label { color: rgba(255,255,255,0.65); }
+    .ais-fc-text {
+      font-family: var(--font-display); font-size: 13.5px; font-weight: 700;
+      color: var(--text); line-height: 1.45;
+    }
+    .ais-flashcard-back .ais-fc-text { color: #fff; font-size: 13px; font-weight: 600; }
+    .ais-fc-hint {
+      font-size: 10px; color: var(--text-light); margin-top: auto;
+      padding-top: 8px; display: flex; align-items: center; gap: 4px;
+    }
+    .ais-flashcard-back .ais-fc-hint { color: rgba(255,255,255,0.5); }
+    .ais-history-item {
+      display: flex; align-items: center; gap: 12px;
+      padding: 10px 12px; background: var(--card); border: 1px solid var(--border);
+      border-radius: 10px; cursor: pointer; transition: all var(--transition); margin-bottom: 8px;
+    }
+    .ais-history-item:hover { border-color: var(--primary); background: var(--primary-glow); }
+    .ais-history-icon {
+      width: 34px; height: 34px; border-radius: 9px;
+      background: rgba(239,68,68,0.1);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 15px; flex-shrink: 0;
+    }
+    .ais-history-name { font-size: 12.5px; font-weight: 600; color: var(--text); }
+    .ais-history-date { font-size: 11px; color: var(--text-muted); margin-top: 1px; }
+    .ais-history-badge {
+      margin-left: auto; font-size: 10px; font-weight: 700;
+      padding: 3px 8px; border-radius: 20px;
+      background: var(--primary-glow); color: var(--primary);
+      border: 1px solid var(--primary); white-space: nowrap;
+    }
+    .ais-empty-state { text-align: center; padding: 48px 20px; color: var(--text-muted); }
+    .ais-empty-state .ais-es-icon { font-size: 40px; margin-bottom: 12px; }
+    .ais-empty-state .ais-es-text { font-size: 13px; line-height: 1.7; }
+    @media (max-width: 900px) {
+      #view-ai-study > div { grid-template-columns: 1fr !important; }
+      .ais-flashcards-grid { grid-template-columns: 1fr; }
+    }
+
   </style>
 </head>
 
@@ -1902,6 +2106,8 @@
           <div class="nav-item" onclick="showView('ai')"><span class="icon">🧠</span> AI Tools</div>
           <div class="nav-item" onclick="showView('analytics')"><span class="icon">📈</span> Analytics</div>
           <div class="nav-item" onclick="showView('peers')"><span class="icon">🤝</span> Peer Match</div>
+          <div class="nav-item" onclick="showView('ai-study')"><span class="icon">📖</span> AI Study</div>
+          <div class="nav-item" onclick="showView('studymate')"><span class="icon">🎯</span> Finding Studymate</div>
         </div>
         <div class="nav-section">
           <div class="nav-label">You</div>
@@ -2177,6 +2383,107 @@
           <div class="notif-list" id="notif-list"></div>
         </div>
 
+        <!-- AI STUDY ASSISTANT -->
+        <div class="view" id="view-ai-study">
+          <div style="display:grid;grid-template-columns:320px 1fr;gap:18px;align-items:start;">
+            <!-- LEFT: Upload + History -->
+            <div>
+              <div class="panel-card" style="margin-bottom:14px;">
+                <div class="pc-title">📖 AI Study Assistant</div>
+                <div style="font-size:12px;color:var(--text-muted);margin-bottom:16px;margin-top:-8px;">Upload a PDF — get summary, quiz &amp; flashcards instantly.</div>
+                <div class="ais-upload-zone" id="ais-dropzone"
+                     onclick="document.getElementById('ais-file-input').click()"
+                     ondragover="aisDragOver(event)"
+                     ondragleave="aisDragLeave(event)"
+                     ondrop="aisDrop(event)">
+                  <div class="ais-uz-icon">📄</div>
+                  <div class="ais-uz-title">Drop your PDF here</div>
+                  <div class="ais-uz-sub">or <strong>click to browse</strong></div>
+                  <input type="file" id="ais-file-input" accept=".pdf" style="display:none" onchange="aisFileSelected(this)">
+                </div>
+                <div id="ais-file-name" style="display:none;" class="ais-file-name"></div>
+                <button class="ais-process-btn" id="ais-process-btn" onclick="aisProcessPDF()" disabled>
+                  <div class="ais-spinner" id="ais-btn-spinner"></div>
+                  <span id="ais-btn-text">⚡ Generate Study Content</span>
+                </button>
+                <div class="ais-status hidden" id="ais-status">
+                  <div class="ais-status-spinner"></div>
+                  <span id="ais-status-text">Processing…</span>
+                </div>
+                <div class="ais-error hidden" id="ais-error"></div>
+              </div>
+              <div class="panel-card">
+                <div class="pc-title" style="font-size:13px;">🕙 Recent Sessions</div>
+                <div id="ais-history-list">
+                  <div style="font-size:12px;color:var(--text-muted);text-align:center;padding:16px 0;">No sessions yet</div>
+                </div>
+              </div>
+            </div>
+            <!-- RIGHT: Results -->
+            <div id="ais-results-area">
+              <div class="ais-empty-state" id="ais-empty-state">
+                <div class="ais-es-icon">🧠</div>
+                <div class="ais-es-text">Upload a PDF on the left to generate<br>your personalised study content.</div>
+              </div>
+              <div id="ais-content" style="display:none;">
+                <div style="display:flex;align-items:center;gap:10px;margin-bottom:16px;">
+                  <div style="font-size:20px;">📄</div>
+                  <div style="flex:1;min-width:0;">
+                    <div style="font-family:var(--font-display);font-size:15px;font-weight:700;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;" id="ais-doc-title">Document</div>
+                    <div style="font-size:11px;color:var(--text-muted);" id="ais-doc-meta">Ready</div>
+                  </div>
+                  <div id="ais-cached-badge" style="display:none;">
+                    <span style="font-size:10px;font-weight:700;padding:3px 9px;border-radius:20px;background:rgba(99,102,241,0.1);color:#6366F1;border:1px solid #6366F1;">⚡ Cached</span>
+                  </div>
+                </div>
+                <div class="ais-tabs">
+                  <button class="ais-tab active" onclick="aisShowTab('summary',this)">📝 Summary</button>
+                  <button class="ais-tab" onclick="aisShowTab('quiz',this)">❓ Quiz</button>
+                  <button class="ais-tab" onclick="aisShowTab('flashcards',this)">🃏 Flashcards</button>
+                </div>
+                <div class="ais-panel active" id="ais-panel-summary">
+                  <div class="ais-summary-box">
+                    <div class="ais-summary-header">📝 Summary</div>
+                    <div id="ais-summary-text" style="font-size:13.5px;line-height:1.75;color:var(--text);white-space:pre-wrap;"></div>
+                  </div>
+                </div>
+                <div class="ais-panel" id="ais-panel-quiz">
+                  <div class="ais-score-bar hidden" id="ais-score-bar">
+                    <div class="ais-score-ring-wrap">
+                      <svg viewBox="0 0 64 64">
+                        <circle class="ais-score-ring-bg" cx="32" cy="32" r="26"/>
+                        <circle class="ais-score-ring-fill" id="ais-ring-fill" cx="32" cy="32" r="26" stroke-dasharray="163.36" stroke-dashoffset="163.36"/>
+                      </svg>
+                    </div>
+                    <div>
+                      <div class="ais-score-val" id="ais-score-val">0/5</div>
+                      <div class="ais-score-label" id="ais-score-label">Submit to see result</div>
+                    </div>
+                  </div>
+                  <div id="ais-quiz-questions"></div>
+                  <button class="ais-submit-quiz-btn" id="ais-submit-quiz" onclick="aisSubmitQuiz()">✓ Submit Quiz</button>
+                </div>
+                <div class="ais-panel" id="ais-panel-flashcards">
+                  <div id="ais-fc-counter" style="font-size:11px;color:var(--text-muted);text-align:center;margin-bottom:12px;"></div>
+                  <div class="ais-flashcards-grid" id="ais-flashcards-grid"></div>
+                  <div style="text-align:center;margin-top:14px;font-size:12px;color:var(--text-muted);">💡 Click any card to reveal the answer</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- FINDING STUDYMATE -->
+        <div class="view" id="view-studymate">
+          <div style="font-family:var(--font-display);font-size:18px;font-weight:700;color:var(--text);margin-bottom:6px;">🎯 Finding Studymate</div>
+          <div style="font-size:12px;color:var(--text-muted);margin-bottom:20px;">Smart teammate suggestions based on your subject and quiz performance.</div>
+          <div class="panel-card">
+            <div class="pc-title">Recommended Teammates</div>
+            <div id="studymate-match-message" style="font-size:12px;color:var(--text-muted);margin-bottom:12px;"></div>
+            <div id="studymate-match-list"></div>
+          </div>
+        </div>
+
         <!-- ACHIEVEMENTS -->
         <div class="view" id="view-achievements">
           <div style="font-family:var(--font-display);font-size:18px;font-weight:700;color:var(--text);margin-bottom:6px;">🏅 Achievements</div>
@@ -2304,6 +2611,13 @@
 
   <!-- SUPABASE SDK -->
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+  <script>
+    if (typeof pdfjsLib !== 'undefined') {
+      pdfjsLib.GlobalWorkerOptions.workerSrc =
+        'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+    }
+  </script>
 
   <script>
     // ═══════════════════════════════════════════
@@ -2534,6 +2848,7 @@
       renderBarChart();
       renderStreak();
       renderDashBadges();
+      renderSmartMatches();
 
       showLoadingState(false);
       showView('dashboard');
@@ -3516,6 +3831,8 @@
         sb.from('quiz_scores').insert({ user_id: state.user.id, score, total: 5 }).then(() => {});
       }
       toast(`Score: ${score}/5 (${score * 20}%)`);
+      updateSmartMatchScore(score * 20);
+      maybeOpenStudymateForLowScore(score * 20);
     }
 
     // ═══════════════════════════════════════════
@@ -3694,6 +4011,8 @@ Guidelines:
       analytics: { title: 'Analytics', sub: 'Your performance data' },
       peers: { title: 'Peer Matching', sub: 'AI-suggested collaborators · 💬 Message any peer privately' },
       notifications: { title: 'Notifications', sub: 'Mentions & alerts' },
+      'ai-study': { title: 'AI Study Assistant', sub: 'PDF → Summary · Quiz · Flashcards' },
+      studymate: { title: 'Finding Studymate', sub: 'Smart teammate recommendations' },
       achievements: { title: 'Achievements', sub: 'Tasks, badges & rewards' },
       settings: { title: 'Settings', sub: 'Profile & preferences' },
       resources: { title: 'Resource Library', sub: 'Uploaded files' },
@@ -3716,7 +4035,9 @@ Guidelines:
       if (v === 'resources') renderResources();
       if (v === 'peers') renderPeers();
       if (v === 'achievements') renderAchievements();
-      if (v === 'dashboard') { renderStreak(); renderDashBadges(); }
+      if (v === 'ai-study') aisLoadHistory();
+      if (v === 'studymate') renderFindingStudymate();
+      if (v === 'dashboard') { renderStreak(); renderDashBadges(); renderSmartMatches(); }
     }
 
     function toggleDark() {
@@ -3760,6 +4081,558 @@ Guidelines:
       t.classList.add('show');
       clearTimeout(toastTO);
       toastTO = setTimeout(() => t.classList.remove('show'), 3500);
+    }
+
+
+    // ═══════════════════════════════════════════════════════════════════
+    // AI STUDY ASSISTANT
+    // ═══════════════════════════════════════════════════════════════════
+    const aisState = { file:null, pdfText:'', currentData:null, quizAnswers:{}, quizSubmitted:false };
+
+    function aisDragOver(e) { e.preventDefault(); document.getElementById('ais-dropzone').classList.add('dragover'); }
+    function aisDragLeave() { document.getElementById('ais-dropzone').classList.remove('dragover'); }
+    function aisDrop(e) {
+      e.preventDefault(); document.getElementById('ais-dropzone').classList.remove('dragover');
+      const f = e.dataTransfer.files[0];
+      if (f && f.type === 'application/pdf') aisSetFile(f);
+      else aisShowError('Please drop a valid PDF file.');
+    }
+    function aisFileSelected(input) { if (input.files[0]) aisSetFile(input.files[0]); }
+    function aisSetFile(file) {
+      aisState.file = file; aisState.pdfText = '';
+      aisState.currentData = null; aisState.quizAnswers = {}; aisState.quizSubmitted = false;
+      const n = document.getElementById('ais-file-name');
+      n.textContent = 'PDF: ' + file.name; n.style.display = 'inline-block';
+      document.getElementById('ais-process-btn').disabled = false;
+      aisHideStatus(); aisHideError();
+      document.getElementById('ais-empty-state').style.display = 'block';
+      document.getElementById('ais-content').style.display = 'none';
+    }
+    function aisShowStatus(msg) {
+      document.getElementById('ais-status-text').textContent = msg;
+      document.getElementById('ais-status').classList.remove('hidden');
+    }
+    function aisHideStatus() { document.getElementById('ais-status').classList.add('hidden'); }
+    function aisShowError(msg) {
+      const el = document.getElementById('ais-error');
+      el.textContent = '❌ ' + msg; el.classList.remove('hidden');
+    }
+    function aisHideError() { document.getElementById('ais-error').classList.add('hidden'); }
+    function aisSetBtnLoading(on) {
+      document.getElementById('ais-process-btn').disabled = on;
+      document.getElementById('ais-btn-spinner').style.display = on ? 'block' : 'none';
+      document.getElementById('ais-btn-text').textContent = on ? 'Working…' : '⚡ Generate Study Content';
+    }
+
+    async function aisProcessPDF() {
+      if (!aisState.file) { aisShowError('Please select a PDF file first.'); return; }
+      aisHideError(); aisSetBtnLoading(true);
+      try {
+        if (state.user) {
+          aisShowStatus('Checking for saved session…');
+          const cached = await aisFetchFromSupabase(aisState.file.name);
+          if (cached) {
+            aisState.currentData = cached; aisRenderResults(aisState.file.name, true);
+            aisShowStatus('✅ Loaded from saved session!'); setTimeout(aisHideStatus, 2500);
+            aisSetBtnLoading(false); return;
+          }
+        }
+        aisShowStatus('Extracting text from PDF…');
+        const text = await aisExtractPDFText(aisState.file);
+        if (!text || text.trim().length < 50)
+          throw new Error('Could not extract enough text. Use a text-based (non-scanned) PDF.');
+        aisState.pdfText = text;
+        console.log('[AIS] Extracted', text.length, 'chars. Preview:', text.slice(0,200));
+        aisShowStatus('AI is generating content… (~10s)');
+        const raw = await aisCallGroq(text.slice(0, 4000));
+        aisShowStatus('Parsing response…');
+        const parsed = aisParseResponse(raw);
+        aisState.currentData = parsed; aisState.quizAnswers = {}; aisState.quizSubmitted = false;
+        if (state.user) { aisShowStatus('Saving session…'); await aisSaveToSupabase(aisState.file.name, parsed); }
+        aisRenderResults(aisState.file.name, false); aisHideStatus();
+        toast('✅ Study content ready!');
+        if (typeof unlockAchievement === 'function') unlockAchievement('use_ai');
+      } catch(err) {
+        console.error('[AIS]', err);
+        aisShowError(err.message || 'Something went wrong. Please try again.');
+        aisHideStatus();
+      } finally { aisSetBtnLoading(false); }
+    }
+
+    async function aisExtractPDFText(file) {
+      return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.onload = async (e) => {
+          try {
+            if (typeof pdfjsLib === 'undefined') throw new Error('pdf.js not loaded. Check internet connection.');
+            const pdf = await pdfjsLib.getDocument({ data: new Uint8Array(e.target.result) }).promise;
+            let text = '';
+            for (let i = 1; i <= pdf.numPages; i++) {
+              const page = await pdf.getPage(i);
+              const content = await page.getTextContent();
+              text += content.items.map(item => item.str).join(' ') + '\n';
+              if (text.length > 6000) break;
+            }
+            resolve(text.trim());
+          } catch(err) { reject(new Error('PDF parsing failed: ' + err.message)); }
+        };
+        reader.onerror = () => reject(new Error('Could not read the file.'));
+        reader.readAsArrayBuffer(file);
+      });
+    }
+
+    async function aisCallGroq(text) {
+      const prompt = [
+        'Act as an expert teacher. From the study material below, generate structured content.',
+        '',
+        'STUDY MATERIAL:',
+        '"""',
+        text,
+        '"""',
+        '',
+        'Respond ONLY in this exact format (no extra text):',
+        '',
+        '## SUMMARY',
+        '[Clear 150-200 word summary of main concepts]',
+        '',
+        '## QUIZ',
+        'Q1: [Question]',
+        'A) [Option]',
+        'B) [Option]',
+        'C) [Option]',
+        'D) [Option]',
+        'ANSWER: [A/B/C/D]',
+        '',
+        'Q2: [Question]',
+        'A) [Option]',
+        'B) [Option]',
+        'C) [Option]',
+        'D) [Option]',
+        'ANSWER: [A/B/C/D]',
+        '',
+        'Q3: [Question]',
+        'A) [Option]',
+        'B) [Option]',
+        'C) [Option]',
+        'D) [Option]',
+        'ANSWER: [A/B/C/D]',
+        '',
+        'Q4: [Question]',
+        'A) [Option]',
+        'B) [Option]',
+        'C) [Option]',
+        'D) [Option]',
+        'ANSWER: [A/B/C/D]',
+        '',
+        'Q5: [Question]',
+        'A) [Option]',
+        'B) [Option]',
+        'C) [Option]',
+        'D) [Option]',
+        'ANSWER: [A/B/C/D]',
+        '',
+        '## FLASHCARDS',
+        'FC1:',
+        'Q: [Question]',
+        'A: [Answer]',
+        '',
+        'FC2:',
+        'Q: [Question]',
+        'A: [Answer]',
+        '',
+        'FC3:',
+        'Q: [Question]',
+        'A: [Answer]',
+        '',
+        'FC4:',
+        'Q: [Question]',
+        'A: [Answer]',
+        '',
+        'FC5:',
+        'Q: [Question]',
+        'A: [Answer]',
+      ].join('\n');
+
+      const resp = await fetch('https://api.groq.com/openai/v1/chat/completions', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + GROQ_API_KEY },
+        body: JSON.stringify({
+          model: GROQ_MODEL,
+          messages: [{ role: 'user', content: prompt }],
+          max_tokens: 1800, temperature: 0.5,
+        }),
+      });
+      if (!resp.ok) {
+        const err = await resp.json().catch(() => ({}));
+        throw new Error('AI error: ' + (err.error?.message || resp.status));
+      }
+      const data = await resp.json();
+      const raw = data.choices?.[0]?.message?.content?.trim();
+      if (!raw) throw new Error('AI returned empty response. Please try again.');
+      console.log('[AIS] Raw response preview:', raw.slice(0, 400));
+      return raw;
+    }
+
+    function aisParseResponse(raw) {
+      const result = { summary: '', quiz: [], flashcards: [] };
+      const sumM = raw.match(/##\s*SUMMARY\s*([\s\S]*?)(?=##\s*QUIZ|##\s*FLASHCARDS|$)/i);
+      if (sumM) result.summary = sumM[1].trim();
+      const quizSec = raw.match(/##\s*QUIZ\s*([\s\S]*?)(?=##\s*FLASHCARDS|$)/i);
+      if (quizSec) {
+        quizSec[1].split(/Q\d+:/i).filter(s => s.trim()).forEach(block => {
+          const lines = block.trim().split('\n').map(l => l.trim()).filter(Boolean);
+          if (lines.length < 2) return;
+          const question = lines[0]; const options = []; let correct = 0;
+          lines.forEach(line => {
+            const om = line.match(/^([A-D])\)\s*(.+)/i);
+            if (om) options.push(om[2].trim());
+            const am = line.match(/^ANSWER:\s*([A-D])/i);
+            if (am) correct = 'ABCD'.indexOf(am[1].toUpperCase());
+          });
+          if (question && options.length >= 2) result.quiz.push({ question, options, correct });
+        });
+      }
+      const fcSec = raw.match(/##\s*FLASHCARDS\s*([\s\S]*?)$/i);
+      if (fcSec) {
+        fcSec[1].split(/FC\d+:/i).filter(s => s.trim()).forEach(block => {
+          const qm = block.match(/Q:\s*(.+?)(?=A:|$)/is);
+          const am = block.match(/A:\s*(.+?)(?=Q:|FC\d+:|$)/is);
+          if (qm && am) result.flashcards.push({ q: qm[1].trim(), a: am[1].trim() });
+        });
+      }
+      console.log('[AIS] Parsed — summary:', result.summary.length, 'quiz:', result.quiz.length, 'flashcards:', result.flashcards.length);
+      return result;
+    }
+
+    function aisRenderResults(pdfName, fromCache) {
+      const data = aisState.currentData; if (!data) return;
+      document.getElementById('ais-empty-state').style.display = 'none';
+      document.getElementById('ais-content').style.display = 'block';
+      document.getElementById('ais-doc-title').textContent = pdfName;
+      document.getElementById('ais-doc-meta').textContent = data.quiz.length + ' questions · ' + data.flashcards.length + ' flashcards';
+      const badge = document.getElementById('ais-cached-badge');
+      if (badge) badge.style.display = fromCache ? 'block' : 'none';
+      document.getElementById('ais-summary-text').textContent = data.summary || 'Summary not available.';
+      aisRenderQuiz(data.quiz); aisRenderFlashcards(data.flashcards);
+      aisShowTab('summary', document.querySelector('.ais-tab'));
+      aisLoadHistory();
+    }
+
+    function aisRenderQuiz(quiz) {
+      const c = document.getElementById('ais-quiz-questions'); c.innerHTML = '';
+      document.getElementById('ais-score-bar').classList.add('hidden');
+      const btn = document.getElementById('ais-submit-quiz');
+      btn.textContent = '✓ Submit Quiz'; btn.onclick = aisSubmitQuiz; btn.style.display = 'block';
+      if (!quiz || quiz.length === 0) {
+        c.innerHTML = '<div style="color:var(--text-muted);font-size:13px;padding:20px 0;">No quiz questions generated.</div>';
+        btn.style.display = 'none'; return;
+      }
+      const letters = ['A','B','C','D'];
+      quiz.forEach((q, qi) => {
+        const div = document.createElement('div'); div.className = 'ais-quiz-item'; div.id = 'ais-qi-' + qi;
+        const opts = (q.options || []).map((opt, oi) =>
+          '<button class="ais-option" id="ais-opt-' + qi + '-' + oi + '" onclick="aisSelectOption(' + qi + ',' + oi + ')">' +
+          '<span class="ais-opt-letter">' + (letters[oi] || oi) + '</span>' + escHtml(opt) + '</button>').join('');
+        div.innerHTML = '<div class="ais-q-num">Question ' + (qi+1) + ' of ' + quiz.length + '</div>' +
+          '<div class="ais-q-text">' + escHtml(q.question) + '</div>' +
+          '<div class="ais-options">' + opts + '</div>';
+        c.appendChild(div);
+      });
+    }
+
+    function aisSelectOption(qi, oi) {
+      if (aisState.quizSubmitted) return;
+      aisState.quizAnswers[qi] = oi;
+      const quiz = aisState.currentData?.quiz || [];
+      if (!quiz[qi]) return;
+      quiz[qi].options.forEach((_, j) => {
+        const el = document.getElementById('ais-opt-' + qi + '-' + j);
+        if (el) el.classList.remove('selected');
+      });
+      const sel = document.getElementById('ais-opt-' + qi + '-' + oi);
+      if (sel) sel.classList.add('selected');
+      document.getElementById('ais-qi-' + qi)?.classList.add('answered');
+    }
+
+    function aisSubmitQuiz() {
+      const quiz = aisState.currentData?.quiz || [];
+      if (quiz.length === 0) return;
+      if (Object.keys(aisState.quizAnswers).length < quiz.length) {
+        toast('Answer all ' + quiz.length + ' questions first.', true); return;
+      }
+      aisState.quizSubmitted = true; let score = 0;
+      quiz.forEach((q, qi) => {
+        const chosen = aisState.quizAnswers[qi]; const correct = q.correct;
+        q.options.forEach((_, oi) => {
+          const el = document.getElementById('ais-opt-' + qi + '-' + oi); if (!el) return;
+          el.classList.remove('selected');
+          if (oi === correct) el.classList.add('correct');
+          else if (oi === chosen && chosen !== correct) el.classList.add('wrong');
+        });
+        if (chosen === correct) score++;
+      });
+      const pct = score / quiz.length; const dash = 163.36;
+      const bar = document.getElementById('ais-score-bar'); bar.classList.remove('hidden');
+      document.getElementById('ais-score-val').textContent = score + '/' + quiz.length;
+      document.getElementById('ais-score-label').textContent =
+        pct === 1 ? 'Perfect!' : pct >= 0.6 ? 'Good job!' : 'Keep studying!';
+      setTimeout(() => { document.getElementById('ais-ring-fill').style.strokeDashoffset = dash - dash * pct; }, 100);
+      const btn = document.getElementById('ais-submit-quiz');
+      btn.textContent = '↺ Retake Quiz'; btn.onclick = aisRetakeQuiz;
+      toast('Quiz: ' + score + '/' + quiz.length);
+      updateSmartMatchScore(Math.round(pct * 100));
+      maybeOpenStudymateForLowScore(Math.round(pct * 100));
+    }
+
+    function aisRetakeQuiz() {
+      aisState.quizAnswers = {}; aisState.quizSubmitted = false;
+      aisRenderQuiz(aisState.currentData?.quiz || []);
+    }
+
+    function aisRenderFlashcards(flashcards) {
+      const grid = document.getElementById('ais-flashcards-grid'); grid.innerHTML = '';
+      const counter = document.getElementById('ais-fc-counter');
+      if (!flashcards || flashcards.length === 0) {
+        grid.innerHTML = '<div style="color:var(--text-muted);font-size:13px;">No flashcards generated.</div>'; return;
+      }
+      counter.textContent = flashcards.length + ' flashcard' + (flashcards.length !== 1 ? 's' : '') + ' — click to flip';
+      flashcards.forEach((fc) => {
+        const card = document.createElement('div'); card.className = 'ais-flashcard';
+        card.innerHTML = '<div class="ais-flashcard-inner">' +
+          '<div class="ais-flashcard-front">' +
+            '<div class="ais-fc-label">Question</div>' +
+            '<div class="ais-fc-text">' + escHtml(fc.q) + '</div>' +
+            '<div class="ais-fc-hint">Click to reveal</div>' +
+          '</div>' +
+          '<div class="ais-flashcard-back">' +
+            '<div class="ais-fc-label">Answer</div>' +
+            '<div class="ais-fc-text">' + escHtml(fc.a) + '</div>' +
+            '<div class="ais-fc-hint">Click to flip back</div>' +
+          '</div></div>';
+        card.onclick = () => card.classList.toggle('flipped');
+        grid.appendChild(card);
+      });
+    }
+
+    function aisShowTab(name, clickedBtn) {
+      document.querySelectorAll('.ais-panel').forEach(p => p.classList.remove('active'));
+      document.querySelectorAll('.ais-tab').forEach(t => t.classList.remove('active'));
+      const panel = document.getElementById('ais-panel-' + name);
+      if (panel) panel.classList.add('active');
+      if (clickedBtn) clickedBtn.classList.add('active');
+    }
+
+    async function aisSaveToSupabase(pdfName, data) {
+      if (!state.user) return;
+      try {
+        await sb.from('ai_study_sessions').upsert({
+          user_id: state.user.id, pdf_name: pdfName,
+          summary: data.summary, quiz: JSON.stringify(data.quiz),
+          flashcards: JSON.stringify(data.flashcards), updated_at: new Date().toISOString(),
+        }, { onConflict: 'user_id,pdf_name' });
+      } catch(err) { console.warn('[AIS] Supabase save skipped:', err.message); }
+    }
+
+    async function aisFetchFromSupabase(pdfName) {
+      if (!state.user) return null;
+      try {
+        const { data, error } = await sb.from('ai_study_sessions')
+          .select('*').eq('user_id', state.user.id).eq('pdf_name', pdfName).single();
+        if (error || !data) return null;
+        return {
+          summary: data.summary || '',
+          quiz: typeof data.quiz === 'string' ? JSON.parse(data.quiz) : (data.quiz || []),
+          flashcards: typeof data.flashcards === 'string' ? JSON.parse(data.flashcards) : (data.flashcards || []),
+        };
+      } catch(err) { console.warn('[AIS] Supabase fetch skipped:', err.message); return null; }
+    }
+
+    async function aisLoadHistory() {
+      if (!state.user) return;
+      const c = document.getElementById('ais-history-list'); if (!c) return;
+      try {
+        const { data } = await sb.from('ai_study_sessions')
+          .select('pdf_name, updated_at').eq('user_id', state.user.id)
+          .order('updated_at', { ascending: false }).limit(5);
+        if (!data || data.length === 0) {
+          c.innerHTML = '<div style="font-size:12px;color:var(--text-muted);text-align:center;padding:16px 0;">No sessions yet</div>'; return;
+        }
+        c.innerHTML = '';
+        data.forEach(row => {
+          const d = document.createElement('div'); d.className = 'ais-history-item';
+          const date = new Date(row.updated_at).toLocaleDateString('en-IN', { day: 'numeric', month: 'short' });
+          d.innerHTML = '<div class="ais-history-icon">PDF</div>' +
+            '<div style="flex:1;min-width:0;">' +
+              '<div class="ais-history-name" style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">' + escHtml(row.pdf_name) + '</div>' +
+              '<div class="ais-history-date">' + date + '</div>' +
+            '</div><div class="ais-history-badge">Load</div>';
+          d.onclick = async () => {
+            const cached = await aisFetchFromSupabase(row.pdf_name);
+            if (cached) {
+              aisState.currentData = cached; aisState.quizAnswers = {}; aisState.quizSubmitted = false;
+              aisRenderResults(row.pdf_name, true); toast('Loaded: ' + row.pdf_name);
+            }
+          };
+          c.appendChild(d);
+        });
+      } catch(err) { c.innerHTML = '<div style="font-size:12px;color:var(--text-muted);text-align:center;padding:16px 0;">History unavailable</div>'; }
+    }
+
+    // ═══════════════════════════════════════════
+    // AI-BASED SMART MATCHING
+    // ═══════════════════════════════════════════
+    function getSmartMatches(currentUser, allUsers) {
+      if (!currentUser || !currentUser.subject) return [];
+
+      return (allUsers || [])
+        .filter(user =>
+          user.user_id !== currentUser.user_id &&
+          user.subject === currentUser.subject &&
+          Number(user.quiz_score) > 80
+        )
+        .sort((a, b) => Number(b.quiz_score) - Number(a.quiz_score))
+        .slice(0, 3);
+    }
+
+    const SMART_MATCH_MOCK_USERS = [
+      { user_id: 'sm-ml-1', name: 'Priya K.', subject: 'Machine Learning', quiz_score: 94, time_spent: 18 },
+      { user_id: 'sm-ml-2', name: 'Rahul V.', subject: 'Machine Learning', quiz_score: 88, time_spent: 15 },
+      { user_id: 'sm-ml-3', name: 'Ananya S.', subject: 'Machine Learning', quiz_score: 84, time_spent: 12 },
+      { user_id: 'sm-os-1', name: 'Karthik R.', subject: 'Operating Systems', quiz_score: 91, time_spent: 20 },
+      { user_id: 'sm-os-2', name: 'Meera N.', subject: 'Operating Systems', quiz_score: 86, time_spent: 14 },
+      { user_id: 'sm-dsa-1', name: 'Sanjay P.', subject: 'Data Structures', quiz_score: 93, time_spent: 17 },
+      { user_id: 'sm-dbms-1', name: 'Divya S.', subject: 'DBMS', quiz_score: 90, time_spent: 16 },
+      { user_id: 'sm-cn-1', name: 'Naveen M.', subject: 'Computer Networks', quiz_score: 87, time_spent: 13 },
+    ];
+
+    let smartMatchLatestScore = null;
+
+    function getSmartMatchSubject() {
+      return state.groups?.[0]?.subjectName ||
+        state.groups?.[0]?.subject ||
+        'Operating Systems';
+    }
+
+    function updateSmartMatchScore(scorePercent) {
+      smartMatchLatestScore = {
+        subject: getSmartMatchSubject(),
+        quiz_score: Number(scorePercent),
+      };
+    }
+
+    function maybeOpenStudymateForLowScore(scorePercent) {
+      if (Number(scorePercent) >= 50) return;
+      toast('Low score detected. Opening Finding Studymate recommendations.');
+      showView('studymate');
+    }
+
+    function ensureSmartMatchesSection() {
+      if (document.getElementById('smart-matches-card')) return;
+
+      const dashboard = document.getElementById('view-dashboard');
+      if (!dashboard) return;
+
+      const card = document.createElement('div');
+      card.className = 'panel-card';
+      card.id = 'smart-matches-card';
+      card.style.marginTop = '20px';
+      card.innerHTML = `
+        <div class="pc-title">Recommended Teammates</div>
+        <div id="smart-match-message" style="font-size:12px;color:var(--text-muted);margin-bottom:12px;"></div>
+        <div id="smart-match-list"></div>
+      `;
+
+      dashboard.appendChild(card);
+    }
+
+    async function getCurrentSmartMatchUser() {
+      const subject = smartMatchLatestScore?.subject || getSmartMatchSubject();
+      let quizScore = smartMatchLatestScore?.quiz_score ?? 40;
+
+      if (state.user && !smartMatchLatestScore) {
+        try {
+          const { data } = await sb
+            .from('quiz_scores')
+            .select('score,total')
+            .eq('user_id', state.user.id)
+            .order('created_at', { ascending: false })
+            .limit(1);
+
+          if (data && data[0] && data[0].total) {
+            quizScore = Math.round((Number(data[0].score) / Number(data[0].total)) * 100);
+          }
+        } catch (err) {
+          console.warn('Smart matching quiz score fallback:', err.message);
+        }
+      }
+
+      return {
+        user_id: state.user?.id || 'current-user',
+        name: state.profile?.full_name || 'You',
+        subject,
+        quiz_score: quizScore,
+        time_spent: 0,
+      };
+    }
+
+    async function renderSmartMatchList(messageId, listId) {
+      const message = document.getElementById(messageId);
+      const list = document.getElementById(listId);
+      if (!message || !list) return;
+
+      const currentUser = await getCurrentSmartMatchUser();
+      const matches = getSmartMatches(currentUser, SMART_MATCH_MOCK_USERS);
+
+      list.innerHTML = '';
+
+      if (Number(currentUser.quiz_score) < 50) {
+        message.textContent = `You are currently weak in ${currentUser.subject}. These students can help you improve.`;
+      } else {
+        message.textContent = `Students strong in ${currentUser.subject} who may be good teammates.`;
+      }
+
+      if (matches.length === 0) {
+        list.innerHTML = '<div style="font-size:13px;color:var(--text-muted);padding:8px 0;">No strong teammates found for this subject yet.</div>';
+        return;
+      }
+
+      matches.forEach(match => {
+        const initials = (match.name || '?')
+          .split(' ')
+          .map(word => word[0])
+          .join('')
+          .slice(0, 2)
+          .toUpperCase();
+
+        const row = document.createElement('div');
+        row.className = 'leaderboard-row';
+        row.innerHTML = `
+          <div class="avatar" style="width:28px;height:28px;font-size:10px;">${escHtml(initials)}</div>
+          <div style="flex:1;min-width:0;">
+            <div class="lr-name">${escHtml(match.name)}</div>
+            <div style="font-size:10px;color:var(--text-muted);">${escHtml(match.subject)} · Strong in this subject · ${match.time_spent}h studied</div>
+          </div>
+          <div class="lr-dept">${Number(match.quiz_score)}%</div>
+        `;
+
+        const btn = document.createElement('button');
+        btn.className = 'btn-sm';
+        btn.style.cssText = 'padding:6px 12px;font-size:11px;';
+        btn.textContent = 'Connect';
+        btn.onclick = () => toast(`Connect request sent to ${match.name}`);
+
+        row.appendChild(btn);
+        list.appendChild(row);
+      });
+    }
+
+    async function renderSmartMatches() {
+      ensureSmartMatchesSection();
+      await renderSmartMatchList('smart-match-message', 'smart-match-list');
+    }
+
+    async function renderFindingStudymate() {
+      await renderSmartMatchList('studymate-match-message', 'studymate-match-list');
     }
 
     // Keyboard shortcuts
